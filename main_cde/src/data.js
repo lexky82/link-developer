@@ -1,22 +1,46 @@
-export default contents[
+export default [
     {
       id : 0,
-      title : "White and Black",
-      content : "Born in France",
-      price : 120000
+      title : "프론트엔드 개발자 찾습니다",
+      area : "서울 서초구",
+      date : 20200918
     },
   
     {
       id : 1,
-      title : "Red Knit",
-      content : "Born in Seoul",
-      price : 110000
+      title : "백엔드 개발자 찾습니다",
+      area : "부산 동구",
+      date : 20200918
     },
   
     {
       id : 2,
-      title : "Grey Yordan",
-      content : "Born in the States",
-      price : 130000
-    }
+      title : "데브옵스 개발자 찾습니다",
+      area : "인천",
+      date : 20200918
+    },
+    {
+      id : 3,
+      title : "백엔드 개발자 찾습니다",
+      area : "부산 동구",
+      date : 20200918
+    },
+    {
+      id : 4,
+      title : "백엔드 개발자 찾습니다",
+      area : "부산 동구",
+      date : 20200918
+    },
+    {
+      id : 5,
+      title : "백엔드 개발자 찾습니다",
+      area : "부산 동구",
+      date : 20200918
+    },
+    {
+      id : 6,
+      title : "백엔드 개발자 찾습니다",
+      area : "부산 동구",
+      date : 20200918
+    },
   ] 

@@ -1,3 +1,5 @@
+@import "./select_search.css";
+
 .App {
   text-align: center;
 }
@@ -6,6 +8,31 @@
   height: 40vmin;
   pointer-events: none;
 }
+
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.card{
+  position: relative;
+  margin-top: 1rem;
+  width: calc(50% - 0.5rem);
+  color: black;
+  margin: 0.1875rem;
+  text-align: center;
+  padding: 1.5rem;
+  border: 0.0625rem solid #D7E2EB;
+  border-radius: 0.25rem;
+}
+.card img{
+  margin: 0.375rem auto 0;
+  max-width: 4.5rem;
+  max-height: 4.5rem;
+  border-radius: 0.25rem;
+}
+
 
 
 @media (prefers-reduced-motion: no-preference) {
@@ -19,7 +46,7 @@ search_coment__title{
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: black;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -31,7 +58,6 @@ search_coment__title{
 
 .search__main{
   display: flex;
-  margin: 50px auto;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -54,36 +80,38 @@ search_coment__title{
   border : 0;
 }
 .login__title{
-  margin-top: 50px;
+  margin-top: 3.125rem;
   font-weight: 700;
 }
 
 
 .mainpage{
+  position: relative;
+  padding: 3.5rem 0 2.5rem 0;
+  overflow: hidden;
+  color: white;
   display: flex;
   flex-wrap: wrap;
   background-color: black;
+  justify-content: center;
   margin: 0px auto;
 }
-.mainpage Button{
-  padding: 5px 60px;
-  margin-top: 40px;
-  background-position: center;
-}
 .mainpage img{
-  max-width: 22.5%;
-  margin-left: 100px;
+  position: relative;
 }
-.mainpage__text{
-  text-align: left;
-  margin: 90px;
-  color: white;
-  font-family: 'Nanum Gothic', sans-serif;
+
+.mainpage__content{
+  text-align: center;
+  margin-top: 2.5rem;
 }
-.mainpage__text-title{
-  font-weight: 500;
-  font-size: 35px;
+.title{
+  font-weight: 600;
+  font-size: 2.188rem;
 }
+.mainpage__content-button{
+  padding: 0.3125rem 4.375rem;
+}
+
 
 .App-link {
   color: #61dafb;
@@ -97,3 +125,4 @@ search_coment__title{
     transform: rotate(360deg);
   }
 }
+

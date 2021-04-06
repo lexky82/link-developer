@@ -2,7 +2,7 @@ import './App.css';
 
 /* Lib */
 import { Navbar, Nav } from 'react-bootstrap';
-import { Route, Switch } from 'react-router';
+import { Route } from 'react-router';
 import { useState } from 'react';
 
 /* Components */
@@ -12,15 +12,16 @@ import SignUp from "./Compontent/sign-up";
 import Search from "./Compontent/tech-search";
 import FriendSearch from "./Compontent/friends-search";
 
+import Data from "./data";
+
 function App() {
 
-  const [Email, setEmail] = useState('');
-  const [Passwrod, setPassword] = useState('');
+  let [notice, setNotice] = useState(Data);
 
   return (
     <div className="App">
       <nav> {/* Navigation_bar */}
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark">
           <Navbar.Brand href="/">
             <img
               src="https://image.flaticon.com/icons/png/512/625/625078.png"
@@ -47,7 +48,6 @@ function App() {
         </Navbar>
       </nav>
 
-      <Switch>
         <Route exact path="/"> {/* Main_Component */}
           <Mainpage></Mainpage>
         </Route>
@@ -58,12 +58,11 @@ function App() {
           <SignUp></SignUp>
         </Route>
         <Route exact path="/search"> {/* Search_Component */}
-          <Search></Search>
+          <Search notice={notice}></Search>
         </Route>
         <Route exact path="/friendSearch"> {/* FriendsSearch_Component */}
           <FriendSearch></FriendSearch>
         </Route>
-      </Switch>
 
     </div>
   );

@@ -1,4 +1,4 @@
-import { Jumbotron, Button, Form } from 'react-bootstrap';
+import { Jumbotron } from 'react-bootstrap';
 
 function friendsSearch()
 {
