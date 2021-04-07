@@ -11,6 +11,7 @@ import Login from './Compontent/login';
 import SignUp from "./Compontent/sign-up";
 import Search from "./Compontent/tech-search";
 import FriendSearch from "./Compontent/friends-search";
+import Myinfo from "./Compontent/myinfo";
 
 import Data from "./data";
 
@@ -36,7 +37,7 @@ function App() {
               <Nav.Link href="#">안내</Nav.Link>
               <Nav.Link href="/search">스터디 찾기</Nav.Link>
               <Nav.Link href="/friendSearch">동료 찾기</Nav.Link>
-              <Nav.Link href="#">내정보</Nav.Link>
+              <Nav.Link href="/myinfo">내정보</Nav.Link>
             </Nav>
             <Nav className="ml-auto">
               <Nav.Link href="/login">로그인</Nav.Link>
@@ -62,6 +63,9 @@ function App() {
         </Route>
         <Route exact path="/friendSearch"> {/* FriendsSearch_Component */}
           <FriendSearch></FriendSearch>
+        </Route>
+        <Route exact path="/Myinfo"> {/* FriendsSearch_Component */}
+          <Myinfo></Myinfo>
         </Route>
 
     </div>
