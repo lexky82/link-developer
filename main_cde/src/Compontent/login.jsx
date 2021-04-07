@@ -4,7 +4,7 @@ function login() {
 
     return (
         <div>
-            <h2 className="login__title">로그인</h2>
+            <h2 className="login-title">로그인</h2>
             <Form className="login">
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>이메일</Form.Label>

@@ -8,7 +8,7 @@ function signup() {
 
     return (
         <div>
-            <h2 className="login__title">회원가입</h2>
+            <h2 className="login-title">회원가입</h2>
             <Form className="login">
                 <Form.Group controlId="">
                     <Form.Label>이름</Form.Label>

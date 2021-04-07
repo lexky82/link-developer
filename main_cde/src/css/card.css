@@ -1,0 +1,18 @@
+.card{
+    position: relative;
+    margin-top: 1rem;
+    width: calc(50% - 0.5rem);
+    color: black;
+    margin: 0.1875rem;
+    text-align: center;
+    padding: 1.5rem;
+    border: 0.0625rem solid #D7E2EB;
+    border-radius: 0.25rem;
+  }
+  .card img{
+    margin: 0.375rem auto 0;
+    max-width: 4.5rem;
+    max-height: 4.5rem;
+    border-radius: 0.25rem;
+  }
+  
