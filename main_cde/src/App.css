@@ -19,6 +19,20 @@
   list-style: none;
 }
 
+.experience{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  justify-content: space-evenly;
+}
+.experience button{
+  border : 0;
+  outline: 0;
+  font-size: 1.5rem;
+  background-color: white;
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -36,10 +50,26 @@
   color: white;
 }
 
+.techStackLabel{
+  font-size: 12px;
+  line-height: 1.5;
+  margin-bottom: 0.125rem;
+  margin-right: 0.125rem;
+  margin-top: 0.25rem;
+  display: inline-block;
+  vertical-align: top;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  color: blue;
+  background-color: #EEEBFF;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
 .myinfo{
   display: flex;
   flex-wrap: wrap;
-  margin-top: 5rem;
+  margin-top: 4rem;
   justify-content: center;
 }
 .myinfo img{
@@ -66,6 +96,20 @@
   border :0;
   outline: 0;
 }
+
+
+
+
+
+.techStackLabel button{
+  border : 0;
+  outline: 0;
+  background-color: #EEEBFF;
+  font-size: 5px;
+  text-align: right;
+}
+
+
 
 
 .title{

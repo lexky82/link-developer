@@ -18,6 +18,8 @@ import Data from "./data";
 function App() {
 
   let [notice, setNotice] = useState(Data);
+  let [tech, setTech] = useState([]);
+  const [ modalOpen, setModalOpen ] = useState(false);
 
   return (
     <div className="App">
@@ -65,7 +67,7 @@ function App() {
           <FriendSearch></FriendSearch>
         </Route>
         <Route exact path="/Myinfo"> {/* FriendsSearch_Component */}
-          <Myinfo></Myinfo>
+          <Myinfo tech={tech} setTech={setTech} modalOpen={modalOpen} setModalOpen={setModalOpen} ></Myinfo>
         </Route>
 
     </div>
