@@ -42,5 +42,5 @@ export default [
       title : "백엔드 개발자 찾습니다",
       area : "부산 동구",
       date : 20200918
-    },
+    }
   ] 
