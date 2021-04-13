@@ -18,8 +18,11 @@ import Data from "./data";
 function App() {
 
   let [notice, setNotice] = useState(Data);
-  let [tech, setTech] = useState([]);
-  const [ modalOpen, setModalOpen ] = useState(false);
+  let [skill, setSkill] = useState([]);
+  const [ portfolioModalOpen, setPortfolioModal ] = useState(false);
+  const [ careerModalOpen, setCareerModalOpen ] = useState(false);
+  
+  const [portfolioList, setPortfolioList] = useState([]);
 
   return (
     <div className="App">
@@ -59,16 +62,19 @@ function App() {
         </Route>
         <Route exact path="/signup"> {/* SignUp_Component */}
           <SignUp></SignUp>
-        </Route>
-        <Route exact path="/search"> {/* Search_Component */}
-          <Search notice={notice}></Search>
-        </Route>
-        <Route exact path="/friendSearch"> {/* FriendsSearch_Component */}
-          <FriendSearch></FriendSearch>
-        </Route>
-        <Route exact path="/Myinfo"> {/* FriendsSearch_Component */}
-          <Myinfo tech={tech} setTech={setTech} modalOpen={modalOpen} setModalOpen={setModalOpen} ></Myinfo>
-        </Route>
+      </Route>
+      <Route exact path="/search"> {/* Search_Component */}
+        <Search notice={notice}></Search>
+      </Route>
+      <Route exact path="/friendSearch"> {/* FriendsSearch_Component */}
+        <FriendSearch></FriendSearch>
+      </Route>
+      <Route exact path="/Myinfo"> {/* FriendsSearch_Component */}
+        <Myinfo
+          skill={skill} setSkill={setSkill} portfolioModalOpen={portfolioModalOpen} setPortfolioModal={setPortfolioModal} portfolioList={portfolioList} setPortfolioList={setPortfolioList}>
+          careerModalOpen={careerModalOpen} setCareerModalOpen={setCareerModalOpen}
+        </Myinfo>
+      </Route>
 
     </div>
   );

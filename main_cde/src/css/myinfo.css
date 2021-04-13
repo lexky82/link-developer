@@ -1,0 +1,30 @@
+.myinfo{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 4rem;
+    justify-content: center;
+  }
+  .myinfo img{
+    width: auto; height: auto;
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 70%;
+    padding: 1.25rem;
+  }
+  .myinfo__keyinfo{
+    text-align: left;
+    margin : 0;
+  }
+  .myinfo__keyinfo button{
+    border : 0;
+    outline: 0;
+    background-color: white;
+  }
+  .myinfo--department{
+    color: rgba(0, 0, 0, 0.2);
+  }
+  
+  .myinfo__skill--tech button{
+    border :0;
+    outline: 0;
+  }
