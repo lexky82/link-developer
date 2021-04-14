@@ -86,11 +86,11 @@ function techSerach(props) {
 
     function Notice(props) {
         return (
-            <li className="card">
+            <div className="card">
                 <img src="https://img.icons8.com/ios/452/client-company.png" />
                 <h5>{props.particle.title}</h5>
                 <span>2/4 & {props.particle.area}</span>
-            </li>
+            </div>
         )
     }
 }
