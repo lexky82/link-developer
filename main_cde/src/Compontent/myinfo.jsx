@@ -1,8 +1,8 @@
 import SelectSearch from 'react-select-search';
 import Fuse from 'fuse.js';
 import React, { useState } from 'react';
-import PortfolioModal from "./portfoliomodal";
-import CareerModal from "./portfoliomodal";
+import PortfolioModal from "./myinfomodal";
+import CareerModal from "./myinfomodal";
 
 function myInfo(props) {
 

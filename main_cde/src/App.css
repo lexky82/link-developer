@@ -1,8 +1,7 @@
 @import "./css/select_search.css";
 @import "./css/mainpage.css";
 @import "./css/login.css";
-@import "./css//search.css";
-@import "./css/card.css";
+@import "./css//studySearch.css";
 @import "./css/myinfo.css";
 @import "./css/friendSearch.css";
 
@@ -15,11 +14,8 @@
   pointer-events: none;
 }
 
-.container{
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-}
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

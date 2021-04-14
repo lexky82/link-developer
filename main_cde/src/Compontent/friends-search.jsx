@@ -1,11 +1,11 @@
-import { Jumbotron } from 'react-bootstrap';
+import {  Jumbotron } from 'react-bootstrap';
 import SelectSearch from 'react-select-search';
 import Fuse from 'fuse.js';
 
 function friendsSearch(props) {
-    
+
     const person = props;
-    
+
     const techstackList = [
         // 나중에 json으로 불려오면 딱이겠고만..
         { name: 'Java', value: 'Java' },
@@ -39,35 +39,32 @@ function friendsSearch(props) {
                     <p>찾을 기술명을 입력 해주세요.</p>
                     <SelectSearch options={techstackList} search filterOptions={fuzzySearch} value="sv" name="techstack" placeholder="기술 검색" />
                     <p>이름을 입력 해주세요.</p>
-                    <input type="text"/>
-                    <input type="button" value="검색"/>
+                    <input type="text" />
+                    <input type="button" value="검색" />
                 </div>
             </div>
 
             <p className="title">전체 결과</p>
 
             <div className="container">
-                <div className="row">
+                <div className="peopleList__list">
                     {
                         props.person.map((a, i) => {
                             return <Notice personData={props.person[i]} />
                         })
                     }
                 </div>
-
-
             </div>
         </div>
     )
 
     function Notice(props) {
         return (
-            <div className="person">
-                <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
-                <h5>{props.personData.Name}</h5>
-                <p>{props.personData.skill}</p>
-                <p>{props.personData.affiliation}</p>
-
+            <div className="peopleList__person">
+                    <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
+                    <p className="title"><a href="#">{props.personData.Name}</a></p>
+                    <p>{props.personData.skill}</p>
+                    <p>{props.personData.affiliation}</p>
             </div>
         )
     }

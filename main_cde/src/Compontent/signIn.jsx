@@ -1,6 +1,6 @@
 import { Form, Button } from 'react-bootstrap';
 
-function login() {
+function signIn() {
 
     return (
         <div>
@@ -26,4 +26,4 @@ function login() {
     )
 }
 
-export default login;
+export default signIn;

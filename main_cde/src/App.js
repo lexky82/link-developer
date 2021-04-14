@@ -7,9 +7,9 @@ import { useState } from 'react';
 
 /* Components */
 import Mainpage from "./Compontent/mainpage";
-import Login from './Compontent/login';
-import SignUp from "./Compontent/sign-up";
-import Search from "./Compontent/tech-search";
+import Login from './Compontent/signIn';
+import SignUp from "./Compontent/signUp";
+import StudySearch from "./Compontent/studySearch";
 import FriendSearch from "./Compontent/friends-search";
 import Myinfo from "./Compontent/myinfo";
 
@@ -19,10 +19,10 @@ import personData from "./testdata/personData";
 
 function App() {
 
-  let [notice, setNotice] = useState(studyData);
+  const [notice, setNotice] = useState(studyData);
   const [person, setPerson] = useState(personData);
 
-  let [skill, setSkill] = useState([]);
+  const [skill, setSkill] = useState([]);
   const [ portfolioModalOpen, setPortfolioModal ] = useState(false);
   const [ careerModalOpen, setCareerModalOpen ] = useState(false);
   
@@ -68,7 +68,7 @@ function App() {
           <SignUp></SignUp>
       </Route>
       <Route exact path="/search"> {/* Search_Component */}
-        <Search notice={notice}></Search>
+        <StudySearch notice={notice}></StudySearch>
       </Route>
       <Route exact path="/friendSearch"> {/* FriendsSearch_Component */}
         <FriendSearch person={personData}></FriendSearch>

@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     text-align: left;
-    margin-top: 6rem;
   }
   .friendSearch__main input{
     margin: 3px;
@@ -12,16 +11,23 @@
   .friendSearch__main p{
     margin: 5px;
   }
-  .person{
-    margin: 60px;
+
+  .peopleList__list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    text-align: center;
   }
-  .person p{
+  .peopleList__person{
+    color: black;
+    margin: 1rem 2rem;
+    text-align: center;
+    border: 0.0625rem;
+  }
+  .peopleList__person p{
     margin: 0;
   }
-  
-  .person img{
-    margin: 0.375rem auto 0;
-    max-width: 10rem;
-    max-height: 10rem;
+  .peopleList__person img{
+    max-width: 7rem;
     border-radius: 20rem;
   }
