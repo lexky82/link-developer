@@ -13,11 +13,15 @@ import Search from "./Compontent/tech-search";
 import FriendSearch from "./Compontent/friends-search";
 import Myinfo from "./Compontent/myinfo";
 
-import Data from "./data";
+/* testData */
+import studyData from "./testdata/studydata";
+import personData from "./testdata/personData";
 
 function App() {
 
-  let [notice, setNotice] = useState(Data);
+  let [notice, setNotice] = useState(studyData);
+  const [person, setPerson] = useState(personData);
+
   let [skill, setSkill] = useState([]);
   const [ portfolioModalOpen, setPortfolioModal ] = useState(false);
   const [ careerModalOpen, setCareerModalOpen ] = useState(false);
@@ -67,7 +71,7 @@ function App() {
         <Search notice={notice}></Search>
       </Route>
       <Route exact path="/friendSearch"> {/* FriendsSearch_Component */}
-        <FriendSearch></FriendSearch>
+        <FriendSearch person={personData}></FriendSearch>
       </Route>
       <Route exact path="/Myinfo"> {/* FriendsSearch_Component */}
         <Myinfo

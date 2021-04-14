@@ -1,0 +1,27 @@
+.friendSearch__main{
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    margin-top: 6rem;
+  }
+  .friendSearch__main input{
+    margin: 3px;
+    border-color: black;
+  }
+  
+  .friendSearch__main p{
+    margin: 5px;
+  }
+  .person{
+    margin: 60px;
+  }
+  .person p{
+    margin: 0;
+  }
+  
+  .person img{
+    margin: 0.375rem auto 0;
+    max-width: 10rem;
+    max-height: 10rem;
+    border-radius: 20rem;
+  }

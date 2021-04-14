@@ -2,7 +2,10 @@ import { Jumbotron } from 'react-bootstrap';
 import SelectSearch from 'react-select-search';
 import Fuse from 'fuse.js';
 
-function friendsSearch() {
+function friendsSearch(props) {
+    
+    const person = props;
+    
     const techstackList = [
         // 나중에 json으로 불려오면 딱이겠고만..
         { name: 'Java', value: 'Java' },
@@ -41,9 +44,33 @@ function friendsSearch() {
                 </div>
             </div>
 
+            <p className="title">전체 결과</p>
+
+            <div className="container">
+                <div className="row">
+                    {
+                        props.person.map((a, i) => {
+                            return <Notice personData={props.person[i]} />
+                        })
+                    }
+                </div>
+
+
+            </div>
         </div>
     )
 
+    function Notice(props) {
+        return (
+            <div className="person">
+                <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
+                <h5>{props.personData.Name}</h5>
+                <p>{props.personData.skill}</p>
+                <p>{props.personData.affiliation}</p>
+
+            </div>
+        )
+    }
 }
 
 export default friendsSearch;

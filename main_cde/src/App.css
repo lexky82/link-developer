@@ -4,6 +4,7 @@
 @import "./css//search.css";
 @import "./css/card.css";
 @import "./css/myinfo.css";
+@import "./css/friendSearch.css";
 
 .App {
   text-align: center;
@@ -19,34 +20,6 @@
   flex-wrap: wrap;
   list-style: none;
 }
-
-.Portfolio{
-  display: block;
-  background-color: Gainsboro;
-  opacity: 0.8;
-  text-align: left;
-  padding: 12.5px;
-  margin-bottom: 3px;
-  padding-right: 100px;
-}
-.Portfolio label{
-  font-weight: 700;
-}
-
-
-.experience{
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 30px;
-  justify-content: space-evenly;
-}
-.experience button{
-  border : 0;
-  outline: 0;
-  font-size: 1.5rem;
-  background-color: white;
-}
-
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -88,22 +61,6 @@
   font-size: 5px;
   text-align: right;
 }
-
-.friendSearch__main{
-  display: flex;
-  justify-content: center;
-  text-align: left;
-  margin-top: 6rem;
-}
-.friendSearch__main input{
-  margin: 3px;
-  border-color: black;
-}
-
-.friendSearch__main p{
-  margin: 5px;
-}
-
 
 .title{
   font-weight: 600;
