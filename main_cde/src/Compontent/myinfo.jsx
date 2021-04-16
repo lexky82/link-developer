@@ -74,7 +74,7 @@ function myInfo(props) {
 
         let newArray = [...skill];
         newArray.push(e);
-        setSkill(newArray);
+        setSkill( newArray );
     }
 
     return (

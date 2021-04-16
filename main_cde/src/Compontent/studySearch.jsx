@@ -72,15 +72,15 @@ function techSerach(props) {
 
             <p className="title">전체 결과</p>
 
-            <ul className="container">
-                <div className="row">
+            <div className="container">
+                <ul className="row">
                     {
                         props.notice.map((a, i) => {
                             return <Notice particle={props.notice[i]} />
                         })
                     }
-                </div>
-            </ul>
+                </ul>
+            </div>
         </div>
     )
 

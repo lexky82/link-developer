@@ -30,7 +30,6 @@ function App() {
 
   return (
     <div className="App">
-      <nav> {/* Navigation_bar */}
         <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark">
           <Navbar.Brand href="/">
             <img
@@ -56,7 +55,6 @@ function App() {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-      </nav>
 
         <Route exact path="/"> {/* Main_Component */}
           <Mainpage></Mainpage>
@@ -71,7 +69,7 @@ function App() {
         <StudySearch notice={notice}></StudySearch>
       </Route>
       <Route exact path="/friendSearch"> {/* FriendsSearch_Component */}
-        <FriendSearch person={personData}></FriendSearch>
+        <FriendSearch person={person}></FriendSearch>
       </Route>
       <Route exact path="/Myinfo"> {/* FriendsSearch_Component */}
         <Myinfo
