@@ -19,18 +19,19 @@ import personData from "./testdata/personData";
 
 function App() {
 
+  /* testData State */
   const [notice, setNotice] = useState(studyData);
   const [person, setPerson] = useState(personData);
 
+  /* myInfo Components */
   const [skill, setSkill] = useState([]);
   const [ portfolioModalOpen, setPortfolioModal ] = useState(false);
   const [ careerModalOpen, setCareerModalOpen ] = useState(false);
-  
   const [portfolioList, setPortfolioList] = useState([]);
 
   return (
     <div className="App">
-        <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark"> {/* Navigatorbar */}
           <Navbar.Brand href="/">
             <img
               src="https://image.flaticon.com/icons/png/512/625/625078.png"
@@ -43,7 +44,7 @@ function App() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="#">안내</Nav.Link>
-              <Nav.Link href="/search">스터디 찾기</Nav.Link>
+              <Nav.Link href="/studySearch">스터디 찾기</Nav.Link>
               <Nav.Link href="/friendSearch">동료 찾기</Nav.Link>
               <Nav.Link href="/myinfo">내정보</Nav.Link>
             </Nav>
@@ -65,13 +66,13 @@ function App() {
         <Route exact path="/signup"> {/* SignUp_Component */}
           <SignUp></SignUp>
       </Route>
-      <Route exact path="/search"> {/* Search_Component */}
+      <Route exact path="/studySearch"> {/* StudySearch_Component */}
         <StudySearch notice={notice}></StudySearch>
       </Route>
       <Route exact path="/friendSearch"> {/* FriendsSearch_Component */}
         <FriendSearch person={person}></FriendSearch>
       </Route>
-      <Route exact path="/Myinfo"> {/* FriendsSearch_Component */}
+      <Route exact path="/Myinfo"> {/* MyInfo_Component */}
         <Myinfo
           skill={skill} setSkill={setSkill} portfolioModalOpen={portfolioModalOpen} setPortfolioModal={setPortfolioModal} portfolioList={portfolioList} setPortfolioList={setPortfolioList}>
           careerModalOpen={careerModalOpen} setCareerModalOpen={setCareerModalOpen}

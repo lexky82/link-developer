@@ -1,6 +1,9 @@
+/* Lib */
 import SelectSearch from 'react-select-search';
 import Fuse from 'fuse.js';
 import React, { useState } from 'react';
+
+/* Components */
 import PortfolioModal from "./myinfomodal";
 import CareerModal from "./myinfomodal";
 
@@ -8,6 +11,7 @@ function myInfo(props) {
 
     const { skill, setSkill, setPortfolioModal, portfolioModalOpen, portfolioList, setPortfolioList, careerModalOpen, setCareerModalOpen  } = props;
 
+    /* Modal Open/Close handler function */
     const openPortfolioModal = () => {
         setPortfolioModal(true);
     }
@@ -21,6 +25,7 @@ function myInfo(props) {
         setCareerModalOpen(false);
     }
 
+    /* portfolio modal 등록 */
     const registration = () => {
         const projectName = document.getElementById('projectName').value;
         const date = document.getElementById('date').value;
@@ -52,7 +57,8 @@ function myInfo(props) {
         { name: 'C#', value: 'C#' },
     ];
 
-    function fuzzySearch(options) { // dropdownbox item search
+    /* dropdownbox item search */
+    function fuzzySearch(options) { 
         const fuse = new Fuse(options, {
             keys: ['name', 'value'],
             threshold: 0.3,
@@ -67,6 +73,7 @@ function myInfo(props) {
         };
     }
 
+    /* dropdownbox item select */
     function addSkill(e) {
         if (skill.indexOf(e) >= 0) { // 스택 중복검사
             return;
