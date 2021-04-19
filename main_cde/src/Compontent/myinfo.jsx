@@ -9,7 +9,7 @@ import CareerModal from "./myinfomodal";
 
 function myInfo(props) {
 
-    const { skill, setSkill, setPortfolioModal, portfolioModalOpen, portfolioList, setPortfolioList, careerModalOpen, setCareerModalOpen  } = props;
+    const { skill, setSkill, setPortfolioModal, portfolioModalOpen, portfolioList, setPortfolioList, careerModalOpen, setCareerModalOpen } = props;
 
     /* Modal Open/Close handler function */
     const openPortfolioModal = () => {
@@ -43,7 +43,7 @@ function myInfo(props) {
 
         const copyArray = [...portfolioList];
         copyArray.push(newObject);
-        setPortfolioList( copyArray );
+        setPortfolioList(copyArray);
 
         /* (DB Insert code) */
 
@@ -58,7 +58,7 @@ function myInfo(props) {
     ];
 
     /* dropdownbox item search */
-    function fuzzySearch(options) { 
+    function fuzzySearch(options) {
         const fuse = new Fuse(options, {
             keys: ['name', 'value'],
             threshold: 0.3,
@@ -74,76 +74,75 @@ function myInfo(props) {
     }
 
     /* dropdownbox item select */
-    function addSkill(e) {
-        if (skill.indexOf(e) >= 0) { // 스택 중복검사
+    function addSkill(event) {
+        if (skill.indexOf(event) >= 0) { // 스택 중복검사
             return;
         }
 
         let newArray = [...skill];
-        newArray.push(e);
-        setSkill( newArray );
+        newArray.push(event);
+        setSkill(newArray);
     }
 
     return (
         <div>
             <section>
-                <div className="myinfo">
-                    <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
-                    <div className="myinfo__keyinfo">
-                        <h1>
-                            <p>권혁진</p>
-                            <p>(lexky82@gmail.com)</p>
-                        </h1>
+                <div className="myinfogrid">
 
-                        <p className="myinfo--affiliation">대한민국 근무중</p>
-                        <p className="myinfo--department">상용화</p>
+                    <div className="keyinfo">
+                        <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
+                        <div className="keyinfo__persionalinfo">
+                            <h1>
+                                <p>권혁진</p>
+                                <p>(lexky82@gmail.com)</p>
+                            </h1>
 
-                        <div className="myinfo__keyinfo--skillstack">
-                            <span>기술</span>
-                            <hr />
-                            <SelectSearch onChange={(e) => { addSkill(e) }} options={skillstackList} search filterOptions={fuzzySearch} value="sv" name="skillstack" placeholder="기술 검색" />
-                            {
-                                props.skill.map((a, i) => {
-                                    return <SkillStackLabel skill={props.skill[i]} />
-                                })
-                            }
+                            <p>대한민국 근무중</p>
+                            <p className="keyinfo__persionalinfo--department">상용화</p>
+
+                            <div>
+                                <span>기술</span>
+                                <hr />
+                                <SelectSearch onChange={(event) => { addSkill(event) }} options={skillstackList} search filterOptions={fuzzySearch} value="sv" name="skillstack" placeholder="기술 검색" />
+                                {
+                                    skill.map((a, i) => {
+                                        return <SkillStackLabel skill={props.skill[i]} />
+                                    })
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div className="experience">
-                    <div>
+                    <div className="experience__career">
                         <span>경력 및 경험</span>
-                            <button onClick={ openCareerModal }>+</button>
+                        <button className="experience--button" onClick={openCareerModal}>+</button>
                         <hr />
                         <React.Fragment>
-                            <CareerModal open={ careerModalOpen } close={ closeCareerModal } registration={ registration } header="경력 및 경험">
+                            <CareerModal open={careerModalOpen} close={closeCareerModal} registration={registration} header="경력 및 경험">
                                 <p>회사 명 및 단체 명</p>
-                                <input id="projectName" type="text"/>
+                                <input id="projectName" type="text" />
                                 <p>기간</p>
-                                <input id="date" type="text"/>
+                                <input id="date" type="text" />
                                 <p>포지션</p>
-                                <input id="position" type="text"/>
+                                <input id="position" type="text" />
                             </CareerModal>
                         </React.Fragment>
                     </div>
-
-                    <div>
+                    <div className="expreience__portfolio">
                         <span>포트폴리오</span>
-                        <button onClick={ openPortfolioModal }>+</button>
+                        <button className="experience--button" onClick={openPortfolioModal}>+</button>
                         <hr />
                         <React.Fragment>
-                            <PortfolioModal open={ portfolioModalOpen } close={ closePortfolioModal } registration={ registration } header="포트폴리오">
+                            <PortfolioModal open={portfolioModalOpen} close={closePortfolioModal} registration={registration} header="포트폴리오">
                                 <p>프로젝트 명</p>
-                                <input id="projectName" type="text"/>
+                                <input id="projectName" type="text" />
                                 <p>기간</p>
-                                <input id="date" type="text"/>
+                                <input id="date" type="text" />
                                 <p>포지션</p>
-                                <input id="position" type="text"/>
+                                <input id="position" type="text" />
                                 <p>기술</p>
-                                <input id="skill" type="text"/>
+                                <input id="skill" type="text" />
                                 <p>프로젝트 설명</p>
-                                <input id="discription" type="text"/>
+                                <input id="discription" type="text" />
                             </PortfolioModal>
                         </React.Fragment>
                         {
@@ -152,24 +151,36 @@ function myInfo(props) {
                             })
                         }
                     </div>
+                
                 </div>
-
             </section>
 
         </div>
     )
-    
+
     function SkillStackLabel(props) {
         return (
-            <li className="skillStackLabel">
+            <li id={props.skill} className="skillStackLabel">
                 <span>{props.skill}</span>
-                <button onClick={() => {  }}>x</button>
+                <button onClick={(event) => {
+                    let selectedSkill = event.target.parentNode.id;
+                    let newArray = [...skill];
+
+                    for (let i = 0; i < newArray.length; i++) {
+                        if (newArray[i] === selectedSkill) {
+                            newArray.splice(i, 1);
+                            i--;
+                        }
+                    }
+
+                    setSkill(newArray);
+                }}>x</button>
             </li>
         )
     }
 
     function Portfolio(props) {
-        return(
+        return (
             <div className="Portfolio">
                 <label htmlFor="project_name">프로젝트 명</label>
                 <p htmlFor="project_name">{props.portfolioList.projectName}</p>
@@ -185,14 +196,14 @@ function myInfo(props) {
         )
     }
     function Career(props) {
-        return(
+        return (
             <div className="Portfolio">
                 <label htmlFor="project_name">재직 회사 및 학교명</label>
                 <p htmlFor="project_name">{props.portfolioList.projectName}</p>
                 <label htmlFor="date">재직 기간</label>
                 <p htmlFor="project_name">{props.portfolioList.projectName}</p>
                 <label htmlFor="date">설명</label>
-                
+
             </div>
         )
     }
