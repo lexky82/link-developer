@@ -23,10 +23,14 @@ function App() {
   const [notice, setNotice] = useState(studyData);
   const [person, setPerson] = useState(personData);
 
-  /* myInfo Components */
+  /* signIn State */
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  /* myInfo State */
   const [skill, setSkill] = useState([]);
-  const [ portfolioModalOpen, setPortfolioModal ] = useState(false);
-  const [ careerModalOpen, setCareerModalOpen ] = useState(false);
+  const [portfolioModalOpen, setPortfolioModal] = useState(false);
+  const [careerModalOpen, setCareerModalOpen] = useState(false);
   const [portfolioList, setPortfolioList] = useState([]);
 
   return (
@@ -61,7 +65,7 @@ function App() {
           <Mainpage></Mainpage>
         </Route>
         <Route exact path="/login"> {/* Login_Component */}
-          <Login></Login>
+          <Login email={email} setEmail={setEmail} password={password} setPassword={setPassword}></Login>
         </Route>
         <Route exact path="/signup"> {/* SignUp_Component */}
           <SignUp></SignUp>
