@@ -2,28 +2,23 @@
 import SelectSearch from 'react-select-search';
 import Fuse from 'fuse.js';
 import React, { useState } from 'react';
+import { Jumbotron } from "react-bootstrap";
 
 /* Components */
-import PortfolioModal from "./myinfomodal";
-import CareerModal from "./myinfomodal";
+import Modal from "./myinfomodal";
 
 function myInfo(props) {
 
-    const { skill, setSkill, setPortfolioModal, portfolioModalOpen, portfolioList, setPortfolioList, careerModalOpen, setCareerModalOpen } = props;
+    const { skill, setSkill, setModalOpen, modalOpen, portfolioList, setPortfolioList } = props;
 
     /* Modal Open/Close handler function */
-    const openPortfolioModal = () => {
-        setPortfolioModal(true);
+    const openModal = () => {
+        setModalOpen(true);
     }
-    const closePortfolioModal = () => {
-        setPortfolioModal(false);
+    const closeModal = () => {
+        setModalOpen(false);
     }
-    const openCareerModal = () => {
-        setCareerModalOpen(true);
-    }
-    const closeCareerModal = () => {
-        setCareerModalOpen(false);
-    }
+
 
     /* portfolio modal 등록 */
     const registration = () => {
@@ -47,7 +42,7 @@ function myInfo(props) {
 
         /* (DB Insert code) */
 
-        setPortfolioModal(false);
+        setModalOpen(false);
     }
 
     const skillstackList = [
@@ -81,15 +76,21 @@ function myInfo(props) {
 
         let newArray = [...skill];
         newArray.push(event);
+
+        /* (DB Insert code) */
+        
         setSkill(newArray);
     }
 
     return (
         <div>
-            <section>
-                <div className="myinfogrid">
+             <Jumbotron className="search__header">
+                <h2 className="search__header-title">정보를 입력하면 다른 사람들이 볼 수 있어요!</h2>
+            </Jumbotron>
 
-                    <div className="keyinfo">
+                <div className="myinfogrid">
+                    
+                    <section className="keyinfo">
                         <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
                         <div className="keyinfo__persionalinfo">
                             <h1>
@@ -103,7 +104,7 @@ function myInfo(props) {
                             <div>
                                 <span>기술</span>
                                 <hr />
-                                <SelectSearch onChange={(event) => { addSkill(event) }} options={skillstackList} search filterOptions={fuzzySearch} value="sv" name="skillstack" placeholder="기술 검색" />
+                                <SelectSearch onChange={(event) => { addSkill(event) }} options={skillstackList} search="true" filterOptions={fuzzySearch} value="sv" name="skillstack" placeholder="기술 검색" />
                                 {
                                     skill.map((a, i) => {
                                         return <SkillStackLabel skill={props.skill[i]} />
@@ -111,50 +112,45 @@ function myInfo(props) {
                                 }
                             </div>
                         </div>
-                    </div>
-                    <div className="experience__career">
-                        <span>경력 및 경험</span>
-                        <button className="experience--button" onClick={openCareerModal}>+</button>
-                        <hr />
-                        <React.Fragment>
-                            <CareerModal open={careerModalOpen} close={closeCareerModal} registration={registration} header="경력 및 경험">
-                                <p>회사 명 및 단체 명</p>
-                                <input id="projectName" type="text" />
-                                <p>기간</p>
-                                <input id="date" type="text" />
-                                <p>포지션</p>
-                                <input id="position" type="text" />
-                            </CareerModal>
-                        </React.Fragment>
-                    </div>
-                    <div className="expreience__portfolio">
-                        <span>포트폴리오</span>
-                        <button className="experience--button" onClick={openPortfolioModal}>+</button>
-                        <hr />
-                        <React.Fragment>
-                            <PortfolioModal open={portfolioModalOpen} close={closePortfolioModal} registration={registration} header="포트폴리오">
-                                <p>프로젝트 명</p>
-                                <input id="projectName" type="text" />
-                                <p>기간</p>
-                                <input id="date" type="text" />
-                                <p>포지션</p>
-                                <input id="position" type="text" />
-                                <p>기술</p>
-                                <input id="skill" type="text" />
-                                <p>프로젝트 설명</p>
-                                <input id="discription" type="text" />
-                            </PortfolioModal>
-                        </React.Fragment>
-                        {
-                            portfolioList.map((a, i) => {
-                                return <Portfolio portfolioList={portfolioList[i]} />
-                            })
-                        }
-                    </div>
-                
-                </div>
-            </section>
+                    </section>
 
+                    <section  className="expreience__portfolio">
+                        {/*      <div className="experience__career">
+                        <span>경력 및 경험</span>
+                        <button className="experience--button" onClick={openModal}>+</button>
+                        <hr />
+                        <React.Fragment>
+                            <Modal open={modalOpen} close={closeModal} registration={registration} header="경력 및 경험">
+                                
+                            </Modal>
+                        </React.Fragment>
+                        </div> */}
+                        <div>
+                            <span>포트폴리오</span>
+                            <button className="experience--button" onClick={openModal}>+</button>
+                            <hr />
+                            <React.Fragment>
+                                <Modal open={modalOpen} close={closeModal} registration={registration} header="포트폴리오">
+                                    <p>프로젝트 명</p>
+                                    <input id="projectName" type="text" />
+                                    <p>기간</p>
+                                    <input id="date" type="text" />
+                                    <p>포지션</p>
+                                    <input id="position" type="text" />
+                                    <p>기술</p>
+                                    <input id="skill" type="text" />
+                                    <p>프로젝트 설명</p>
+                                    <input id="discription" type="text" />
+                                </Modal>
+                            </React.Fragment>
+                            {
+                                portfolioList.map((a, i) => {
+                                    return <Portfolio portfolioList={portfolioList[i]} />
+                                })
+                            }
+                        </div>
+                    </section>
+                </div>
         </div>
     )
 
@@ -182,15 +178,10 @@ function myInfo(props) {
     function Portfolio(props) {
         return (
             <div className="Portfolio">
-                <label htmlFor="project_name">프로젝트 명</label>
-                <p htmlFor="project_name">{props.portfolioList.projectName}</p>
-                <label htmlFor="date">기간</label>
+                <h5 htmlFor="project_name">{props.portfolioList.projectName}</h5>
                 <p htmlFor="date">{props.portfolioList.date}</p>
-                <label htmlFor="positions">포지션</label>
                 <p htmlFor="positions">{props.portfolioList.position}</p>
-                <label htmlFor="skill">기술</label>
                 <p htmlFor="skill">{props.portfolioList.skill}</p>
-                <label htmlFor="description">설명</label>
                 <p htmlFor="description">{props.portfolioList.discription}</p>
             </div>
         )

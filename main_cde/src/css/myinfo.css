@@ -44,12 +44,13 @@
 
   .Portfolio{
     display: block;
-    background-color: Gainsboro;
+    background-color: aliceblue;
     opacity: 0.8;
     text-align: left;
     padding: 12.5px;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
     padding-right: 100px;
+    border-bottom: solid;
   }
   .Portfolio label{
     font-weight: 700;
@@ -77,3 +78,4 @@
     flex-direction: column;
     margin-top: 30px;
   }
+  
