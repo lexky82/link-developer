@@ -12,6 +12,7 @@ import SignUp from "./Compontent/signUp";
 import StudySearch from "./Compontent/studySearch";
 import FriendSearch from "./Compontent/friends-search";
 import Myinfo from "./Compontent/myinfo";
+import StudyDetail from "./Compontent/studyDetail";
 
 /* testData */
 import studyData from "./testdata/studydata";
@@ -23,14 +24,16 @@ function App() {
   const [notice, setNotice] = useState(studyData);
   const [person, setPerson] = useState(personData);
 
+  /* studySearch State */
+  const [studyModalOpen, setStudyModalOpen] = useState("");
+
   /* signIn State */
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   /* myInfo State */
   const [skill, setSkill] = useState([]);
-  const [portfolioModalOpen, setPortfolioModal] = useState(false);
-  const [careerModalOpen, setCareerModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [portfolioList, setPortfolioList] = useState([]);
 
   return (
@@ -71,17 +74,21 @@ function App() {
           <SignUp></SignUp>
       </Route>
       <Route exact path="/studySearch"> {/* StudySearch_Component */}
-        <StudySearch notice={notice}></StudySearch>
+        <StudySearch  studyModalOpen={studyModalOpen} setStudyModalOpen={setStudyModalOpen} notice={notice}></StudySearch>
       </Route>
       <Route exact path="/friendSearch"> {/* FriendsSearch_Component */}
         <FriendSearch person={person}></FriendSearch>
       </Route>
       <Route exact path="/Myinfo"> {/* MyInfo_Component */}
         <Myinfo
-          skill={skill} setSkill={setSkill} portfolioModalOpen={portfolioModalOpen} setPortfolioModal={setPortfolioModal} portfolioList={portfolioList} setPortfolioList={setPortfolioList}>
-          careerModalOpen={careerModalOpen} setCareerModalOpen={setCareerModalOpen}
+          skill={skill} setSkill={setSkill} modalOpen={modalOpen} setModalOpen={setModalOpen} 
+          portfolioList={portfolioList} setPortfolioList={setPortfolioList}>
+          
         </Myinfo>
       </Route>
+      <Route exact path="/Detail"> {/* Main_Component */}
+          <StudyDetail></StudyDetail>
+        </Route>
 
     </div>
   );

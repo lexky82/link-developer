@@ -4,6 +4,7 @@
 @import "./css//studySearch.css";
 @import "./css/myinfo.css";
 @import "./css/friendSearch.css";
+@import "./css/studyDtail.css";
 
 .App {
   text-align: center;

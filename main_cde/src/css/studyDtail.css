@@ -1,0 +1,22 @@
+.detail{
+    text-align: left;
+}
+
+.detail section
+{
+    margin-bottom: 20px;
+}
+.detail__header{
+    padding: 3rem 0;
+    text-align: left;
+}
+.projectName{
+    font-weight: 500;
+    color: #98A8B9;
+}
+.skillStackinfo{
+    text-align: left;
+}
+.skillStackinfo ul{
+    padding: 0;
+}
