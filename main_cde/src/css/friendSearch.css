@@ -12,22 +12,25 @@
     margin: 5px;
   }
 
-  .peopleList__list{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    text-align: center;
+  .container-md{
+    width: 70%;
   }
-  .peopleList__person{
-    color: black;
-    margin: 1rem 2rem;
-    text-align: center;
-    border: 0.0625rem;
+
+ .peopleList__person{
+    display: flex;
+    text-align: left;
+    margin-bottom: 0.625rem;
+    border-bottom: 1px solid #d9dfeb;
   }
   .peopleList__person p{
     margin: 0;
   }
   .peopleList__person img{
-    max-width: 7rem;
-    border-radius: 20rem;
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 10rem;
+  }
+  .person__info{
+    margin-left: 2rem;
+    margin-bottom: 0.625rem;
   }

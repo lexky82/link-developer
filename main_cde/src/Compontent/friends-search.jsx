@@ -46,8 +46,8 @@ function friendsSearch(props) {
 
             <p className="title">전체 결과</p>
 
-            <div className="container">
-                <div className="peopleList__list">
+            <div className="container-md">
+                <div className="peopleList">
                     {
                         props.person.map((a, i) => {
                             return <Notice personData={props.person[i]} />
@@ -62,9 +62,11 @@ function friendsSearch(props) {
         return (
             <div className="peopleList__person">
                     <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
+                <div className="person__info">
                     <p className="title"><a href="#">{props.personData.Name}</a></p>
-                    <p>{props.personData.skill}</p>
-                    <p>{props.personData.affiliation}</p>
+                    <div>{props.personData.position}</div>
+                    <div>{props.personData.skill}</div>
+                </div>
             </div>
         )
     }
