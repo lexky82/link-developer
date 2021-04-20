@@ -1,9 +1,35 @@
-import { Jumbotron, Form, Card, ListGroup } from 'react-bootstrap';
+import { Jumbotron, Form, Button } from 'react-bootstrap';
 import SelectSearch from 'react-select-search';
 import Fuse from 'fuse.js';
-
+import React, { useState } from 'react';
+import Modal from "./myinfomodal";
 
 function techSerach(props) {
+
+    const { studyModalOpen, setStudyModalOpen } = props;
+
+    const openPortfolioModal = () => {
+        setStudyModalOpen(true);
+    }
+    const closePortfolioModal = () => {
+        setStudyModalOpen(false);
+    }
+    const registration = () => {
+        const projectName = document.getElementById('projectName').value;
+        const date = document.getElementById('date').value;
+        const position = document.getElementById('position').value;
+        const skill = document.getElementById('skill').value;
+        const discription = document.getElementById('discription').value;
+
+        const newObject = {
+            projectName: projectName,
+            date: date,
+            position: position,
+            skill: skill,
+            discription: discription
+        };
+        
+    }
 
     const techstackList = [
         // 나중에 json으로 불려오면 딱이겠고만..
@@ -68,12 +94,43 @@ function techSerach(props) {
                         <option>부산</option>
                     </Form.Control>
                 </Form.Group>
+                <Form.Group>
+                    <div>
+                        <React.Fragment>
+                            <Modal open={studyModalOpen} close={closePortfolioModal} registration={registration} header="스터디 모집">
+                                <p>공고 제목</p>
+                                <input id="projectName" type="text" />
+                                <p>진행할 프로젝트 명</p>
+                                <input id="date" type="text" />
+                                <p>구하는 포지션</p>
+                                <input id="position" type="text" />
+                                <p>현재 스터디 규모</p>
+                                <input id="skill" type="text" />
+                                <p>모집 기간</p>
+                                <input id="discription" type="text" />
+                                <p>온라인/오프라인 유무</p>
+                                <input id="discription" type="text" />
+                                <p>위치</p>
+                                <input id="discription" type="text" />
+                                <p>기술스택</p>
+                                <input id="discription" type="text" />
+                                <p>스터디 소개</p>
+                                <input id="discription" type="text" />
+                                <p>연락처</p>
+                                <input id="discription" type="text" />
+                                <p>구성원</p>
+                                <input id="discription" type="text" />
+                            </Modal>
+                        </React.Fragment>
+                    </div>
+                    <Button onClick={openPortfolioModal}>모집공고 등록</Button>
+                </Form.Group>
             </Form>
 
             <p className="title">전체 결과</p>
 
             <div className="container">
-                <ul className="row">
+                <ul className="notice">
                     {
                         props.notice.map((a, i) => {
                             return <Notice particle={props.notice[i]} />
@@ -86,9 +143,9 @@ function techSerach(props) {
 
     function Notice(props) {
         return (
-            <li className="card">
+            <li className="notice__card">
                 <img src="https://img.icons8.com/ios/452/client-company.png" />
-                <h5>{props.particle.title}</h5>
+                <h5><a href="/Detail">{props.particle.title}</a></h5>
                 <span>2/4 & {props.particle.area}</span>
             </li>
         )
