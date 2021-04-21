@@ -1,16 +1,17 @@
-import {  Jumbotron } from 'react-bootstrap';
+import { Jumbotron } from 'react-bootstrap';
 import SelectSearch from 'react-select-search';
 import Fuse from 'fuse.js';
 
 function friendsSearch(props) {
 
-    const person = props;
+    const {person, setperson, randerPerson, setRanderPerson} = props;
 
     const techstackList = [
         // 나중에 json으로 불려오면 딱이겠고만..
         { name: 'Java', value: 'Java' },
         { name: 'Python', value: 'Python' },
         { name: 'C#', value: 'C#' },
+        { name: 'React', value: 'React' },
     ];
 
     function fuzzySearch(options) { // dropdownbox item search
@@ -28,6 +29,27 @@ function friendsSearch(props) {
         };
     }
 
+    const filterSkill = (event) => {
+        const newArray = [...person];
+
+        const result =  newArray.filter( x => {
+            return x.skill == event
+        });
+        
+        setRanderPerson( result );
+    }
+
+    const handlefilterName = (event) => {
+        const newArray = [...person];
+        console.log(event.target.value);
+        
+        const result =  newArray.filter( x => {
+            return x.Name == event.target.value
+        });
+        
+        setRanderPerson( result );
+    }
+
     return (
         <div>
             <Jumbotron className="search__header">
@@ -37,9 +59,9 @@ function friendsSearch(props) {
             <div className="friendSearch__main">
                 <div>
                     <p>찾을 기술명을 입력 해주세요.</p>
-                    <SelectSearch options={techstackList} search filterOptions={fuzzySearch} value="sv" name="techstack" placeholder="기술 검색" />
+                    <SelectSearch onChange={(event) => {filterSkill(event)}} options={techstackList} search filterOptions={fuzzySearch} value="sv" name="techstack" placeholder="기술 검색" />
                     <p>이름을 입력 해주세요.</p>
-                    <input type="text" />
+                    <input type="text" onChange={(event) => {handlefilterName(event)}} />
                     <input type="button" value="검색" />
                 </div>
             </div>
@@ -49,8 +71,8 @@ function friendsSearch(props) {
             <div className="container-md">
                 <div className="peopleList">
                     {
-                        props.person.map((a, i) => {
-                            return <Notice personData={props.person[i]} />
+                        randerPerson.map((a, i) => {
+                            return <Notice personData={props.randerPerson[i]} />
                         })
                     }
                 </div>
@@ -61,11 +83,11 @@ function friendsSearch(props) {
     function Notice(props) {
         return (
             <div className="peopleList__person">
-                    <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
+                <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
                 <div className="person__info">
                     <p className="title"><a href="#">{props.personData.Name}</a></p>
                     <div>{props.personData.position}</div>
-                    <div>{props.personData.skill}</div>
+                    <div className="skillStackLabel">{props.personData.skill}</div>
                 </div>
             </div>
         )

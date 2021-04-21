@@ -22,7 +22,11 @@ function App() {
 
   /* testData State */
   const [notice, setNotice] = useState(studyData);
+  const [randerNotice, setRanderNotice] = useState(studyData);
   const [person, setPerson] = useState(personData);
+
+  /* friendSearch State */
+  const [randerPerson, setRanderPerson] = useState(personData);
 
   /* studySearch State */
   const [studyModalOpen, setStudyModalOpen] = useState("");
@@ -74,10 +78,17 @@ function App() {
           <SignUp></SignUp>
       </Route>
       <Route exact path="/studySearch"> {/* StudySearch_Component */}
-        <StudySearch  studyModalOpen={studyModalOpen} setStudyModalOpen={setStudyModalOpen} notice={notice}></StudySearch>
+        <StudySearch  
+        studyModalOpen={studyModalOpen} setStudyModalOpen={setStudyModalOpen} 
+        notice={notice} setNotice={setNotice} 
+        randerNotice = {randerNotice} setRanderNotice={setRanderNotice}
+        >
+        </StudySearch>
       </Route>
       <Route exact path="/friendSearch"> {/* FriendsSearch_Component */}
-        <FriendSearch person={person}></FriendSearch>
+        <FriendSearch person={person}
+        randerPerson={randerPerson} setRanderPerson={setRanderPerson}
+        ></FriendSearch>
       </Route>
       <Route exact path="/Myinfo"> {/* MyInfo_Component */}
         <Myinfo

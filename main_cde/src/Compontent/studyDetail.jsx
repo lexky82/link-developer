@@ -89,7 +89,7 @@ function studyDetail() {
                 <div className="person__info">
                     <p className="title"><a href="#">권옹</a></p>
                     <div>Fronted Developer</div>
-                    <div>React,Vue</div>
+                    <div className="skillStackLabel">Vue</div>
                 </div>
             </div>
         )

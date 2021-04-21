@@ -8,63 +8,63 @@ export default [
     },
     {
         id: 1,
-        Name: "권김",
+        Name: "박현우",
         position : "frontend",
-        skill: "React",
+        skill: "Node",
         affiliation: "대학생"
     },
     {
         id: 2,
-        Name: "권순",
+        Name: "김권순",
         position : "frontend",
         skill: "React",
         affiliation: "대학생"
     },
     {
         id: 3,
-        Name: "권우",
+        Name: "김진우",
         position : "frontend",
-        skill: "React",
+        skill: "Python",
         affiliation: "대학생"
     },
     {
         id: 4,
-        Name: "권영",
+        Name: "왕도",
         position : "frontend",
-        skill: "React",
+        skill: "C#",
         affiliation: "대학생"
     },
     {
         id: 5,
-        Name: "권한",
+        Name: "권용현",
+        position : "frontend",
+        skill: "Java",
+        affiliation: "대학생"
+    },
+    {
+        id: 3,
+        Name: "이색",
         position : "frontend",
         skill: "React",
         affiliation: "대학생"
     },
     {
         id: 3,
-        Name: "권손",
+        Name: "고주민",
         position : "frontend",
         skill: "React",
         affiliation: "대학생"
     },
     {
         id: 3,
-        Name: "권민",
+        Name: "지봉남",
         position : "frontend",
         skill: "React",
         affiliation: "대학생"
     },
     {
         id: 3,
-        Name: "권대",
-        position : "frontend",
-        skill: "React",
-        affiliation: "대학생"
-    },
-    {
-        id: 3,
-        Name: "권두",
+        Name: "적아두",
         position : "frontend",
 
         skill: "React",

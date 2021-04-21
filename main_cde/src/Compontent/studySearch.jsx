@@ -6,7 +6,7 @@ import Modal from "./myinfomodal";
 
 function techSerach(props) {
 
-    const { studyModalOpen, setStudyModalOpen } = props;
+    const { studyModalOpen, setStudyModalOpen, notice, randerNotice ,setRanderNotice } = props;
 
     const openPortfolioModal = () => {
         setStudyModalOpen(true);
@@ -28,17 +28,20 @@ function techSerach(props) {
             skill: skill,
             discription: discription
         };
-        
     }
 
     const techstackList = [
         // 나중에 json으로 불려오면 딱이겠고만..
-        { name: 'Java', value: 'java' },
+        { name: '', value: '' },
+        { name: 'Java', value: 'Java' },
         { name: 'Python', value: 'Python' },
         { name: 'C#', value: 'C#' },
+        { name: 'React', value: 'React' },
+        { name: 'Node', value: 'Node' },
+
     ];
 
-    function fuzzySearch(options) { // dropdownbox item search
+    const fuzzySearch = (options) => { // dropdownbox item search
         const fuse = new Fuse(options, {
             keys: ['name', 'value'],
             threshold: 0.3,
@@ -53,6 +56,17 @@ function techSerach(props) {
         };
     }
 
+    const handelFilterSKill = (filterSkill) => {
+        const newArray = [...notice];
+        console.log('SKill', filterSkill);
+
+        const result =  newArray.filter( x => {
+            return x.skill == filterSkill
+        });
+        
+        setRanderNotice( result );
+    }
+    
     return (
         <div>
             <Jumbotron className="search__header">
@@ -60,20 +74,8 @@ function techSerach(props) {
             </Jumbotron>
 
             <Form className="search__main">
-                <SelectSearch options={techstackList} search filterOptions={fuzzySearch} value="sv" name="techstack" placeholder="기술 검색" />
                 <Form.Group>
-                    <Form.Control as="select" custom>
-                        <option></option>
-                        <option>프론트엔드</option>
-                        <option>백엔드</option>
-                        <option>웹 풀스택</option>
-                        <option>안드로이드</option>
-                        <option>머신러닝</option>
-                    </Form.Control>
-                </Form.Group>
-
-                <Form.Group>
-                    <Form.Control min="0" type="Number" placeholder="멤버수" />
+                    <SelectSearch onChange={(event) =>  {handelFilterSKill(event)} } options={techstackList} search filterOptions={fuzzySearch} id="skill" name="techstack" placeholder="기술 검색" />
                 </Form.Group>
 
                 <Form.Group>
@@ -132,8 +134,8 @@ function techSerach(props) {
             <div className="container">
                 <ul className="notice">
                     {
-                        props.notice.map((a, i) => {
-                            return <Notice particle={props.notice[i]} />
+                        randerNotice.map((a, i) => {
+                            return <Notice particle={randerNotice[i]} />
                         })
                     }
                 </ul>
@@ -146,7 +148,7 @@ function techSerach(props) {
             <li className="notice__card">
                 <img src="https://img.icons8.com/ios/452/client-company.png" />
                 <h5><a href="/Detail">{props.particle.title}</a></h5>
-                <span>2/4 & {props.particle.area}</span>
+                <span>{props.particle.area}</span>
             </li>
         )
     }
