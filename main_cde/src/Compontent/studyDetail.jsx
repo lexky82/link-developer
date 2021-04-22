@@ -1,6 +1,9 @@
 import { Table } from 'react-bootstrap';
+import { useParams } from 'react-router';
 
-function studyDetail() {
+function studyDetail(props) {
+
+    const id = 1;
 
     return (
         <div>
@@ -8,8 +11,8 @@ function studyDetail() {
 
                 <header>
                     <div className="detail__header">
-                        <h2 className="title">프론트엔드 개발자 구합니다!</h2>
-                        <h4 className="projectName">프로젝트 명</h4>
+                        <h2 className="title">{props.studyNotice[id].title}</h2>
+                        <h4 className="projectName">{props.studyNotice[id].projectName}</h4>
                     </div>
                 </header>
 
@@ -18,27 +21,27 @@ function studyDetail() {
                         <tbody>
                             <tr>
                                 <td>구하는 개발자</td>
-                                <td>Frontend Developer</td>
+                                <td>{props.studyNotice[id].developer}</td>
                             </tr>
                             <tr>
-                                <td>프로젝트 명</td>
-                                <td>링크디벨롭</td>
+                                <td>스터디 목적/목표</td>
+                                <td>{props.studyNotice[id].purpose}</td>
                             </tr>
                             <tr>
                                 <td>스터디 규모</td>
-                                <td>3명</td>
+                                <td>{props.studyNotice[id].headcount}</td>
                             </tr>
                             <tr>
                                 <td>기간</td>
-                                <td>2021-04-20 ~ 2021-04-30</td>
+                                <td>{props.studyNotice[id].date}</td>
                             </tr>
                             <tr>
                                 <td>온라인/오프라인</td>
-                                <td>온라인</td>
+                                <td>{props.studyNotice[id].onOff}</td>
                             </tr>
                             <tr>
                                 <td>위치</td>
-                                <td>서울 노원구</td>
+                                <td>{props.studyNotice[id].area}</td>
                             </tr>
                         </tbody>
                     </Table>
@@ -57,16 +60,15 @@ function studyDetail() {
                     <div>
                         <h5>스터디 소개</h5>
                         <p>
-                            링크디벨롭이라는 이름의 스터디를 모집하거나 찾는 서비스를 웹앱으로 구현하려고 기획 중 이다.
-                            많은 시간과 노력이 들겠지만 완성하면 자신의 능력을 증명하는 강력한 증거가 될 것이고 성장의 원동력이 될 것 이다.
+                            {props.studyNotice[id].introduce}
                         </p>
                     </div>
                 </section>
                 <section>
                     <div>
                         <h5>연락처</h5>
-                        <p>010-9685-8478</p>
-                        <p>lexky@normal.com</p>
+                        <p>{props.studyNotice[id].phoneNumber}</p>
+                        <p>{props.studyNotice[id].email}</p>
                     </div>
                 </section>
 

@@ -56,14 +56,26 @@ function techSerach(props) {
         };
     }
 
-    const handelFilterSKill = (filterSkill) => {
+    const handelFilterSKill = (skill) => {
         const newArray = [...notice];
-        console.log('SKill', filterSkill);
 
-        const result =  newArray.filter( x => {
-            return x.skill == filterSkill
+        let selectedSkill = document.querySelector("#skill > div > input").value;
+        const selectedArea = document.getElementById('selectArea').value;
+        const selectedOnOff = document.getElementById('selectOnOff').value;
+
+        if(selectedSkill == ""){
+            selectedSkill = skill;
+        }
+
+        console.log(selectedSkill);
+        console.log(selectedArea);
+        console.log(selectedOnOff);
+
+        const result = newArray.filter(x => {
+            return x.skill == selectedSkill && x.area == selectedArea && x.onoff == selectedOnOff
         });
-        
+    
+
         setRanderNotice( result );
     }
     
@@ -75,19 +87,20 @@ function techSerach(props) {
 
             <Form className="search__main">
                 <Form.Group>
-                    <SelectSearch onChange={(event) =>  {handelFilterSKill(event)} } options={techstackList} search filterOptions={fuzzySearch} id="skill" name="techstack" placeholder="기술 검색" />
+                    <SelectSearch id='skill' onChange={ (event) => handelFilterSKill(event) } options={techstackList} search="true" filterOptions={fuzzySearch}  name="techstack" placeholder="기술 검색" />
                 </Form.Group>
 
                 <Form.Group>
-                    <Form.Control as="select" custom>
-                        <option>온라인</option>
-                        <option>오프라인</option>
-                        <option>기타</option>
+                    <Form.Control onChange={ handelFilterSKill } id="selectOnOff" as="select" custom>
+                        <option value="" disabled selected>온라인/오프라인</option>
+                        <option value="on">온라인</option>
+                        <option value="off">오프라인</option>
+                        <option value="other">기타</option>
                     </Form.Control>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Control as="select" custom>
-                        <option></option>
+                    <Form.Control onChange={ handelFilterSKill } id="selectArea" as="select" custom>
+                        <option value="" disabled selected>지역</option>
                         <option>서울</option>
                         <option>인천</option>
                         <option>충남</option>
@@ -147,8 +160,9 @@ function techSerach(props) {
         return (
             <li className="notice__card">
                 <img src="https://img.icons8.com/ios/452/client-company.png" />
-                <h5><a href="/Detail">{props.particle.title}</a></h5>
-                <span>{props.particle.area}</span>
+                <h5><a href={"detail/" + props.particle.id}>{props.particle.title}</a></h5>
+                <p>{props.particle.area}</p>
+                <span className="skillStackLabel">{props.particle.skill}</span>
             </li>
         )
     }

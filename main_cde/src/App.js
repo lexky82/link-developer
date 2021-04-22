@@ -10,8 +10,8 @@ import Mainpage from "./Compontent/mainpage";
 import Login from './Compontent/signIn';
 import SignUp from "./Compontent/signUp";
 import StudySearch from "./Compontent/studySearch";
-import FriendSearch from "./Compontent/friends-search";
-import Myinfo from "./Compontent/myinfo";
+import FriendSearch from "./Compontent/friendSearch";
+import Myprofile from "./Compontent/myprofile";
 import StudyDetail from "./Compontent/studyDetail";
 
 /* testData */
@@ -35,7 +35,7 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  /* myInfo State */
+  /* myprofile State */
   const [skill, setSkill] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [portfolioList, setPortfolioList] = useState([]);
@@ -57,7 +57,7 @@ function App() {
               <Nav.Link href="#">안내</Nav.Link>
               <Nav.Link href="/studySearch">스터디 찾기</Nav.Link>
               <Nav.Link href="/friendSearch">동료 찾기</Nav.Link>
-              <Nav.Link href="/myinfo">내정보</Nav.Link>
+              <Nav.Link href="/myprofile">내정보</Nav.Link>
             </Nav>
             <Nav className="ml-auto">
               <Nav.Link href="/login">로그인</Nav.Link>
@@ -90,14 +90,14 @@ function App() {
         randerPerson={randerPerson} setRanderPerson={setRanderPerson}
         ></FriendSearch>
       </Route>
-      <Route exact path="/Myinfo"> {/* MyInfo_Component */}
-        <Myinfo
+      <Route exact path="/myprofile"> {/* myprofile_Component */}
+        <Myprofile
           skill={skill} setSkill={setSkill} modalOpen={modalOpen} setModalOpen={setModalOpen} 
           portfolioList={portfolioList} setPortfolioList={setPortfolioList}>
           
-        </Myinfo>
+        </Myprofile>
       </Route>
-      <Route exact path="/Detail"> {/* Main_Component */}
+      <Route exact path="/detail/:id"> {/* Main_Component */}
           <StudyDetail></StudyDetail>
         </Route>
 

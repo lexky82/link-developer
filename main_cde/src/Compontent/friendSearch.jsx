@@ -39,16 +39,6 @@ function friendsSearch(props) {
         setRanderPerson( result );
     }
 
-    const handlefilterName = (event) => {
-        const newArray = [...person];
-        console.log(event.target.value);
-        
-        const result =  newArray.filter( x => {
-            return x.Name == event.target.value
-        });
-        
-        setRanderPerson( result );
-    }
 
     return (
         <div>
@@ -60,9 +50,6 @@ function friendsSearch(props) {
                 <div>
                     <p>찾을 기술명을 입력 해주세요.</p>
                     <SelectSearch onChange={(event) => {filterSkill(event)}} options={techstackList} search filterOptions={fuzzySearch} value="sv" name="techstack" placeholder="기술 검색" />
-                    <p>이름을 입력 해주세요.</p>
-                    <input type="text" onChange={(event) => {handlefilterName(event)}} />
-                    <input type="button" value="검색" />
                 </div>
             </div>
 
