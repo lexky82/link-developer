@@ -56,17 +56,16 @@ function techSerach(props) {
         };
     }
 
+    
     const handelFilterSKill = (skill) => {
         const newArray = [...notice];
 
         let selectedSkill = document.querySelector("#skill > div > input").value;
         const selectedArea = document.getElementById('selectArea').value;
         const selectedOnOff = document.getElementById('selectOnOff').value;
-
-        if(selectedSkill == ""){
-            selectedSkill = skill;
-        }
-
+            
+        selectedSkill = skill;
+        
         console.log(selectedSkill);
         console.log(selectedArea);
         console.log(selectedOnOff);
@@ -75,7 +74,6 @@ function techSerach(props) {
             return x.skill == selectedSkill && x.area == selectedArea && x.onoff == selectedOnOff
         });
     
-
         setRanderNotice( result );
     }
     

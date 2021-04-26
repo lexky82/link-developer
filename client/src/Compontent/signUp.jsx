@@ -2,7 +2,7 @@ import { Form, Button } from 'react-bootstrap';
 
 function signup() {
 
-    function ConfirmPassword(password) {
+    const ConfirmPassword = (password) => {
         console.log(password);
     }
 

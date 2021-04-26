@@ -37,13 +37,13 @@
 
   .Portfolio{
     display: block;
-    background-color: aliceblue;
+    background-color: #eee;
     opacity: 0.8;
     text-align: left;
     padding: 12.5px;
     margin-bottom: 5px;
     padding-right: 100px;
-    border-left: solid;
+    border-left: 4px solid black;
   }
   .Portfolio label{
     font-weight: 700;

@@ -9,7 +9,7 @@ import Modal from "./myinfomodal";
 
 function myInfo(props) {
 
-    const { skill, setSkill, setModalOpen, modalOpen, portfolioList, setPortfolioList } = props;
+    const { skill, setSkill, modalOpen, setModalOpen, portfolioList, setPortfolioList } = props;
 
     /* Modal Open/Close handler function */
     const openModal = () => {
@@ -21,13 +21,13 @@ function myInfo(props) {
 
 
     /* portfolio modal 등록 */
-    const registration = () => {
+    const onRegistration = () => {
         const projectName = document.getElementById('projectName').value;
         const date = document.getElementById('date').value;
         const position = document.getElementById('position').value;
         const skill = document.getElementById('skill').value;
         const discription = document.getElementById('discription').value;
-
+        
         const newObject = {
             projectName: projectName,
             date: date,
@@ -53,7 +53,7 @@ function myInfo(props) {
     ];
 
     /* dropdownbox item search */
-    function fuzzySearch(options) {
+    const fuzzySearch = (options) => {
         const fuse = new Fuse(options, {
             keys: ['name', 'value'],
             threshold: 0.3,
@@ -69,7 +69,7 @@ function myInfo(props) {
     }
 
     /* dropdownbox item select */
-    function addSkill(event) {
+    const onAddSkill = (event) => {
         if (skill.indexOf(event) >= 0) { // 스택 중복검사
             return;
         }
@@ -108,8 +108,8 @@ function myInfo(props) {
                     <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
                     <div className="keyinfo__persionalinfo">
                         <h1>
-                            <p>{props.profile.name}</p>
-                            <p>{props.profile.email}</p>
+                            <p>{'props.profile.name'}</p>
+                            <p>{'props.profile.email'}</p>
                         </h1>
 
                         <p>대한민국 근무중</p>
@@ -118,7 +118,7 @@ function myInfo(props) {
                         <div>
                             <span>기술</span>
                             <hr />
-                            <SelectSearch onChange={(event) => { addSkill(event) }} options={skillstackList} search="true" filterOptions={fuzzySearch} value="sv" name="skillstack" placeholder="기술 검색" />
+                            <SelectSearch onChange={(event) => { onAddSkill(event) }} options={skillstackList} search="true" filterOptions={fuzzySearch} value="sv" name="skillstack" placeholder="기술 검색" />
                             {
                                 skill.map((a, i) => {
                                     return <SkillStackLabel skill={props.skill[i]} />
@@ -134,7 +134,7 @@ function myInfo(props) {
                         <button className="experience--button" onClick={openModal}>+</button>
                         <hr />
                         <React.Fragment>
-                            <Modal open={modalOpen} close={closeModal} registration={registration} header="경력 및 경험">
+                            <Modal open={modalOpen} close={closeModal} registration={onRegistration} header="경력 및 경험">
 
                             </Modal>
                         </React.Fragment>
@@ -145,17 +145,17 @@ function myInfo(props) {
                         <button className="experience--button" onClick={openModal}>+</button>
                         <hr />
                         <React.Fragment>
-                            <Modal open={modalOpen} close={closeModal} registration={registration} header="포트폴리오">
-                                <p>프로젝트 명</p>
-                                <input id="projectName" type="text" />
-                                <p>기간</p>
-                                <input id="date" type="text" />
-                                <p>포지션</p>
-                                <input id="position" type="text" />
-                                <p>기술</p>
-                                <input id="skill" type="text" />
-                                <p>프로젝트 설명</p>
-                                <input id="discription" type="text" />
+                            <Modal open={modalOpen} close={closeModal} registration={onRegistration} header="포트폴리오">
+                                    <p>프로젝트 명</p>
+                                    <input id="projectName" type="text" />
+                                    <p>기간</p>
+                                    <input id="date" type="text" />
+                                    <p>포지션</p>
+                                    <input id="position" type="text" />
+                                    <p>기술</p>
+                                    <input id="skill" type="text" />
+                                    <p>프로젝트 설명</p>
+                                    <input id="discription" type="text" />
                             </Modal>
                         </React.Fragment>
                         {
@@ -180,13 +180,13 @@ function myInfo(props) {
 
     function Portfolio(props) {
         return (
-            <div className="Portfolio">
+            <blockquote className="Portfolio">
                 <h5 htmlFor="project_name">{props.portfolioList.projectName}</h5>
                 <p htmlFor="date">{props.portfolioList.date}</p>
                 <p htmlFor="positions">{props.portfolioList.position}</p>
                 <p htmlFor="skill">{props.portfolioList.skill}</p>
                 <p htmlFor="description">{props.portfolioList.discription}</p>
-            </div>
+            </blockquote>
         )
     }
 

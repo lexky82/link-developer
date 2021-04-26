@@ -14,7 +14,7 @@ function friendsSearch(props) {
         { name: 'React', value: 'React' },
     ];
 
-    function fuzzySearch(options) { // dropdownbox item search
+    const fuzzySearch = (options) => { // dropdownbox item search
         const fuse = new Fuse(options, {
             keys: ['name', 'value'],
             threshold: 0.3,
