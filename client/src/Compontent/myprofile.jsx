@@ -108,8 +108,8 @@ function myInfo(props) {
                     <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
                     <div className="keyinfo__persionalinfo">
                         <h1>
-                            <p>{'props.profile.name'}</p>
-                            <p>{'props.profile.email'}</p>
+                            <p>권혁진</p>
+                            <p>(lexky82@gmail.com)</p>
                         </h1>
 
                         <p>대한민국 근무중</p>

@@ -3,7 +3,6 @@ import { useParams } from 'react-router';
 
 function studyDetail(props) {
 
-    const id = 1;
 
     return (
         <div>
@@ -11,8 +10,8 @@ function studyDetail(props) {
 
                 <header>
                     <div className="detail__header">
-                        <h2 className="title">{props.studyNotice[id].title}</h2>
-                        <h4 className="projectName">{props.studyNotice[id].projectName}</h4>
+                        <h2 className="title">프론트엔드 개발자 구합니다!</h2>
+                        <h4 className="projectName">포트폴리오 스터디</h4>
                     </div>
                 </header>
 
@@ -21,27 +20,27 @@ function studyDetail(props) {
                         <tbody>
                             <tr>
                                 <td>구하는 개발자</td>
-                                <td>{props.studyNotice[id].developer}</td>
+                                <td>Frontend Developer</td>
                             </tr>
                             <tr>
                                 <td>스터디 목적/목표</td>
-                                <td>{props.studyNotice[id].purpose}</td>
+                                <td>서로의 기술로 협업, 리뷰하여 각자의 포트폴리오를 완성과 보완</td>
                             </tr>
                             <tr>
                                 <td>스터디 규모</td>
-                                <td>{props.studyNotice[id].headcount}</td>
+                                <td>4명</td>
                             </tr>
                             <tr>
                                 <td>기간</td>
-                                <td>{props.studyNotice[id].date}</td>
+                                <td>2021.04.30 ~ 2021.05.14</td>
                             </tr>
                             <tr>
                                 <td>온라인/오프라인</td>
-                                <td>{props.studyNotice[id].onOff}</td>
+                                <td>온라인</td>
                             </tr>
                             <tr>
                                 <td>위치</td>
-                                <td>{props.studyNotice[id].area}</td>
+                                <td>서울</td>
                             </tr>
                         </tbody>
                     </Table>
@@ -60,15 +59,15 @@ function studyDetail(props) {
                     <div>
                         <h5>스터디 소개</h5>
                         <p>
-                            {props.studyNotice[id].introduce}
+                            서로 기술을 공유하고 협업하여 각자의 포트폴리오를 완성하는 스터디 입니다.
                         </p>
                     </div>
                 </section>
                 <section>
                     <div>
                         <h5>연락처</h5>
-                        <p>{props.studyNotice[id].phoneNumber}</p>
-                        <p>{props.studyNotice[id].email}</p>
+                        <p>010-1234-1234</p>
+                        <p>lexky@naver.com</p>
                     </div>
                 </section>
 

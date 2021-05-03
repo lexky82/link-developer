@@ -97,7 +97,7 @@ function App() {
           
         </Myprofile>
       </Route>
-      <Route exact path="/detail/:id"> {/* Main_Component */}
+      <Route exact path="/detail"> {/* Main_Component */}
           <StudyDetail></StudyDetail>
         </Route>
 
