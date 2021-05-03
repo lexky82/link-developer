@@ -31,11 +31,9 @@ function LoginPage(props) {
                 if (response.payload.loginSuccess) {
                     props.history.push('/')
                 } else {
-                    alert('Error˝')
+                    alert('아이디 또는 비밀번호가 일치하지 않습니다.')
                 }
             })
-
-
     }
 
 

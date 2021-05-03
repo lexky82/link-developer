@@ -12,6 +12,7 @@ import Regiseter from "./Compontents/RegisterPage/RegisterPage";
 import StudySearch from "./Compontents/studySearch";
 import FriendSearch from "./Compontents/friendSearch";
 import Myprofile from "./Compontents/myprofile";
+import UploadStudyPost from "./Compontents/UploadStudyPost";
 import StudyDetail from "./Compontents/studyDetail";
 import Auth from './hoc/auth'
 
@@ -30,6 +31,7 @@ function App() {
       <Route exact path="/friendSearch" component={Auth(FriendSearch, true)} /> {/* FriendsSearch_Component */}
       <Route exact path="/myprofile" component={Auth(Myprofile, true)} /> {/* myprofile_Component */}
       <Route exact path="/detail" component={Auth(StudyDetail, true)} /> {/* Main_Component */}
+      <Route exact path="/uploadStudy" component={Auth(UploadStudyPost, true)} />
       
     </div>
   );
