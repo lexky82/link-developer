@@ -1,15 +1,19 @@
+import React, { useState } from 'react';
+
 /* Lib */
 import SelectSearch from 'react-select-search';
 import Fuse from 'fuse.js';
-import React, { useState } from 'react';
 import { Jumbotron } from "react-bootstrap";
 
 /* Components */
 import Modal from "./myinfomodal";
 
-function myInfo(props) {
 
-    const { skill, setSkill, modalOpen, setModalOpen, portfolioList, setPortfolioList } = props;
+function MyProfile() {
+
+    const [skill, setSkill] = useState([]);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [portfolioList, setPortfolioList] = useState([]);
 
     /* Modal Open/Close handler function */
     const openModal = () => {
@@ -94,9 +98,13 @@ function myInfo(props) {
 
         setSkill(newArray);
     }
+    
 
 
     return (
+
+
+
         <div>
             <Jumbotron className="search__header">
                 <h2 className="search__header-title">정보를 입력하면 다른 사람들이 볼 수 있어요!</h2>
@@ -121,7 +129,7 @@ function myInfo(props) {
                             <SelectSearch onChange={(event) => { onAddSkill(event) }} options={skillstackList} search="true" filterOptions={fuzzySearch} value="sv" name="skillstack" placeholder="기술 검색" />
                             {
                                 skill.map((a, i) => {
-                                    return <SkillStackLabel skill={props.skill[i]} />
+                                    return <SkillStackLabel skill={skill[i]} />
                                 })
                             }
                         </div>
@@ -204,4 +212,4 @@ function myInfo(props) {
     } */
 }
 
-export default myInfo;
+export default MyProfile;

@@ -1,4 +1,5 @@
 import { Jumbotron, Button } from 'react-bootstrap';
+import React ,{ Component } from "react";
 
 function mainpage() {
     return (

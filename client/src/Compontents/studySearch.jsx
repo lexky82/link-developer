@@ -1,12 +1,14 @@
+import React, { useState } from 'react';
+
+
 import { Jumbotron, Form, Button } from 'react-bootstrap';
 import SelectSearch from 'react-select-search';
 import Fuse from 'fuse.js';
-import React, { useState } from 'react';
 import Modal from "./myinfomodal";
 
-function techSerach(props) {
+function TechSerach() {
 
-    const { studyModalOpen, setStudyModalOpen, notice, randerNotice ,setRanderNotice } = props;
+    const [studyModalOpen, setStudyModalOpen] = useState("");
 
     const openPortfolioModal = () => {
         setStudyModalOpen(true);
@@ -57,8 +59,8 @@ function techSerach(props) {
     }
 
     
-    const handelFilterSKill = (skill) => {
-        const newArray = [...notice];
+    /* const handelFilterSKill = (skill) => {
+        const newArray = [...Notice];
 
         let selectedSkill = document.querySelector("#skill > div > input").value;
         const selectedArea = document.getElementById('selectArea').value;
@@ -75,7 +77,7 @@ function techSerach(props) {
         });
     
         setRanderNotice( result );
-    }
+    } */
     
     return (
         <div>
@@ -85,11 +87,11 @@ function techSerach(props) {
 
             <Form className="search__main">
                 <Form.Group>
-                    <SelectSearch id='skill' onChange={ (event) => handelFilterSKill(event) } options={techstackList} search="true" filterOptions={fuzzySearch}  name="techstack" placeholder="기술 검색" />
+                    <SelectSearch id='skill'  options={techstackList} search="true" filterOptions={fuzzySearch}  name="techstack" placeholder="기술 검색" />
                 </Form.Group>
 
                 <Form.Group>
-                    <Form.Control onChange={ handelFilterSKill } id="selectOnOff" as="select" custom>
+                    <Form.Control  id="selectOnOff" as="select" custom>
                         <option value="" disabled selected>온라인/오프라인</option>
                         <option value="on">온라인</option>
                         <option value="off">오프라인</option>
@@ -97,7 +99,7 @@ function techSerach(props) {
                     </Form.Control>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Control onChange={ handelFilterSKill } id="selectArea" as="select" custom>
+                    <Form.Control  id="selectArea" as="select" custom>
                         <option value="" disabled selected>지역</option>
                         <option>서울</option>
                         <option>인천</option>
@@ -145,16 +147,16 @@ function techSerach(props) {
             <div className="container">
                 <ul className="notice">
                     {
-                        randerNotice.map((a, i) => {
-                            return <Notice particle={randerNotice[i]} />
-                        })
+                        //randerNotice.map((a, i) => {
+                      //      return <CardNotice particle={randerNotice[i]} />
+                      //  })
                     }
                 </ul>
             </div>
         </div>
     )
 
-    function Notice(props) {
+    function CardNotice(props) {
         return (
             <li className="notice__card">
                 <img src="https://img.icons8.com/ios/452/client-company.png" />
@@ -166,4 +168,4 @@ function techSerach(props) {
     }
 }
 
-export default techSerach;
+export default TechSerach;
