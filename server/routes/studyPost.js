@@ -1,22 +1,29 @@
 const express = require('express');
 const router = express.Router();
-const { Post } = require("../models/StudyPost");
-const { auth } = require("../middleware/auth");
+const { StudyPost } = require("../models/StudyPost");
 
 //=================================
-//             User
+//             studyPost
 //=================================
-
 
 router.post('/', (req, res) => {
 
-    const product = new Product(req.body);
-    product.save((err) => {
-      if(err) return res.status(400).json({ success:false, err})
-      return res.status(200).json({ success:true })
-    });
+  const studyPost = new StudyPost(req.body);
+  studyPost.save((err) => {
+    if(err) return res.status(400).json({ success:false, err})
+    return res.status(200).json({ success:true })
+  });
+
+})
+
+router.post('/studyPosts', (req, res) => {
   
+  StudyPost.find()
+  .exec((err, studyPostInfo) =>{
+    if(err) return res.status(400).json({success: false, err})
+    return res.status(200).json({success: true, studyInfo : studyPostInfo})
   })
+})
 
 
 module.exports = router;

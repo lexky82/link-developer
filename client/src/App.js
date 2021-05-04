@@ -1,7 +1,6 @@
 import './App.css';
-
+import React, { Suspense } from 'react';
 /* Lib */
-
 import { Route } from 'react-router';
 
 /* Components */
@@ -19,21 +18,21 @@ import Auth from './hoc/auth'
 function App() {
 
   return (
-    <div className="App">
+    <Suspense fallback={(<div>Loading...</div>)}>
+      <NavBar />
+      <div style={{ textAlign:'center', minHeight: 'calc(100vh - 80px)' }}>
+        <Route exact path="/" component={Auth(Mainpage, null)} /> {/* Main_Component */}
+        <Route exact path="/login" component={Auth(Login, false)} /> {/* Login_Component */}
+        <Route exact path="/signup" component={Auth(Regiseter, false)} /> {/* SignUp_Component */}
+        <Route exact path="/studySearch" component={Auth(StudySearch, true)} /> {/* StudySearch_Component */}
+        <Route exact path="/friendSearch" component={Auth(FriendSearch, true)} /> {/* FriendsSearch_Component */}
+        <Route exact path="/myprofile" component={Auth(Myprofile, true)} /> {/* myprofile_Component */}
+        <Route exact path="/detail" component={Auth(StudyDetail, true)} /> {/* Main_Component */}
+        <Route exact path="/uploadStudy" component={Auth(UploadStudyPost, true)} />
+      </div>
+    </Suspense>
 
 
-      <NavBar/>
-      
-      <Route exact path="/" component={Auth(Mainpage, null)} /> {/* Main_Component */}
-      <Route exact path="/login" component={Auth(Login, false)} /> {/* Login_Component */}
-      <Route exact path="/signup" component={Auth(Regiseter, false)} /> {/* SignUp_Component */}
-      <Route exact path="/studySearch" component={Auth(StudySearch, true)} /> {/* StudySearch_Component */}
-      <Route exact path="/friendSearch" component={Auth(FriendSearch, true)} /> {/* FriendsSearch_Component */}
-      <Route exact path="/myprofile" component={Auth(Myprofile, true)} /> {/* myprofile_Component */}
-      <Route exact path="/detail" component={Auth(StudyDetail, true)} /> {/* Main_Component */}
-      <Route exact path="/uploadStudy" component={Auth(UploadStudyPost, true)} />
-      
-    </div>
   );
 }
 

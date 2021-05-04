@@ -1,61 +1,158 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { loginUser } from '../../_actions/user_action'
-import { withRouter } from 'react-router-dom';
-import { Form, Button, FormLabel } from "react-bootstrap";
+import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
+import { loginUser } from "../../_actions/user_actions";
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { Form, Input, Button, Checkbox, Typography } from 'antd';
+import Icon from '@ant-design/icons';
+import { useDispatch } from "react-redux";
+
+const { Title } = Typography;
 
 function LoginPage(props) {
-    const dispatch = useDispatch();
 
-    const [Email, setEmail] = useState("")
-    const [Password, setPassword] = useState("")
+  const dispatch = useDispatch();
+  const rememberMeChecked = localStorage.getItem("rememberMe") ? true : false;
 
-    const onEmailHandler = (event) => {
-        setEmail(event.currentTarget.value)
-    }
+  const [formErrorMessage, setFormErrorMessage] = useState('')
+  const [rememberMe, setRememberMe] = useState(rememberMeChecked)
 
-    const onPasswordHandler = (event) => {
-        setPassword(event.currentTarget.value)
-    }
+  const handleRememberMe = () => {
+    setRememberMe(!rememberMe)
+  };
 
-    const onSubmitHandler = (event) => {
-        event.preventDefault();
+  // ID 저장 체크 및 저장
+  const initialEmail = localStorage.getItem("rememberMe") 
+  ? localStorage.getItem("rememberMe") 
+  : '';
 
-        let body = {
-            email: Email,
-            password: Password
-        }
+  return (
+    <Formik
 
-        dispatch(loginUser(body))
+      // 입력하지 않았을때 값
+      initialValues={{
+        email: initialEmail,
+        password: '',
+      }}
+      
+      // 입력 값 유효성 검증
+      validationSchema={Yup.object().shape({
+        email: Yup.string()
+          .email('Email is invalid')
+          .required('Email is required'),
+        password: Yup.string()
+          .min(6, 'Password must be at least 6 characters')
+          .required('Password is required'),
+      })}
+
+      onSubmit={(values, { setSubmitting }) => {
+
+        setTimeout(() => {
+          let dataToSubmit = {
+            email: values.email,
+            password: values.password
+          };
+
+          dispatch(loginUser(dataToSubmit))
             .then(response => {
-                if (response.payload.loginSuccess) {
-                    props.history.push('/')
+              if (response.payload.loginSuccess) {
+                window.localStorage.setItem('userId', response.payload.userId);
+                if (rememberMe === true) {
+                  window.localStorage.setItem('rememberMe', values.id);
                 } else {
-                    alert('아이디 또는 비밀번호가 일치하지 않습니다.')
+                  localStorage.removeItem('rememberMe');
                 }
+                props.history.push("/");
+              } else {
+                setFormErrorMessage('Check out your Account or Password again')
+              }
             })
-    }
+            .catch(err => {
+              setFormErrorMessage('Check out your Account or Password again')
+              setTimeout(() => {
+                setFormErrorMessage("")
+              }, 3000);
+            });
+          setSubmitting(false);
+        }, 500);
+      }}
+    >
+      {props => {
+        const {
+          values,
+          touched,
+          errors,
+          dirty,
+          isSubmitting,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          handleReset,
+        } = props;
+        
+        return (
+          <div style={{ maxWidth : "350px", margin : '10rem auto'}}>
 
+            <Title level={2}>로그인</Title>
+            <form onSubmit={handleSubmit} >
 
-    return (
-        <div style={{
-            display: 'flex', justifyContent: 'center', alignItems: 'center'
-            , width: '100%', height: '65vh'
-        }}>
-            <Form style={{ display: 'flex', flexDirection: 'column' }}
-                onSubmit={onSubmitHandler}
-            >
-                <FormLabel>Email</FormLabel>
-                <Form.Control type="email" value={Email} onChange={onEmailHandler} />
-                <FormLabel>Password</FormLabel>
-                <Form.Control type="password" value={Password} onChange={onPasswordHandler} />
-                <br />
-                <Button type="submit">
-                    Login
+              <Form.Item required>
+                <Input
+                  id="email"
+                  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  placeholder="email"
+                  type="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={
+                    errors.email && touched.email ? 'text-input error' : 'text-input'
+                  }
+                />
+                {errors.email && touched.email && (
+                  <div className="input-feedback">{errors.email}</div>
+                )}
+              </Form.Item>
+
+              <Form.Item required>
+                <Input
+                  id="password"
+                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  placeholder="password"
+                  type="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={
+                    errors.password && touched.password ? 'text-input error' : 'text-input'
+                  }
+                />
+                {errors.password && touched.password && (
+                  <div className="input-feedback">{errors.password}</div>
+                )}
+              </Form.Item>
+
+              {formErrorMessage && (
+                <label ><p style={{ color: '#ff0000bf', fontSize: '0.7rem', border: '1px solid', padding: '1rem', borderRadius: '10px' }}>{formErrorMessage}</p></label>
+              )}
+
+              <Form.Item>
+                <Checkbox id="rememberMe" onChange={handleRememberMe} checked={rememberMe} >저장</Checkbox>
+                <div>
+                  <Button type="primary" htmlType="submit" className="login-form-button" style={{ minWidth: '100%' }} disabled={isSubmitting} onSubmit={handleSubmit}>
+                    로그인
                 </Button>
-            </Form>
-        </div>
-    )
-}
+                </div>
+                <a href="/register">회원가입 하기</a>
+              </Form.Item>
+            </form>
+          </div>
+        );
+      }}
+    </Formik>
+  );
+};
 
-export default withRouter(LoginPage)
+export default withRouter(LoginPage);
+
+

@@ -10,7 +10,7 @@ const postSchema = mongoose.Schema({
         maxlength: 50
     },
     date:{
-        type: Date,
+        type: String,
         default : 0 
     },
     headcount: {
@@ -23,8 +23,8 @@ const postSchema = mongoose.Schema({
         type : String
     },
     area: {
-        type: String,
-        minlength: 5
+        type: Number,
+        default: 1
     },
     onOff: {
         type: Boolean,
@@ -40,6 +40,6 @@ const postSchema = mongoose.Schema({
 
 
 
-const Post = mongoose.model('StudyPost', postSchema)
+const StudyPost = mongoose.model('StudyPost', postSchema)
 
-module.exports = { Post }
+module.exports = { StudyPost }

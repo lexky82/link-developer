@@ -1,36 +1,20 @@
-import React, { useState } from 'react';
-
-
+import React, { useEffect, useState } from 'react';
 import { Jumbotron, Form, Button } from 'react-bootstrap';
 import SelectSearch from 'react-select-search';
 import Fuse from 'fuse.js';
-import Modal from "./myinfomodal";
+import axios from 'axios';
+
 
 function TechSerach() {
 
-    const [studyModalOpen, setStudyModalOpen] = useState("");
+    const [StudyPosts, setStudyPosts] = useState([])
 
-    const openPortfolioModal = () => {
-        setStudyModalOpen(true);
-    }
-    const closePortfolioModal = () => {
-        setStudyModalOpen(false);
-    }
-    const registration = () => {
-        const projectName = document.getElementById('projectName').value;
-        const date = document.getElementById('date').value;
-        const position = document.getElementById('position').value;
-        const skill = document.getElementById('skill').value;
-        const discription = document.getElementById('discription').value;
 
-        const newObject = {
-            projectName: projectName,
-            date: date,
-            position: position,
-            skill: skill,
-            discription: discription
-        };
-    }
+    useEffect(() => {
+
+        getStudyPost();
+
+    }, [])
 
     const techstackList = [
         // 나중에 json으로 불려오면 딱이겠고만..
@@ -40,7 +24,6 @@ function TechSerach() {
         { name: 'C#', value: 'C#' },
         { name: 'React', value: 'React' },
         { name: 'Node', value: 'Node' },
-
     ];
 
     const fuzzySearch = (options) => { // dropdownbox item search
@@ -58,7 +41,21 @@ function TechSerach() {
         };
     }
 
-    
+    const getStudyPost = () => {
+        axios.post('/api/studyPost/studyPosts')
+            .then(response => {
+                if (response.data.success) {
+                    setStudyPosts(response.data.studyInfo)
+                    console.log(response.data.studyInfo)
+                }
+                else {
+                    alert(" 스터디 리스트들을 가져오는데 실패 했습니다.")
+                }
+            })
+        
+    }
+
+
     /* const handelFilterSKill = (skill) => {
         const newArray = [...Notice];
 
@@ -78,7 +75,7 @@ function TechSerach() {
     
         setRanderNotice( result );
     } */
-    
+
     return (
         <div>
             <Jumbotron className="search__header">
@@ -87,11 +84,11 @@ function TechSerach() {
 
             <Form className="search__main">
                 <Form.Group>
-                    <SelectSearch id='skill'  options={techstackList} search="true" filterOptions={fuzzySearch}  name="techstack" placeholder="기술 검색" />
+                    <SelectSearch id='skill' options={techstackList} search="true" filterOptions={fuzzySearch} name="techstack" placeholder="기술 검색" />
                 </Form.Group>
 
                 <Form.Group>
-                    <Form.Control  id="selectOnOff" as="select" custom>
+                    <Form.Control id="selectOnOff" as="select" custom>
                         <option value="" disabled selected>온라인/오프라인</option>
                         <option value="on">온라인</option>
                         <option value="off">오프라인</option>
@@ -99,7 +96,7 @@ function TechSerach() {
                     </Form.Control>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Control  id="selectArea" as="select" custom>
+                    <Form.Control id="selectArea" as="select" custom>
                         <option value="" disabled selected>지역</option>
                         <option>서울</option>
                         <option>인천</option>
@@ -109,37 +106,6 @@ function TechSerach() {
                         <option>부산</option>
                     </Form.Control>
                 </Form.Group>
-                <Form.Group>
-                    <div>
-                        <React.Fragment>
-                            <Modal open={studyModalOpen} close={closePortfolioModal} registration={registration} header="스터디 모집">
-                                <p>공고 제목</p>
-                                <input id="projectName" type="text" />
-                                <p>진행할 프로젝트 명</p>
-                                <input id="date" type="text" />
-                                <p>구하는 포지션</p>
-                                <input id="position" type="text" />
-                                <p>현재 스터디 규모</p>
-                                <input id="skill" type="text" />
-                                <p>모집 기간</p>
-                                <input id="discription" type="text" />
-                                <p>온라인/오프라인 유무</p>
-                                <input id="discription" type="text" />
-                                <p>위치</p>
-                                <input id="discription" type="text" />
-                                <p>기술스택</p>
-                                <input id="discription" type="text" />
-                                <p>스터디 소개</p>
-                                <input id="discription" type="text" />
-                                <p>연락처</p>
-                                <input id="discription" type="text" />
-                                <p>구성원</p>
-                                <input id="discription" type="text" />
-                            </Modal>
-                        </React.Fragment>
-                    </div>
-                    <Button onClick={openPortfolioModal}>모집공고 등록</Button>
-                </Form.Group>
             </Form>
 
             <p className="title">전체 결과</p>
@@ -147,9 +113,9 @@ function TechSerach() {
             <div className="container">
                 <ul className="notice">
                     {
-                        //randerNotice.map((a, i) => {
-                      //      return <CardNotice particle={randerNotice[i]} />
-                      //  })
+                        StudyPosts.map((a, i) => {
+                            return <CardNotice key={i} particle={StudyPosts[i]} />
+                        })
                     }
                 </ul>
             </div>
@@ -160,9 +126,10 @@ function TechSerach() {
         return (
             <li className="notice__card">
                 <img src="https://img.icons8.com/ios/452/client-company.png" />
-                <h5><a href={"detail/" + props.particle.id}>{props.particle.title}</a></h5>
-                <p>{props.particle.area}</p>
-                <span className="skillStackLabel">{props.particle.skill}</span>
+                <h5><a href={"detail/"}>{props.particle.title}</a></h5>
+                <p>{props.particle.area == 3 && "서울"}</p>
+                <span className="skillStackLabel">모집 인원 : {props.particle.headcount}</span>
+                <p>모집 기한 : {props.particle.date}</p>
             </li>
         )
     }

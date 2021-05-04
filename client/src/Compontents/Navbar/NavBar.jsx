@@ -70,6 +70,7 @@ function NavBar(props) {
                             <Nav.Link href="/myprofile">내정보</Nav.Link>
                         </Nav>
                         <Nav className="ml-auto">
+                            <Nav.Link href="/uploadStudy">스터디 등록</Nav.Link>
                             <Nav.Link onClick={logoutHandler}>로그아웃</Nav.Link>
                         </Nav>
                         <Nav>
