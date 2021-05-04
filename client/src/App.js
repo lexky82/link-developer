@@ -5,14 +5,14 @@ import { Route } from 'react-router';
 
 /* Components */
 import NavBar from "./Compontents/Navbar/NavBar";
-import Mainpage from "./Compontents/mainpage";
+import Mainpage from "./Compontents/Mainpage";
 import Login from './Compontents/LoginPage/LoginPage';
 import Regiseter from "./Compontents/RegisterPage/RegisterPage";
-import StudySearch from "./Compontents/studySearch";
-import FriendSearch from "./Compontents/friendSearch";
-import Myprofile from "./Compontents/myprofile";
+import StudySearch from "./Compontents/StudySearch";
+import FriendSearch from "./Compontents/FriendSearch";
+import Myprofile from "./Compontents/MyProfile";
 import UploadStudyPost from "./Compontents/UploadStudyPost";
-import StudyDetail from "./Compontents/studyDetail";
+import StudyDetail from "./Compontents/StudyDetail";
 import Auth from './hoc/auth'
 
 function App() {

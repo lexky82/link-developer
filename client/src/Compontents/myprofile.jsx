@@ -6,7 +6,7 @@ import Fuse from 'fuse.js';
 import { Jumbotron } from "react-bootstrap";
 
 /* Components */
-import Modal from "./myinfomodal";
+import Modal from "./Myinfomodal";
 
 
 function MyProfile() {

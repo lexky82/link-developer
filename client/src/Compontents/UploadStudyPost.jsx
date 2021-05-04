@@ -88,7 +88,7 @@ function UploadStudyPost(props){
     } 
 
     return(
-        <div style={{ maxWidth : "700px", margin : '2rem auto'}}>
+        <div style={{ maxWidth : "500px", margin : '2rem auto'}}>
             <div style={{ textAlign: 'center' }}>
                 <h2 level={2}>스터디 등록</h2>
             </div>

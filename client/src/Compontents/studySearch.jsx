@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Jumbotron, Form, Button } from 'react-bootstrap';
-import SelectSearch from 'react-select-search';
-import Fuse from 'fuse.js';
+import { Jumbotron } from 'react-bootstrap';
+import { Select } from "antd";
 import axios from 'axios';
 
 
 function TechSerach() {
 
     const [StudyPosts, setStudyPosts] = useState([])
-
+    const Option = Select;
 
     useEffect(() => {
 
@@ -26,20 +25,6 @@ function TechSerach() {
         { name: 'Node', value: 'Node' },
     ];
 
-    const fuzzySearch = (options) => { // dropdownbox item search
-        const fuse = new Fuse(options, {
-            keys: ['name', 'value'],
-            threshold: 0.3,
-        }); // fuse input 선언
-
-        return (value) => {
-            if (!value.length) {
-                return options;
-            }
-
-            return fuse.search(value);
-        };
-    }
 
     const getStudyPost = () => {
         axios.post('/api/studyPost/studyPosts')
@@ -52,9 +37,8 @@ function TechSerach() {
                     alert(" 스터디 리스트들을 가져오는데 실패 했습니다.")
                 }
             })
-        
-    }
 
+    }
 
     /* const handelFilterSKill = (skill) => {
         const newArray = [...Notice];
@@ -82,31 +66,31 @@ function TechSerach() {
                 <h2 className="search__header-title">검색으로 함께할 스터디를 찾아봐요!</h2>
             </Jumbotron>
 
-            <Form className="search__main">
-                <Form.Group>
-                    <SelectSearch id='skill' options={techstackList} search="true" filterOptions={fuzzySearch} name="techstack" placeholder="기술 검색" />
-                </Form.Group>
+            <div className="search__main">
+                <Select
+                    showSearch
+                    style={{ width: 200 }}
+                    placeholder="Select a Skill"
+                    filterOption={(input, option) =>
+                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                    }
+                >
+                    <Option value="jack">Jack</Option>
+                    <Option value="lucy">Lucy</Option>
+                    <Option value="tom">Tom</Option>
+                </Select>
 
-                <Form.Group>
-                    <Form.Control id="selectOnOff" as="select" custom>
-                        <option value="" disabled selected>온라인/오프라인</option>
-                        <option value="on">온라인</option>
-                        <option value="off">오프라인</option>
-                        <option value="other">기타</option>
-                    </Form.Control>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Control id="selectArea" as="select" custom>
-                        <option value="" disabled selected>지역</option>
-                        <option>서울</option>
-                        <option>인천</option>
-                        <option>충남</option>
-                        <option>대전</option>
-                        <option>강원</option>
-                        <option>부산</option>
-                    </Form.Control>
-                </Form.Group>
-            </Form>
+                <Select placeholder="온라인/오프라인" style={{ width: 120 }}>
+                    <Option value={true}>온라인</Option>
+                    <Option value={false}>오프라인</Option>
+                </Select>
+
+                <Select placeholder="지역" style={{ width: 120 }}>
+                    <Option value="seoul">서울</Option>
+                    <Option value="incheon">인천</Option>
+                    <Option value="busan">부산</Option>
+                </Select>
+            </div>
 
             <p className="title">전체 결과</p>
 

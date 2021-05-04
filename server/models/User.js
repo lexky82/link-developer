@@ -18,9 +18,14 @@ const userSchema = mongoose.Schema({
         type: String,
         minlength: 5
     },
-    lastname: {
-        type: String,
-        maxlength: 50
+    skill: {
+        type: Array
+    },
+    creear:{
+        type: Array
+    },
+    portfolop:{
+        type: Array
     },
     role: {
         type: Number,
