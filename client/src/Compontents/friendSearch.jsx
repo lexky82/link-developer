@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Jumbotron } from 'react-bootstrap';
-import SelectSearch from 'react-select-search';
-import Fuse from 'fuse.js';
+import { Select } from "antd";
 import axios from 'axios';
 
 function FriendsSearch() {
 
     const [UserList, setUserList] = useState([]);
+    const Option = Select;
 
     useEffect(() => {
 
@@ -36,20 +36,7 @@ function FriendsSearch() {
         { name: 'React', value: 'React' },
     ];
 
-    const fuzzySearch = (options) => { // dropdownbox item search
-        const fuse = new Fuse(options, {
-            keys: ['name', 'value'],
-            threshold: 0.3,
-        }); // fuse input 선언
-
-        return (value) => {
-            if (!value.length) {
-                return options;
-            }
-
-            return fuse.search(value);
-        };
-    }
+  
 
     return (
         <div>
@@ -60,7 +47,18 @@ function FriendsSearch() {
             <div className="friendSearch__main">
                 <div>
                     <p>찾을 기술명을 입력 해주세요.</p>
-                    <SelectSearch  options={techstackList} search filterOptions={fuzzySearch} value="sv" name="techstack" placeholder="기술 검색" />
+                    <Select
+                    showSearch
+                    style={{ width: 200 }}
+                    placeholder="Select a Skill"
+                    filterOption={(input, option) =>
+                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                    }
+                >
+                    <Option value="jack">Jack</Option>
+                    <Option value="lucy">Lucy</Option>
+                    <Option value="tom">Tom</Option>
+                </Select>
                 </div>
             </div>
 
