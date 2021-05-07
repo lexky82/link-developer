@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
 
 /* Lib */
 import SelectSearch from 'react-select-search';
 import Fuse from 'fuse.js';
 import { Jumbotron } from "react-bootstrap";
+import axios from 'axios';
 
 /* Components */
 import Modal from "./Myinfomodal";
+import { isValidObjectId } from 'mongoose';
 
 
-function MyProfile() {
+
+function MyProfile(props) {
 
     const [skill, setSkill] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
     const [portfolioList, setPortfolioList] = useState([]);
+
+    useEffect(() => {
+        
+
+    }, [])
 
     /* Modal Open/Close handler function */
     const openModal = () => {
@@ -80,8 +90,20 @@ function MyProfile() {
 
         let newArray = [...skill];
         newArray.push(event);
+        
+        let body = {
+            _id : props.user.userData._id,
+            skill : newArray
+        }
 
-        /* (DB Insert code) */
+        axios.post('api/users/skill', body)
+        .then(response => {
+            if(response.data.success){
+            }
+            else{
+                alert('스킬 등록에 실패 했습니다.');
+            }
+        })
 
         setSkill(newArray);
     }

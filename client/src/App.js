@@ -10,7 +10,7 @@ import Login from './Compontents/LoginPage/LoginPage';
 import Regiseter from "./Compontents/RegisterPage/RegisterPage";
 import StudySearch from "./Compontents/StudySearch";
 import FriendSearch from "./Compontents/FriendSearch";
-import Myprofile from "./Compontents/MyProfile";
+import Myprofile from "./Compontents/Profile/Myprofile";
 import UploadStudyPost from "./Compontents/UploadStudyPost";
 import StudyDetail from "./Compontents/StudyDetail";
 import Auth from './hoc/auth'

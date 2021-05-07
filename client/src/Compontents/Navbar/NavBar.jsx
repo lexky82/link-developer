@@ -20,6 +20,8 @@ function NavBar(props) {
     };
 
     if (user.userData && !user.userData.isAuth) {
+        
+        
         return (
             <div>
                 <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark"> {/* Navigatorbar */}

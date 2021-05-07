@@ -38,11 +38,11 @@ function LoginPage(props) {
       // 입력 값 유효성 검증
       validationSchema={Yup.object().shape({
         email: Yup.string()
-          .email('Email is invalid')
-          .required('Email is required'),
+          .email('이메일 형식이 아닙니다.')
+          .required('이메일을 입력하지 않았습니다.'),
         password: Yup.string()
-          .min(6, 'Password must be at least 6 characters')
-          .required('Password is required'),
+          .min(6, '패스워드는 6자리 이상 입력해주세요.')
+          .required('패스워드를 입력하지 않았습니다.'),
       })}
 
       onSubmit={(values, { setSubmitting }) => {
@@ -64,11 +64,11 @@ function LoginPage(props) {
                 }
                 props.history.push("/");
               } else {
-                setFormErrorMessage('Check out your Account or Password again')
+                setFormErrorMessage('이메일 또는 패스워드를 확인해주시기 바랍니다.')
               }
             })
             .catch(err => {
-              setFormErrorMessage('Check out your Account or Password again')
+              setFormErrorMessage('이메일 또는 패스워드를 확인해주시기 바랍니다.')
               setTimeout(() => {
                 setFormErrorMessage("")
               }, 3000);
@@ -143,7 +143,7 @@ function LoginPage(props) {
                     로그인
                 </Button>
                 </div>
-                <a href="/register">회원가입 하기</a>
+                <a href="/signup">회원가입 하기</a>
               </Form.Item>
             </form>
           </div>

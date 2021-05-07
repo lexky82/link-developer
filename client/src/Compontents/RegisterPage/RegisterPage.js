@@ -45,25 +45,22 @@ function RegisterPage(props) {
     <Formik
       initialValues={{
         email: '',
-        lastName: '',
         name: '',
         password: '',
         confirmPassword: ''
       }}
       validationSchema={Yup.object().shape({
         name: Yup.string()
-          .required('Name is required'),
-        lastName: Yup.string()
-          .required('Last Name is required'),
+          .required('이름을 입력하지 않았습니다.'),
         email: Yup.string()
-          .email('Email is invalid')
-          .required('Email is required'),
+          .email('이메일 형태가 아닙니다.')
+          .required('이메일을 입력하지 않았습니다.'),
         password: Yup.string()
-          .min(6, 'Password must be at least 6 characters')
-          .required('Password is required'),
+          .min(6, '패스워드는 6자리 이상 입력해주세요.')
+          .required('패스워드를 입력하지 않았습니다.'),
         confirmPassword: Yup.string()
-          .oneOf([Yup.ref('password'), null], 'Passwords must match')
-          .required('Confirm Password is required')
+          .oneOf([Yup.ref('password'), null], '패스워드와 일치하지 않습니다.')
+          .required('패스워드 확인을 입력하지 않았습니다.')
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -106,10 +103,10 @@ function RegisterPage(props) {
             <Form style={{ maxWidth : "350px", margin : '10rem auto'}} {...formItemLayout} onSubmit={handleSubmit} >
               <Title level={2}>회원가입</Title>
 
-              <Form.Item required label="Name">
+              <Form.Item required label="이름">
                 <Input
                   id="name"
-                  placeholder="Enter your name"
+                  placeholder="이름을 입력 해주세요"
                   type="text"
                   value={values.name}
                   onChange={handleChange}
@@ -123,27 +120,10 @@ function RegisterPage(props) {
                 )}
               </Form.Item>
 
-              <Form.Item required label="Last Name">
-                <Input
-                  id="lastName"
-                  placeholder="Enter your Last Name"
-                  type="text"
-                  value={values.lastName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.lastName && touched.lastName ? 'text-input error' : 'text-input'
-                  }
-                />
-                {errors.lastName && touched.lastName && (
-                  <div className="input-feedback">{errors.lastName}</div>
-                )}
-              </Form.Item>
-
               <Form.Item required label="Email" hasFeedback validateStatus={errors.email && touched.email ? "error" : 'success'}>
                 <Input
                   id="email"
-                  placeholder="Enter your Email"
+                  placeholder="이메일 주소를 입력 해주세요."
                   type="email"
                   value={values.email}
                   onChange={handleChange}
@@ -157,10 +137,10 @@ function RegisterPage(props) {
                 )}
               </Form.Item>
 
-              <Form.Item required label="Password" hasFeedback validateStatus={errors.password && touched.password ? "error" : 'success'}>
+              <Form.Item required label="패스워드" hasFeedback validateStatus={errors.password && touched.password ? "error" : 'success'}>
                 <Input
                   id="password"
-                  placeholder="Enter your password"
+                  placeholder="패스워드를 입력 해주세요."
                   type="password"
                   value={values.password}
                   onChange={handleChange}
@@ -174,10 +154,10 @@ function RegisterPage(props) {
                 )}
               </Form.Item>
 
-              <Form.Item required label="Confirm" hasFeedback>
+              <Form.Item required label="패스워드 확인" hasFeedback>
                 <Input
                   id="confirmPassword"
-                  placeholder="Enter your confirmPassword"
+                  placeholder="패스워드를 다시 입력해주세요."
                   type="password"
                   value={values.confirmPassword}
                   onChange={handleChange}
@@ -193,7 +173,7 @@ function RegisterPage(props) {
 
               <Form.Item {...tailFormItemLayout}>
                 <Button onClick={handleSubmit} type="primary" disabled={isSubmitting}>
-                  Submit
+                  회원가입
                 </Button>
               </Form.Item>
             </Form>

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require("../models/User");
-
+const ObjectID = require('mongodb').ObjectID;
 const { auth } = require("../middleware/auth");
 
 //=================================
@@ -70,11 +70,30 @@ router.get("/logout", auth, (req, res) => {
 
 router.post('/users', (req, res) => {
     User.find()
-    .exec((err, userList) =>{
-      if(err) return res.status(400).json({success: false, err})
-      return res.status(200).json({success: true, userList : userList})
-    })
-  })
+        .exec((err, userList) => {
+            if (err) return res.status(400).json({ success: false, err })
+            return res.status(200).json({ success: true, userList: userList })
+        })
+})
+
+router.post('/skill', (req, res) => {
+    let objectId = new ObjectID(req.body._id);
+
+    const body = {
+        _id: objectId,
+        skill: req.body.skill
+    }
+    console.log(body)
+
+
+    const user = new User(body);
+
+    user.save((err) => {
+        if (err) return res.status(400).json({ success: false, err })
+        return res.status(200).json({ success: true })
+    });
+
+})
 
 
 module.exports = router;
