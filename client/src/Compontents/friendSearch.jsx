@@ -15,7 +15,7 @@ function FriendsSearch() {
     }, [])
 
     const getUserList = () => {
-        axios.post('/api/users/users')
+        axios.post('/api/users/user')
             .then(response => {
                 if (response.data.success) {
                     setUserList(response.data.userList)

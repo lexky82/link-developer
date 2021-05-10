@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require("../models/User");
-const ObjectID = require('mongodb').ObjectID;
+const mongoose = require('mongoose');
 const { auth } = require("../middleware/auth");
 
 //=================================
@@ -68,7 +68,8 @@ router.get("/logout", auth, (req, res) => {
     });
 });
 
-router.post('/users', (req, res) => {
+router.post('/user', (req, res) => {
+
     User.find()
         .exec((err, userList) => {
             if (err) return res.status(400).json({ success: false, err })
@@ -76,23 +77,68 @@ router.post('/users', (req, res) => {
         })
 })
 
-router.post('/skill', (req, res) => {
-    let objectId = new ObjectID(req.body._id);
-
-    const body = {
-        _id: objectId,
-        skill: req.body.skill
+router.post('/profile', (req, res) => {
+    let body = {
+        _id : mongoose.Types.ObjectId(req.body._id)
     }
-    console.log(body)
+
+    User.findOne()
+        .exec((err, profile) => {
+            if (err) return res.status(400).json({ success: false, err })
+            return res.status(200).json({ success: true, profile: profile })
+        })
+})
+
+router.put('/portfolio', (req, res) => {
+    
+    let body = {
+        _id : mongoose.Types.ObjectId(req.body._id),
+        portfolio : req.body.portfolioList,
+        upsert : true
+    }
+    
+    User.updateOne(body)
+    .then(() =>{
+        res.status(200).json({ success : true })
+    }, 
+    (err) => {
+        res.json({ success : false, err })
+    })
+})
 
 
-    const user = new User(body);
+router.put('/addskill', (req, res) => {
 
-    user.save((err) => {
-        if (err) return res.status(400).json({ success: false, err })
-        return res.status(200).json({ success: true })
-    });
+    let body = {
+        _id : mongoose.Types.ObjectId(req.body._id),
+        $addToSet: {skill : req.body.skill},
+        upsert : true
+    }
+    
+    User.updateOne(body)
+    .then(() =>{
+        res.status(200).json({ success : true })
+    }, 
+    (err) => {
+        res.json({ success : false, err })
+    })
+    
+})
+router.put('/removeskill', (req, res) => {
 
+    let body = {
+        _id : mongoose.Types.ObjectId(req.body._id),
+        $pull : {skill : req.body.skill}
+    }
+    
+    User.updateOne(body)
+    .then(() =>{
+        res.status(200).json({ success : true })
+    }, 
+    (err) => {
+        res.json({ success : false, err })
+    })
+    
 })
 
 

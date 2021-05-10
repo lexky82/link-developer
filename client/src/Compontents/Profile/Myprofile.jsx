@@ -1,29 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
+/* Components */
+import Modal from "./Myinfomodal";
 
 /* Lib */
 import SelectSearch from 'react-select-search';
 import Fuse from 'fuse.js';
 import { Jumbotron } from "react-bootstrap";
+
+/* Ant Design */
+import {Input, DatePicker} from 'antd'
 import axios from 'axios';
-
-/* Components */
-import Modal from "./Myinfomodal";
-import { isValidObjectId } from 'mongoose';
-
+import TextArea from 'antd/lib/input/TextArea';
+import {CloseOutlined} from '@ant-design/icons'
+import { useSelector } from 'react-redux';
+const { RangePicker } = DatePicker;
 
 
 function MyProfile(props) {
 
-    const [skill, setSkill] = useState([]);
+    const [Profile, setProfile] = useState([])
     const [modalOpen, setModalOpen] = useState(false);
     const [portfolioList, setPortfolioList] = useState([]);
 
-    useEffect(() => {
-        
+    const [skill, setSkill] = useState([]);
+    const [StartDate, setStartDate] = useState('')
+    const [EndDate, setEndDate] = useState('')
 
+    useEffect(() => {
+
+        getProfilePost();
     }, [])
+
+    const getProfilePost = () => {
+        axios.post('/api/users/profile')
+        .then(response => {
+            if (response.data.success) {
+                setProfile(response.data.profile)
+                setSkill(response.data.profile.skill)
+                setPortfolioList(response.data.profile.portfolio)
+            }
+            else {
+                alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
+            }
+        })
+    }
 
     /* Modal Open/Close handler function */
     const openModal = () => {
@@ -34,17 +55,22 @@ function MyProfile(props) {
     }
 
 
+    const progressDateChangeHandler = (event, datestring) => {
+        setStartDate(datestring[0])
+        setEndDate(datestring[1])
+    }
+
     /* portfolio modal 등록 */
     const onRegistration = () => {
         const projectName = document.getElementById('projectName').value;
-        const date = document.getElementById('date').value;
         const position = document.getElementById('position').value;
         const skill = document.getElementById('skill').value;
         const discription = document.getElementById('discription').value;
-        
+
         const newObject = {
             projectName: projectName,
-            date: date,
+            startDate: StartDate,
+            endDate: EndDate,
             position: position,
             skill: skill,
             discription: discription
@@ -54,7 +80,20 @@ function MyProfile(props) {
         copyArray.push(newObject);
         setPortfolioList(copyArray);
 
-        /* (DB Insert code) */
+        let body = {
+            _id : props.user.userData._id,
+            portfolioList : copyArray
+        }
+
+        axios.put('/api/users/portfolio', body)
+        .then(response => {
+            if (response.data.success) {
+                
+            }
+            else {
+                alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
+            }
+        })
 
         setModalOpen(false);
     }
@@ -83,30 +122,32 @@ function MyProfile(props) {
     }
 
     /* dropdownbox item select */
-    const onAddSkill = (event) => {
+    const onAddSkillHandler = (event) => {
         if (skill.indexOf(event) >= 0) { // 스택 중복검사
             return;
         }
 
         let newArray = [...skill];
         newArray.push(event);
-        
+
         let body = {
-            _id : props.user.userData._id,
-            skill : newArray
+            _id: props.user.userData._id,
+            skill: newArray
         }
 
-        axios.post('api/users/skill', body)
-        .then(response => {
-            if(response.data.success){
-            }
-            else{
-                alert('스킬 등록에 실패 했습니다.');
-            }
-        })
+        axios.put('api/users/addskill', body)
+            .then(response => {
+                if (response.data.success) {
+
+                }
+                else {
+                    alert('스킬 등록에 실패 했습니다.');
+                }
+            })
 
         setSkill(newArray);
     }
+
     const onRemoveSkillTag = (event) => {
         let selectedSkill = event.target.parentNode.id;
         let newArray = [...skill];
@@ -118,15 +159,25 @@ function MyProfile(props) {
             }
         }
 
+        let body = {
+            _id: props.user.userData._id,
+            skill : selectedSkill
+        }
+
+        axios.put('api/users/removeskill', body)
+            .then(response => {
+                if (response.data.success) {
+
+                }
+                else {
+                    alert('스킬 등록에 실패 했습니다.');
+                }
+            })
+        
         setSkill(newArray);
     }
-    
-
 
     return (
-
-
-
         <div>
             <Jumbotron className="search__header">
                 <h2 className="search__header-title">정보를 입력하면 다른 사람들이 볼 수 있어요!</h2>
@@ -138,20 +189,19 @@ function MyProfile(props) {
                     <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
                     <div className="keyinfo__persionalinfo">
                         <h1>
-                            <p>권혁진</p>
-                            <p>(lexky82@gmail.com)</p>
+                            <p>{Profile.name}</p>
+                            <p>{Profile.email}</p>
                         </h1>
 
-                        <p>대한민국 근무중</p>
-                        <p className="keyinfo__persionalinfo--department">상용화</p>
+                        <p>{Profile.position} 개발자</p>
 
                         <div>
                             <span>기술</span>
                             <hr />
-                            <SelectSearch onChange={(event) => { onAddSkill(event) }} options={skillstackList} search="true" filterOptions={fuzzySearch} value="sv" name="skillstack" placeholder="기술 검색" />
+                            <SelectSearch onChange={(event) => { onAddSkillHandler(event) }} options={skillstackList} search="true" filterOptions={fuzzySearch} value="sv" name="skillstack" placeholder="기술 검색" />
                             {
                                 skill.map((a, i) => {
-                                    return <SkillStackLabel skill={skill[i]} />
+                                    return <SkillStackLabel key={i} skill={skill[i]} />
                                 })
                             }
                         </div>
@@ -176,21 +226,22 @@ function MyProfile(props) {
                         <hr />
                         <React.Fragment>
                             <Modal open={modalOpen} close={closeModal} registration={onRegistration} header="포트폴리오">
-                                    <p>프로젝트 명</p>
-                                    <input id="projectName" type="text" />
-                                    <p>기간</p>
-                                    <input id="date" type="text" />
-                                    <p>포지션</p>
-                                    <input id="position" type="text" />
-                                    <p>기술</p>
-                                    <input id="skill" type="text" />
-                                    <p>프로젝트 설명</p>
-                                    <input id="discription" type="text" />
+                                <p>프로젝트 명</p>
+                                <Input id="projectName" type="text" />
+                                <p>기간</p>
+                                <RangePicker onChange={progressDateChangeHandler} />
+                                <p>포지션</p>
+                                <Input placeholder="ex) 기획, 프론트엔드" id="position" type="text" />
+                                <p>사용 기술</p>
+                                <Input id="skill" />
+                                <p>프로젝트 설명</p>
+                                <TextArea id="discription" type="text" />
                             </Modal>
                         </React.Fragment>
                         {
                             portfolioList.map((a, i) => {
-                                return <Portfolio portfolioList={portfolioList[i]} />
+                                
+                                return <Portfolio key={i} portfolio={portfolioList[i]} />
                             })
                         }
                     </div>
@@ -203,7 +254,7 @@ function MyProfile(props) {
         return (
             <li id={props.skill} className="skillStackLabel">
                 <span>{props.skill}</span>
-                <button onClick={(event) => { onRemoveSkillTag(event) }}>x</button>
+                <button onClick={(event) => { onRemoveSkillTag(event) }}><CloseOutlined style={{ fontSize: '8px' }} /></button>
             </li>
         )
     }
@@ -211,11 +262,11 @@ function MyProfile(props) {
     function Portfolio(props) {
         return (
             <blockquote className="Portfolio">
-                <h5 htmlFor="project_name">{props.portfolioList.projectName}</h5>
-                <p htmlFor="date">{props.portfolioList.date}</p>
-                <p htmlFor="positions">{props.portfolioList.position}</p>
-                <p htmlFor="skill">{props.portfolioList.skill}</p>
-                <p htmlFor="description">{props.portfolioList.discription}</p>
+                <h5 htmlFor="project_name">{props.portfolio.projectName}</h5>
+                <p htmlFor="date">{props.portfolio.startDate} ~ {props.portfolio.endDate}</p>
+                <p htmlFor="positions">{props.portfolio.position}</p>
+                <p htmlFor="skill">{props.portfolio.skill}</p>
+                <p htmlFor="description">{props.portfolio.discription}</p>
             </blockquote>
         )
     }

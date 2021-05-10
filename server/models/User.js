@@ -24,7 +24,7 @@ const userSchema = mongoose.Schema({
     creear:{
         type: Array
     },
-    portfolop:{
+    portfolio:{
         type: Array
     },
     role: {
