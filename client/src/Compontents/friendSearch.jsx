@@ -19,7 +19,6 @@ function FriendsSearch() {
             .then(response => {
                 if (response.data.success) {
                     setUserList(response.data.userList)
-                    console.log(response.data.userList)
                 }
                 else {
                     alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
@@ -81,7 +80,7 @@ function FriendsSearch() {
             <div className="peopleList__person">
                 <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
                 <div className="person__info">
-                    <p className="title"><a href="#">{props.personData.name}</a></p>
+                    <p className="title"><a href={`/profile/${props.personData._id}`}>{props.personData.name}</a></p>
                     <div>{props.personData.position}</div>
                     {  
                         props.personData.skill.map((a, i) => (

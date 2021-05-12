@@ -6,13 +6,23 @@ import axios from 'axios';
 const { TextArea } = Input;
 
 const area = [
-    { key: 1, value: "Africa" },
-    { key: 2, value: "Europe" },
-    { key: 3, value: "Asia" },
-    { key: 4, value: "North America" },
-    { key: 5, value: "South America" },
-    { key: 6, value: "Australia" },
-    { key: 7, value: "Antarctica" },
+    { key: 1, value: "서울" },
+    { key: 2, value: "부산" },
+    { key: 3, value: "인천" },
+    { key: 4, value: "대구" },
+    { key: 5, value: "대전" },
+    { key: 6, value: "광주" },
+    { key: 7, value: "경기" },
+    { key: 8, value: "울산" },
+    { key: 9, value: "세종" },
+    { key: 11, value: "강원" },
+    { key: 12, value: "충북" },
+    { key: 13, value: "충남" },
+    { key: 14, value: "전북" },
+    { key: 15, value: "전남" },
+    { key: 16, value: "경북" },
+    { key: 17, value: "경남" },
+    { key: 18, value: "제주" },
 ]
 
 function UploadStudyPost(props) {
@@ -26,13 +36,15 @@ function UploadStudyPost(props) {
     const [OnOff, setOnOff] = useState(false);
     const [Skill, setSkill] = useState([]);
     const [Contact, setContact] = useState('')
-    let currentDate = '';
-
+    const [Position, setPosition] = useState('')
+    
     const titleChangeHandler = (event) => {
         setTitle(event.currentTarget.value);
     }
+    const positionChangeHandler = (event) => {
+        setPosition(event.currentTarget.value)
+    }
     const dateChangeHandler = (event, dateString) => {
-        currentDate = event;
         setDate(dateString);
     }
     const headcountChangeHandler = (event) => {
@@ -65,6 +77,7 @@ function UploadStudyPost(props) {
             writer: props.user.userData._id,
             title: Title,
             date: Date,
+            position : Position, 
             headcount: Headcount,
             purpose: Purpose,
             description: Description,
@@ -101,8 +114,12 @@ function UploadStudyPost(props) {
                     <Input require onChange={titleChangeHandler} value={Title} />
                     <br />
                     <br />
-                    <label>구하는 날짜</label>
-                    <DatePicker onChange={dateChangeHandler} value={currentDate} />
+                    <label>구하는 포지션</label>
+                    <Input placeholder="ex)Frontend Developer" require onChange={positionChangeHandler} value={Position} />
+                    <br />
+                    <br />
+                    <label>시작 날짜</label>
+                    <DatePicker onChange={dateChangeHandler}/>
                     <br />
                     <br />
                     <label>총 구하는 인원수</label>
@@ -147,9 +164,7 @@ function UploadStudyPost(props) {
                     <br />
                     <br />
 
-                    <Button htmlType="submit">
-                        등록
-                </Button>
+                    <Button htmlType="submit">등록</Button>
                 </Form>
             </div>
         </div>

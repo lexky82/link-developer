@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 /* Components */
-import Modal from "./Myinfomodal";
+import Modal from "./Modal";
 
 /* Lib */
 import SelectSearch from 'react-select-search';
 import Fuse from 'fuse.js';
 import { Jumbotron } from "react-bootstrap";
-
 /* Ant Design */
 import {Input, DatePicker} from 'antd'
 import axios from 'axios';
@@ -26,13 +25,23 @@ function MyProfile(props) {
     const [StartDate, setStartDate] = useState('')
     const [EndDate, setEndDate] = useState('')
 
+
     useEffect(() => {
 
-        getProfilePost();
-    }, [])
+        getProfilePost()
+    }, [props.user])
 
     const getProfilePost = () => {
-        axios.post('/api/users/profile')
+
+        if(!props.user.userData){
+            return
+        }
+
+        let body = {
+            _id : props.user.userData._id
+        }
+
+        axios.post('/api/users/profile', body)
         .then(response => {
             if (response.data.success) {
                 setProfile(response.data.profile)
@@ -141,6 +150,7 @@ function MyProfile(props) {
 
                 }
                 else {
+                    
                     alert('스킬 등록에 실패 했습니다.');
                 }
             })
@@ -211,7 +221,7 @@ function MyProfile(props) {
     return (
         <div>
             <Jumbotron className="search__header">
-                <h2 className="search__header-title">정보를 입력하면 다른 사람들이 볼 수 있어요!</h2>
+                <h2 className="search__header-title">입력한 정보를 다른 유저들이 볼 수 있어요!</h2>
             </Jumbotron>
 
             <div className="container">
@@ -285,7 +295,7 @@ function MyProfile(props) {
         return (
             <li id={props.skill} className="skillStackLabel">
                 <span>{props.skill}</span>
-                <button onClick={(event) => { onRemoveSkillTag(event) }}><CloseOutlined style={{ fontSize: '8px' }} /></button>
+                <button onClick={(event) => { onRemoveSkillTag(event) }}>x</button>
             </li>
         )
     }

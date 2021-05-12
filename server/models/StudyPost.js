@@ -13,6 +13,9 @@ const postSchema = mongoose.Schema({
         type: String,
         default : 0 
     },
+    position: {
+        type : String
+    },
     headcount: {
         type: Number
     },

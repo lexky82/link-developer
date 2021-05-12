@@ -47,8 +47,7 @@ function RegisterPage(props) {
         email: '',
         name: '',
         password: '',
-        confirmPassword: '',
-        position: ''
+        confirmPassword: ''
       }}
       validationSchema={Yup.object().shape({
         name: Yup.string()
@@ -61,10 +60,7 @@ function RegisterPage(props) {
           .required('패스워드를 입력하지 않았습니다.'),
         confirmPassword: Yup.string()
           .oneOf([Yup.ref('password'), null], '패스워드와 일치하지 않습니다.')
-          .required('패스워드 확인을 입력하지 않았습니다.'),
-        position: Yup.string()
-        .oneOf([Yup.ref('password'), null], '패스워드와 일치하지 않습니다.')
-        .required('패스워드 확인을 입력하지 않았습니다.')
+          .required('패스워드 확인을 입력하지 않았습니다.')
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -73,7 +69,7 @@ function RegisterPage(props) {
             email: values.email,
             password: values.password,
             name: values.name,
-            position: values.position,
+            lastname: values.lastname,
           };
 
           dispatch(registerUser(dataToSubmit)).then(response => {
@@ -102,8 +98,8 @@ function RegisterPage(props) {
         } = props;
         return (
           <div className="app">
-
-            <Form style={{ maxWidth: "350px", margin: '10rem auto' }} {...formItemLayout} onSubmit={handleSubmit} >
+            
+            <Form style={{ maxWidth : "350px", margin : '10rem auto'}} {...formItemLayout} onSubmit={handleSubmit} >
               <Title level={2}>회원가입</Title>
 
               <Form.Item required label="이름">
@@ -171,23 +167,6 @@ function RegisterPage(props) {
                 />
                 {errors.confirmPassword && touched.confirmPassword && (
                   <div className="input-feedback">{errors.confirmPassword}</div>
-                )}
-              </Form.Item>
-
-              <Form.Item required label="포지션">
-                <Input
-                  id="position"
-                  placeholder="ex)프론트엔드"
-                  type="text"
-                  value={values.positon}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.positon && touched.positon ? 'text-input error' : 'text-input'
-                  }
-                />
-                {errors.name && touched.name && (
-                  <div className="input-feedback">{errors.name}</div>
                 )}
               </Form.Item>
 

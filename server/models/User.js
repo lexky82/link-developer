@@ -21,11 +21,11 @@ const userSchema = mongoose.Schema({
     skill: {
         type: Array
     },
-    creear:{
-        type: Array
-    },
     portfolio:{
         type: Array
+    },
+    position : {
+        type : String,
     },
     role: {
         type: Number,
