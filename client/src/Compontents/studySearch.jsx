@@ -110,7 +110,7 @@ function TechSerach() {
         return (
             <li className="notice__card">
                 <img src="https://img.icons8.com/ios/452/client-company.png" />
-                <h5><a href={"detail/"}>{props.particle.title}</a></h5>
+                <h5><a href={`/detail/${props.particle._id}`}>{props.particle.title}</a></h5>
                 <p>{props.particle.area == 3 && "서울"}</p>
                 <span className="skillStackLabel">모집 인원 : {props.particle.headcount}</span>
                 <p>모집 기한 : {props.particle.date}</p>

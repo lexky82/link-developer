@@ -27,7 +27,7 @@ function App() {
         <Route exact path="/studySearch" component={Auth(StudySearch, true)} /> {/* StudySearch_Component */}
         <Route exact path="/friendSearch" component={Auth(FriendSearch, true)} /> {/* FriendsSearch_Component */}
         <Route exact path="/myprofile" component={Auth(Myprofile, true)} /> {/* myprofile_Component */}
-        <Route exact path="/detail" component={Auth(StudyDetail, true)} /> {/* Main_Component */}
+        <Route exact path="/detail/:studyId" component={Auth(StudyDetail, true)} /> {/* Main_Component */}
         <Route exact path="/uploadStudy" component={Auth(UploadStudyPost, true)} />
       </div>
     </Suspense>
