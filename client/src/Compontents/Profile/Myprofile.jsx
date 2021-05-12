@@ -13,7 +13,6 @@ import {Input, DatePicker} from 'antd'
 import axios from 'axios';
 import TextArea from 'antd/lib/input/TextArea';
 import {CloseOutlined} from '@ant-design/icons'
-import { useSelector } from 'react-redux';
 const { RangePicker } = DatePicker;
 
 
@@ -68,6 +67,7 @@ function MyProfile(props) {
         const discription = document.getElementById('discription').value;
 
         const newObject = {
+            id : portfolioList.length,
             projectName: projectName,
             startDate: StartDate,
             endDate: EndDate,
@@ -177,6 +177,37 @@ function MyProfile(props) {
         setSkill(newArray);
     }
 
+    const removePortfolioHandler = (event) => {
+        let selectedPortfolio = event.target.parentNode.parentNode.id;
+        let newArray = [...portfolioList];
+
+        for (let i = 0; i < newArray.length; i++) {
+            if (newArray[i].id === parseInt(selectedPortfolio)) {
+                newArray.splice(i, 1);
+                i--;
+            }
+        }
+
+        
+
+        let body = {
+            _id: props.user.userData._id,
+            portfolio : selectedPortfolio
+        }
+
+        axios.put('api/users/removeportfolio', body)
+            .then(response => {
+                if (response.data.success) {
+
+                }
+                else {
+                    alert('포트폴리오 제거에 실패 했습니다.');
+                }
+            })
+
+        setPortfolioList(newArray);
+    }
+
     return (
         <div>
             <Jumbotron className="search__header">
@@ -209,7 +240,7 @@ function MyProfile(props) {
                 </section>
 
                 <section className="expreience__portfolio">
-                    <div className>
+                  {/*   <div className>
                         <span>경력 및 경험</span>
                         <button className="experience--button" onClick={openModal}>+</button>
                         <hr />
@@ -218,7 +249,7 @@ function MyProfile(props) {
 
                             </Modal>
                         </React.Fragment>
-                    </div>
+                    </div> */}
 
                     <div>
                         <span>포트폴리오</span>
@@ -261,8 +292,8 @@ function MyProfile(props) {
 
     function Portfolio(props) {
         return (
-            <blockquote className="Portfolio">
-                <h5 htmlFor="project_name">{props.portfolio.projectName}</h5>
+            <blockquote id={props.portfolio.id} className="Portfolio">
+                <h5 htmlFor="project_name">{props.portfolio.projectName}<button onClick={removePortfolioHandler} style={{border:'0', outline:'0'}} >x</button></h5>
                 <p htmlFor="date">{props.portfolio.startDate} ~ {props.portfolio.endDate}</p>
                 <p htmlFor="positions">{props.portfolio.position}</p>
                 <p htmlFor="skill">{props.portfolio.skill}</p>

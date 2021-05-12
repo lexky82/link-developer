@@ -140,6 +140,23 @@ router.put('/removeskill', (req, res) => {
     })
     
 })
+router.put('/removeportfolio', (req, res) => {
+
+    let body = {
+        _id : mongoose.Types.ObjectId(req.body._id),
+        $pull : {portfolio : { id : parseInt(req.body.portfolio)}}
+    }
+    
+
+    User.updateOne(body)
+    .then(() =>{
+        res.status(200).json({ success : true })
+    }, 
+    (err) => {
+        res.json({ success : false, err })
+    })
+    
+})
 
 
 module.exports = router;
