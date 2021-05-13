@@ -81,8 +81,4 @@ function StudySearch() {
 
 }
 
-<<<<<<< HEAD:client/src/Compontents/StudySearch/StudySearch.jsx
 export default StudySearch;
-=======
-export default TechSerach;
->>>>>>> 59eaa182fdcc0f4ecf236c4b8245af6911aa2f14:client/src/Compontents/StudySearch.jsx
