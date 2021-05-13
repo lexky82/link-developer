@@ -4,9 +4,12 @@ function StudyCard(props) {
 
     const { StudyPosts } = props
 
+
     return (
         <div>
-            <div className="container">
+            <div className="container">{
+                console.log(StudyPosts)
+            }
                 <ul className="notice">
                     {
                         StudyPosts.map((a, i) => {
@@ -21,9 +24,10 @@ function StudyCard(props) {
         return (
             <li className="notice__card">
                 <img src="https://img.icons8.com/ios/452/client-company.png" />
-                <h5><a href={`/detail/${props.particle._id}`}>{props.particle.title}</a></h5>
-                <p>{props.particle.area == 3 && "서울"}</p>
-                <p>모집 기한 : {props.particle.date}</p>
+                <h6><a href={`/detail/${props.particle._id}`}>{props.particle.title}</a></h6>
+                 <p>{props.particle.purpose}</p>
+                <p>{props.particle.area}</p>
+                <p>시작일자 : {props.particle.date}</p>
             </li>
         )
     }

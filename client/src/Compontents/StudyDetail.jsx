@@ -3,7 +3,6 @@ import { useState ,useEffect } from 'react';
 import { Table } from 'react-bootstrap';
 import { PhoneOutlined, MailOutlined } from "@ant-design/icons";
 
-
 function StudyDetail(props) {
 
     const studyId = props.match.params.studyId
@@ -67,9 +66,11 @@ function StudyDetail(props) {
                     <div className="skillStackinfo">
                         <h5>기술 스택</h5>
                         <ul>
-                            <li className="skillStackLabel">Java</li>
-                            <li className="skillStackLabel">Python</li>
-                            <li className="skillStackLabel">React</li>
+                            {
+                                Study.skill && Study.skill.map((skill, i) =>(
+                                    <li key={i} className="skillStackLabel">{skill}</li>
+                                ))
+                            }
                         </ul>
                     </div>
                 </section>

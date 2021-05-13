@@ -1,30 +1,15 @@
 import React, { useState } from 'react';
-import { Button, Form, Input, Switch, DatePicker } from 'antd/dist/antd';
+import { Button, Form, Input, Switch, DatePicker, Select } from 'antd/dist/antd';
 import { Jumbotron } from "react-bootstrap";
 import axios from 'axios';
 import { PhoneOutlined, MailOutlined } from "@ant-design/icons";
+import { area, skill } from "../Data";
 
+
+const { Option } = Select
 const { TextArea } = Input;
 
-const area = [
-    { key: 1, value: "서울" },
-    { key: 2, value: "부산" },
-    { key: 3, value: "인천" },
-    { key: 4, value: "대구" },
-    { key: 5, value: "대전" },
-    { key: 6, value: "광주" },
-    { key: 7, value: "경기" },
-    { key: 8, value: "울산" },
-    { key: 9, value: "세종" },
-    { key: 11, value: "강원" },
-    { key: 12, value: "충북" },
-    { key: 13, value: "충남" },
-    { key: 14, value: "전북" },
-    { key: 15, value: "전남" },
-    { key: 16, value: "경북" },
-    { key: 17, value: "경남" },
-    { key: 18, value: "제주" },
-]
+
 
 function UploadStudyPost(props) {
 
@@ -32,12 +17,11 @@ function UploadStudyPost(props) {
     const [Date, setDate] = useState('');
     const [Purpose, setPurpose] = useState('');
     const [Description, setDescription] = useState('');
-    const [Area, setArea] = useState(1);
+    const [Area, setArea] = useState('');
     const [OnOff, setOnOff] = useState(false);
     const [Skill, setSkill] = useState([]);
     const [PhoneNumber, setPhoneNumber] = useState('')
     const [Position, setPosition] = useState('')
-    const [Email, setEmail] = useState('')
     
     const titleChangeHandler = (event) => {
         setTitle(event.currentTarget.value);
@@ -55,7 +39,7 @@ function UploadStudyPost(props) {
         setDescription(event.currentTarget.value)
     }
     const areaChangeHandler = (event) => {
-        setArea(event.currentTarget.value)
+        setArea(event)
     }
     const onOffChangeHandler = (event) => {
         setOnOff(event)
@@ -63,12 +47,15 @@ function UploadStudyPost(props) {
     const phoneNumberChangeHandler = (event) => {
         setPhoneNumber(event.currentTarget.value)
     }
+    const skillChangeHandler = (event) => {
+        setSkill(event)
+    }
     
 
     const submitHandler = (event) => {
         event.preventDefault();
 
-        if (!Title || !Date || !Purpose || !Area || !PhoneNumber) {
+        if (!Title || !Date || !Area || !PhoneNumber) {
             return alert(' 필수적으로 입력해야할 값을 입력하지 않았습니다.');
         }
 
@@ -80,7 +67,7 @@ function UploadStudyPost(props) {
             purpose: Purpose,
             description: Description,
             area: Area,
-            skill: [],
+            skill: Skill,
             onOff: OnOff,
             phoneNumber: PhoneNumber,
             email : props.user.userData.email
@@ -130,29 +117,29 @@ function UploadStudyPost(props) {
                     <br />
                     <br />
                     <label>지역</label>
-                    <select require onChange={areaChangeHandler} value={Area}>
+                    <Select require onChange={areaChangeHandler} value={Area}>
                         {
                             area.map(item => (
-                                <option key={item.key} value={item.key}>{item.value}</option>
+                                <Option value={item.key} key={item.key} >{item.value}</Option>
                             ))
                         }
-                    </select>
+                    </Select>
                     <br />
                     <br />
                     <label>온라인/오프라인</label>
                     <Switch checkedChildren="Online" unCheckedChildren="Offline" onChange={onOffChangeHandler} />
                     <br />
                     <br />
-                    {/*   <label>구하는 기술스택</label>
-                <select onChange={skillChangeHandler} value={Skill}>
-                {
-                    skill.map(item => (
-                        <option key={item.key} value={item.key}>{item.value}</option>
-                    ))
-                }
-                </select>
-                <br/>
-                <br/> */}
+                    <label>요구 기술스택</label>
+                    <Select placeholder="Select Skill" allowClear mode="multiple" style={{ width: '100%' }}  onChange={skillChangeHandler} tokenSeparators={[',']}>
+                    {
+                        skill.map(item => (
+                            <Option key={item.key} value={item.key}>{item.key}</Option>
+                        ))
+                    }
+                    </Select>
+                    <br/>
+                    <br/>
 
                     <label>연락처</label>
                     <Input type="tel" onChange={phoneNumberChangeHandler} value={PhoneNumber} prefix={<PhoneOutlined />} />

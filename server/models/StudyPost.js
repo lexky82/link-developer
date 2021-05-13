@@ -23,8 +23,7 @@ const postSchema = mongoose.Schema({
         type : String
     },
     area: {
-        type: Number,
-        default: 1
+        type: String,
     },
     onOff: {
         type: Boolean,
