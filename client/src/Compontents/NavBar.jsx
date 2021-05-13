@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { USER_SERVER } from '../../Compontents/Config'
+import { USER_SERVER } from './Config'
 import axios from 'axios';
 
 

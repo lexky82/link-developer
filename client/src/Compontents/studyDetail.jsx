@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState ,useEffect } from 'react';
 import { Table } from 'react-bootstrap';
+import { PhoneOutlined, MailOutlined } from "@ant-design/icons";
 
 
 function StudyDetail(props) {
@@ -48,10 +49,6 @@ function StudyDetail(props) {
                                 <td>{Study.purpose}</td>
                             </tr>
                             <tr>
-                                <td>스터디 규모</td>
-                                <td>총 {Study.headcount}명</td>
-                            </tr>
-                            <tr>
                                 <td>시작 날짜</td>
                                 <td>{Study.date}</td>
                             </tr>
@@ -87,6 +84,9 @@ function StudyDetail(props) {
                 <section>
                     <div>
                         <h5>연락처</h5>
+                        <MailOutlined /> <a href={`mailto:${Study.email}`}>{Study.email}</a>
+                        <br />
+                        <PhoneOutlined /> <a href={`tel:${Study.phoneNumber}`}>{Study.phoneNumber}</a>
                     </div>
                 </section>
             </div>

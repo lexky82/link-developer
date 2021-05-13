@@ -16,9 +16,6 @@ const postSchema = mongoose.Schema({
     position: {
         type : String
     },
-    headcount: {
-        type: Number
-    },
     purpose: {
         type: String
     },
@@ -36,9 +33,13 @@ const postSchema = mongoose.Schema({
         type: Array,
         default: []
     },
-    contact: {
+    phoneNumber: {
         type: String,
+    },
+    email : {
+        type : String
     }
+
 }, { timestamps : true })
 
 

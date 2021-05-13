@@ -102,6 +102,7 @@ router.put('/portfolio', (req, res) => {
         res.status(200).json({ success : true })
     }, 
     (err) => {
+        console.log(err)
         res.json({ success : false, err })
     })
 })
@@ -120,7 +121,6 @@ router.put('/addskill', (req, res) => {
         res.status(200).json({ success : true })
     }, 
     (err) => {
-        console.log(err);
         res.json({ success : false, err })
     })
     
@@ -145,16 +145,16 @@ router.put('/removeskill', (req, res) => {
 router.put('/removeportfolio', (req, res) => {
 
     let body = {
-        _id : mongoose.Types.ObjectId(req.body._id),
+        _id : req.body._id,
         $pull : {portfolio : { id : parseInt(req.body.portfolio)}}
     }
     
-
     User.updateOne(body)
     .then(() =>{
         res.status(200).json({ success : true })
     }, 
     (err) => {
+        console.log(err)
         res.json({ success : false, err })
     })
     
