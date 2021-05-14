@@ -52,7 +52,7 @@ function MyProfile(props) {
                 <section className="keyinfo">
                     <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
                     <KeyInfo
-                        skill={skill}
+                        Skill={skill}
                         setSkill={setSkill}
                         profile={Profile}
                         setProfile={setProfile}
@@ -61,7 +61,7 @@ function MyProfile(props) {
                 </section>
 
                 <section className="expreience__portfolio">
-                    <Portfolio
+                    <Portfolio                        
                         portfolioList={portfolioList}
                         setPortfolioList={setPortfolioList}
                         user={props.user}

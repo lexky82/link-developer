@@ -14,9 +14,13 @@ function MyProfile(props) {
     const [portfolioList, setPortfolioList] = useState([]);
     const [skill, setSkill] = useState([]);
 
+    const profileId = props.match.params
+    let userId;
+
     useEffect(() => {
 
         getProfilePost()
+        
     }, [props.user])
 
     const getProfilePost = () => {
@@ -25,13 +29,16 @@ function MyProfile(props) {
             return
         }
 
+        userId = props.user.userData._id
+
         let body = {
-            _id : props.user.userData._id
+            _id : profileId.profileId
         }
 
         axios.post('/api/users/profile', body)
             .then(response => {
                 if (response.data.success) {
+                    console.log(response.data.profile)
                     setProfile(response.data.profile)
                     setSkill(response.data.profile.skill)
                     setPortfolioList(response.data.profile.portfolio)
@@ -45,18 +52,18 @@ function MyProfile(props) {
     return (
         <div>
             <Jumbotron className="search__header">
-                <h2 className="search__header-title">입력한 정보를 다른 유저들이 볼 수 있어요!</h2>
+                <h2 className="search__header-title">좋은 동료를 찾아봅시다!</h2>
             </Jumbotron>
 
             <div className="container">
                 <section className="keyinfo">
                     <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
                     <KeyInfo
-                        skill={skill}
+                        Skill={skill}
                         setSkill={setSkill}
                         profile={Profile}
                         setProfile={setProfile}
-                        user={props.user}
+                        user={profileId.profileId && userId}
                     />
                 </section>
 
@@ -64,7 +71,7 @@ function MyProfile(props) {
                     <Portfolio
                         portfolioList={portfolioList}
                         setPortfolioList={setPortfolioList}
-                        user={props.user}
+                        user={profileId.profileId && userId}
                     />
                 </section>
             </div>

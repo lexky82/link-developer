@@ -109,10 +109,12 @@ function Portfolio(props) {
     return (
         <div>
             <span>포트폴리오</span>
-            <button className="experience--button" onClick={openModal}>+</button>
+            {
+               user && <button className="experience--button" onClick={openModal}>+</button>
+            }
             <hr />
             <React.Fragment>
-                <Modal open={modalOpen} close={closeModal} registration={onRegistration} header="포트폴리오">
+                    <Modal open={modalOpen} close={closeModal} registration={onRegistration} header="포트폴리오">
                     <p>프로젝트 명</p>
                     <Input onChange={projectNameChangeHandler} type="text" />
                     <p>기간</p>
@@ -137,11 +139,11 @@ function Portfolio(props) {
     function PortfolioTap(props) {
         return (
             <blockquote id={props.portfolio.id} className="Portfolio">
-                <h5 htmlFor="project_name">{props.portfolio.projectName}<button onClick={removePortfolioHandler} style={{ border: '0', outline: '0' }} >x</button></h5>
-                <p htmlFor="date">{props.portfolio.startDate} ~ {props.portfolio.endDate}</p>
-                <p htmlFor="positions">{props.portfolio.position}</p>
-                <p htmlFor="skill">{props.portfolio.skill}</p>
-                <p htmlFor="description">{props.portfolio.discription}</p>
+                <h5>{props.portfolio.projectName}{ user && <button onClick={removePortfolioHandler} style={{ border: '0', outline: '0' }} >X</button>}</h5>
+                <p>{props.portfolio.startDate} ~ {props.portfolio.endDate}</p>
+                <p>{props.portfolio.position}</p>
+                <p>{props.portfolio.skill}</p>
+                <p>{props.portfolio.discription}</p>
             </blockquote>
         )
     }
