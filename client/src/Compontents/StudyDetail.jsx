@@ -7,6 +7,7 @@ function StudyDetail(props) {
 
     const studyId = props.match.params.studyId
     const [Study, setStudy] = useState({})
+    const [writer, setwriter] = useState({})
 
     const onOfflineHandler = () => {
         if(Study.onOff){
@@ -17,12 +18,27 @@ function StudyDetail(props) {
         }
     }
 
+    const readWriterHandler = () => {
+        let body = {
+            _id : Study.writer
+        }
+        
+        axios.post('/api/users/profile', body)
+        .then(response => {
+            setwriter(response.data.profile)
+        })
+        .catch(err => console.log(err))
+
+    }
+
     useEffect(() => {
         axios.get(`/api/studyPost/studyPosts_by_id?id=${studyId}`)
             .then(response => {
                 setStudy(response.data[0])
             })
             .catch(err => console.log(err))
+
+            
     }, [])
 
     return (
@@ -39,6 +55,10 @@ function StudyDetail(props) {
                 <section>
                     <Table className="recruitmentInfo" size="sm">
                         <tbody>
+                            <tr>
+                                <td>작성자</td>
+                                <td>{writer.name}</td>
+                            </tr>
                             <tr>
                                 <td>구하는 개발자</td>
                                 <td>{Study.position}</td>
