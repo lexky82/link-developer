@@ -34,8 +34,6 @@ router.get('/studyPosts_by_id', (req, res) => {
     _id : mongoose.Types.ObjectId(productIds)
   }
 
-  //productId를 이용해서 DB에서  productId와 같은 상품의 정보를 가져온다.
-
   StudyPost.find(body)
       .exec((err, study) => {
           if (err) return res.status(400).send(err)

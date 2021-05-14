@@ -68,8 +68,8 @@ router.get("/logout", auth, (req, res) => {
     });
 });
 
-router.post('/user', (req, res) => {
-
+router.post('/userlist', (req, res) => {
+    
     User.find()
         .exec((err, userList) => {
             if (err) return res.status(400).json({ success: false, err })
