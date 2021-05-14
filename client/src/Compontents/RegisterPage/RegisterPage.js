@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { registerUser } from "../../_actions/user_actions";
 import { useDispatch } from "react-redux";
+import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 
 
 import {
@@ -110,6 +111,7 @@ function RegisterPage(props) {
                   value={values.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  prefix={<UserOutlined className="site-form-item-icon" />}
                   className={
                     errors.name && touched.name ? 'text-input error' : 'text-input'
                   }
@@ -127,6 +129,7 @@ function RegisterPage(props) {
                   value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  prefix={<MailOutlined />}
                   className={
                     errors.email && touched.email ? 'text-input error' : 'text-input'
                   }
@@ -144,6 +147,7 @@ function RegisterPage(props) {
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  prefix={<LockOutlined className="site-form-item-icon" />}
                   className={
                     errors.password && touched.password ? 'text-input error' : 'text-input'
                   }
@@ -161,6 +165,7 @@ function RegisterPage(props) {
                   value={values.confirmPassword}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  prefix={<LockOutlined className="site-form-item-icon" />}
                   className={
                     errors.confirmPassword && touched.confirmPassword ? 'text-input error' : 'text-input'
                   }

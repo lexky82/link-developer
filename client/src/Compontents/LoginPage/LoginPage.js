@@ -4,7 +4,7 @@ import { loginUser } from "../../_actions/user_actions";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Form, Input, Button, Checkbox, Typography } from 'antd';
-import Icon from '@ant-design/icons';
+import Icon, {LockOutlined, UserOutlined} from '@ant-design/icons';
 import { useDispatch } from "react-redux";
 
 const { Title } = Typography;
@@ -105,6 +105,7 @@ function LoginPage(props) {
                   value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  prefix={<UserOutlined className="site-form-item-icon" />}
                   className={
                     errors.email && touched.email ? 'text-input error' : 'text-input'
                   }
@@ -123,6 +124,7 @@ function LoginPage(props) {
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  prefix={<LockOutlined className="site-form-item-icon" />}
                   className={
                     errors.password && touched.password ? 'text-input error' : 'text-input'
                   }
