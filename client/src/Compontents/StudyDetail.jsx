@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState ,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap';
 import { PhoneOutlined, MailOutlined } from "@ant-design/icons";
 
@@ -9,37 +9,40 @@ function StudyDetail(props) {
     const [Study, setStudy] = useState({})
     const [writer, setwriter] = useState({})
 
-    const onOfflineHandler = () => {
-        if(Study.onOff){
-            return "온라인"
-        }
-        else{
-            return "오프라인"
-        }
-    }
-
-    const readWriterHandler = () => {
-        let body = {
-            _id : Study.writer
-        }
-        
-        axios.post('/api/users/profile', body)
-        .then(response => {
-            setwriter(response.data.profile)
-        })
-        .catch(err => console.log(err))
-
-    }
-
     useEffect(() => {
         axios.get(`/api/studyPost/studyPosts_by_id?id=${studyId}`)
             .then(response => {
                 setStudy(response.data[0])
             })
             .catch(err => console.log(err))
-
-            
     }, [])
+
+
+    const onOfflineHandler = () => {
+        if (Study.onOff) {
+            return "온라인"
+        }
+        else {
+            return "오프라인"
+        }
+    }
+
+    const readWriterHandler = () => {
+        let body = {
+            _id: Study.writer
+        }
+
+        axios.post('/api/users/profile', body)
+            .then(response => {
+                setwriter(response.data.profile)
+            })
+            .catch(err => console.log(err))
+
+        return (
+            <td><a href={`/profile/${Study.writer}`}>{writer && writer.name}</a></td>
+        )
+
+    }
 
     return (
         <div>
@@ -57,7 +60,7 @@ function StudyDetail(props) {
                         <tbody>
                             <tr>
                                 <td>작성자</td>
-                                <td>{writer.name}</td>
+                                {readWriterHandler()}
                             </tr>
                             <tr>
                                 <td>구하는 개발자</td>
@@ -87,7 +90,7 @@ function StudyDetail(props) {
                         <h5>기술 스택</h5>
                         <ul>
                             {
-                                Study.skill && Study.skill.map((skill, i) =>(
+                                Study.skill && Study.skill.map((skill, i) => (
                                     <li key={i} className="skillStackLabel">{skill}</li>
                                 ))
                             }
