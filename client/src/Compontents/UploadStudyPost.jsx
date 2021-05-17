@@ -120,7 +120,7 @@ function UploadStudyPost(props) {
                     <Select require onChange={areaChangeHandler} value={Area}>
                         {
                             area.map(item => (
-                                <Option value={item.key} key={item.key} >{item.value}</Option>
+                                <Option value={item.key} key={item.key} >{item.key}</Option>
                             ))
                         }
                     </Select>
