@@ -117,7 +117,7 @@ function UploadStudyPost(props) {
                     <br />
                     <br />
                     <label>지역</label>
-                    <Select require onChange={areaChangeHandler} value={Area}>
+                    <Select require onChange={areaChangeHandler} value={Area} style={{ width: '15%' }}>
                         {
                             area.map(item => (
                                 <Option value={item.key} key={item.key} >{item.key}</Option>
