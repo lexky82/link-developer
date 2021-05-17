@@ -68,11 +68,11 @@ function NavBar(props) {
                         <Nav className="mr-auto">
                             <Nav.Link href="#">안내</Nav.Link>
                             <Nav.Link href="/studySearch">스터디 찾기</Nav.Link>
+                            <Nav.Link href="/uploadStudy">스터디 등록</Nav.Link>
                             <Nav.Link href="/friendSearch">동료 찾기</Nav.Link>
-                            <Nav.Link href="/myprofile">내정보</Nav.Link>
                         </Nav>
                         <Nav className="ml-auto">
-                            <Nav.Link href="/uploadStudy">스터디 등록</Nav.Link>
+                        <Nav.Link href="/myprofile">내정보</Nav.Link>
                             <Nav.Link onClick={logoutHandler}>로그아웃</Nav.Link>
                         </Nav>
                         <Nav>
