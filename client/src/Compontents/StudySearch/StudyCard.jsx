@@ -7,9 +7,7 @@ function StudyCard(props) {
 
     return (
         <div>
-            <div className="container">{
-                console.log(StudyPosts)
-            }
+            <div className="container">
                 <ul className="notice">
                     {
                         StudyPosts.map((a, i) => {

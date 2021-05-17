@@ -4,12 +4,13 @@ import { Select } from "antd";
 import axios from 'axios';
 
 import StudyCard from './StudyCard';
-import Filter from '../Util/Filter';
+import Filter from '../Util/Filter/Filter';
 
 
 function StudySearch() {
 
     const [StudyPosts, setStudyPosts] = useState([])
+    const [Filters, setFilters] = useState({})
     const Option = Select;
 
     useEffect(() => {
@@ -18,50 +19,22 @@ function StudySearch() {
 
     }, [])
 
-    const techstackList = [
-        // 나중에 json으로 불려오면 딱이겠고만..
-        { name: '', value: '' },
-        { name: 'Java', value: 'Java' },
-        { name: 'Python', value: 'Python' },
-        { name: 'C#', value: 'C#' },
-        { name: 'React', value: 'React' },
-        { name: 'Node', value: 'Node' },
-    ];
-
-
-    const getStudyPost = () => {
-        axios.post('/api/studyPost/studyPosts')
+    const getStudyPost = (body) => {
+        axios.post('/api/studyPost/studyPosts', body)
             .then(response => {
                 if (response.data.success) {
                     setStudyPosts(response.data.studyInfo)
-                    console.log(response.data.studyInfo)
                 }
                 else {
                     alert(" 스터디 리스트들을 가져오는데 실패 했습니다.")
                 }
             })
-
     }
 
-    /* const handelFilterSKill = (skill) => {
-        const newArray = [...Notice];
-
-        let selectedSkill = document.querySelector("#skill > div > input").value;
-        const selectedArea = document.getElementById('selectArea').value;
-        const selectedOnOff = document.getElementById('selectOnOff').value;
-            
-        selectedSkill = skill;
+    const showFilteredReulst = (filters) =>{
         
-        console.log(selectedSkill);
-        console.log(selectedArea);
-        console.log(selectedOnOff);
-
-        const result = newArray.filter(x => {
-            return x.skill == selectedSkill && x.area == selectedArea && x.onoff == selectedOnOff
-        });
-    
-        setRanderNotice( result );
-    } */
+        getStudyPost(filters)
+    }
 
     return (
         <div>
@@ -70,7 +43,9 @@ function StudySearch() {
             </Jumbotron>
 
             <div className="search__main">
-               <Filter />
+               <Filter 
+                showFilteredReulst={showFilteredReulst}
+               />
             </div>
 
             <p className="title">전체 결과</p>
