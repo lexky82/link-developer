@@ -18,8 +18,14 @@ router.post('/', (req, res) => {
 })
 
 router.post('/studyPosts', (req, res) => {
-  
-  StudyPost.find()
+  let body = {}
+
+  if(req.body)
+    body = {
+      skill : { $in : req.body }
+    }
+
+  StudyPost.find(body)
   .exec((err, studyPostInfo) =>{
     if(err) return res.status(400).json({success: false, err})
     return res.status(200).json({success: true, studyInfo : studyPostInfo})
@@ -41,6 +47,5 @@ router.get('/studyPosts_by_id', (req, res) => {
       })
 
 })
-
 
 module.exports = router;
