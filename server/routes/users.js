@@ -69,8 +69,16 @@ router.get("/logout", auth, (req, res) => {
 });
 
 router.post('/userlist', (req, res) => {
-    
-    User.find()
+    let body = {}
+
+    if(Object.keys(req.body).length > 0){
+        body = {
+            skill : { $in : req.body}
+        }
+        console.log(body)
+    }
+
+    User.find(body)
         .exec((err, userList) => {
             if (err) return res.status(400).json({ success: false, err })
             return res.status(200).json({ success: true, userList: userList })
