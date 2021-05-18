@@ -20,9 +20,21 @@ router.post('/', (req, res) => {
 router.post('/studyPosts', (req, res) => {
   let body = {}
 
-  if(Object.keys(req.body).length > 0){
-      body = {
-      skill: { $in: req.body }
+  for(let key in req.body){
+
+    if(key === 'onOff'){
+      body[key] = req.body[key]
+    }
+
+    if(req.body[key].length > 0){
+
+      if(req.body[key] === "skill"){
+         body[key] = { $in : req.body[key]}
+      }
+      else{
+        body[key] = req.body[key];
+      }
+      
     }
   }
   
