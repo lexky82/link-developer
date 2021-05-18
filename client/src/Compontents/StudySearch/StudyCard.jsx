@@ -25,8 +25,8 @@ function StudyCard(props) {
                 <p>{props.particle.purpose}</p>
                 <p>{props.particle.area}</p>
                 {
-                    props.particle.skill.map((a, i) => {
-                        return <span key={i} className="skillStackLabel">{a}</span>
+                    props.particle.skill.map((skill, i) => {
+                        return <span key={i} className="skillStackLabel">{skill}</span>
                     })
                 }
                 <p>시작일자 : {props.particle.date}</p>
