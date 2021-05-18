@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Jumbotron } from 'react-bootstrap';
 import { Select } from "antd";
 import axios from 'axios';
+import SkillFilter from './Util/Filter/SkillFilter';
 
 function FriendsSearch() {
 
@@ -14,8 +15,9 @@ function FriendsSearch() {
 
     }, [])
 
-    const getUserList = () => {
-        axios.post('/api/users/userlist')
+    const getUserList = (body) => {
+
+        axios.post('/api/users/userlist', body)
             .then(response => {
                 if (response.data.success) {
                     setUserList(response.data.userList)
@@ -24,18 +26,11 @@ function FriendsSearch() {
                     alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
                 }
             })
-        
     }
 
-    const techstackList = [
-        // 나중에 json으로 불려오면 딱이겠고만..
-        { name: 'Java', value: 'Java' },
-        { name: 'Python', value: 'Python' },
-        { name: 'C#', value: 'C#' },
-        { name: 'React', value: 'React' },
-    ];
-
-  
+    const handleFilters = (filters) => {
+        getUserList(filters)
+    }
 
     return (
         <div>
@@ -46,18 +41,7 @@ function FriendsSearch() {
             <div className="friendSearch__main">
                 <div>
                     <p>찾을 기술명을 입력 해주세요.</p>
-                    <Select
-                    showSearch
-                    style={{ width: 200 }}
-                    placeholder="Select a Skill"
-                    filterOption={(input, option) =>
-                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                    }
-                >
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="tom">Tom</Option>
-                </Select>
+                    <SkillFilter handleFilters={handleFilters} />
                 </div>
             </div>
 
