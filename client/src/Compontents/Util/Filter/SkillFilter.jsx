@@ -6,10 +6,7 @@ const Option = Select
 function SkillFilter(props) {
     const { handleFilters } = props
 
-    const [SelectedSkills, setSelectedSkills] = useState([])
-
     const skillFilterHandler = (event) => {
-        setSelectedSkills(event)
         props.handleFilters(event)
     }
 
