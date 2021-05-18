@@ -3,10 +3,15 @@ import { area } from "../../../Data";
 import { Select } from "antd";
 const Option = Select;
 
-function AreaFilter() {
+function AreaFilter(props) {
+
+    const areaFilterHandler = (event) => {
+        props.handleFilters(event)
+    }
+
     return (
         <div>
-            <Select placeholder="지역" style={{ width: 120 }}>
+            <Select mode="multiple" onChange={areaFilterHandler} placeholder="지역" style={{ width :'75px' }}>
                 {
                     area.map(item => (
                         <Option value={item.key} key={item.key}>{item.key}</Option>

@@ -4,8 +4,7 @@ import { skill } from "../../../Data";
 const Option = Select
 
 function SkillFilter(props) {
-    const { handleFilters } = props
-
+    
     const skillFilterHandler = (event) => {
         props.handleFilters(event)
     }

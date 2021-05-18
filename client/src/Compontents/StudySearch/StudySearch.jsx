@@ -10,7 +10,11 @@ import Filter from '../Util/Filter/Filter';
 function StudySearch() {
 
     const [StudyPosts, setStudyPosts] = useState([])
-    const [Filters, setFilters] = useState({})
+    const [Filters, setFilters] = useState({
+        skill : [],
+        onOff: undefined,
+        area: []
+    })
     const Option = Select;
 
     useEffect(() => {
@@ -20,6 +24,8 @@ function StudySearch() {
     }, [])
 
     const getStudyPost = (body) => {
+        console.log(body)
+
         axios.post('/api/studyPost/studyPosts', body)
             .then(response => {
                 if (response.data.success) {
@@ -31,9 +37,12 @@ function StudySearch() {
             })
     }
 
-    const showFilteredReulst = (filters) =>{
+    const showFilteredReulst = (filters, category) =>{
+        const newFilters = {...Filters}
+        newFilters[category] = filters
         
-        getStudyPost(filters)
+        setFilters(newFilters)
+        getStudyPost(newFilters)
     }
 
     return (

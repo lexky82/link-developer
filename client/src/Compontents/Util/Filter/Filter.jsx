@@ -1,23 +1,18 @@
-import React, {useState} from 'react'
-import { Select } from "antd";
+import React from 'react'
 import SkillFilter from './SkillFilter';
 import AreaFilter from './AreaFilter';
-
-const Option = Select;
+import OnOfflineFilter from './OnOfflineFilter';
 
 function Filter(props) {
 
  
     return (
-        <div style={{ display:'flex' }}>
-           <SkillFilter handleFilters={filters => props.showFilteredReulst(filters)} />
+        <div style={{ display:'flex' , flexWrap:'wrap'}}>
+           <SkillFilter handleFilters={filters => props.showFilteredReulst(filters, 'skill')} />
 
-            <Select placeholder="온라인/오프라인" style={{ width: 120 }}>
-                <Option value={true}>온라인</Option>
-                <Option value={false}>오프라인</Option>
-            </Select>
+            <OnOfflineFilter handleFilters={filters => props.showFilteredReulst(filters, 'onOff')} />
 
-            <AreaFilter />
+            <AreaFilter handleFilters={filters => props.showFilteredReulst(filters, 'area')}/>
         </div>
     )
 }
