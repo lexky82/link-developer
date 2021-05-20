@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap';
 import { PhoneOutlined, MailOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 
 function StudyDetail(props) {
 
@@ -42,6 +43,32 @@ function StudyDetail(props) {
             <td><a href={`/profile/${Study.writer}`}>{writer && writer.name}</a></td>
         )
 
+    }
+
+    const removeStudyHandler = () => {
+
+        if(props.user.userData._id === Study.writer){
+
+            let body = {
+                _id : Study._id
+            }
+
+            if (window.confirm("스터디를 삭제 하시겠습니까?")) {
+                
+                axios.post('/api/studyPost/removepost', body)
+                .then(response => {
+                    if(response.data.success){
+                        props.history.push('/studysearch')
+                    }
+                    else{
+                        alert('스터디 삭제를 실패하였습니다.')
+                    }
+                })
+              }
+        }
+        else{
+            alert('해당 스터디의 작성자가 아닙니다.')
+        }
     }
 
     return (
@@ -117,6 +144,10 @@ function StudyDetail(props) {
                         <PhoneOutlined /> <a href={`tel:${Study.phoneNumber}`}>{Study.phoneNumber}</a>
                     </div>
                 </section>
+                <div >
+                    <Button style={{ margin: '5px'}}>수정</Button>
+                    <Button onClick={removeStudyHandler}>삭제</Button>
+                </div>
             </div>
         </div>
     )
