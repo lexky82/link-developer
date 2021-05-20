@@ -20,24 +20,19 @@ router.post('/', (req, res) => {
 router.post('/studyPosts', (req, res) => {
   let body = {}
 
-  for(let key in req.body){
+  for (let key in req.body) {
 
-    if(key === 'onOff'){
+    if (key === 'onOff') {
       body[key] = req.body[key]
     }
 
-    if(req.body[key].length > 0){
-
-      if(req.body[key] === "skill"){
-         body[key] = { $in : req.body[key]}
-      }
-      else{
-        body[key] = req.body[key];
-      }
-      
+    if (req.body[key].length > 0) {
+      body[key] = { $in: req.body[key] }
     }
+
   }
-  
+  console.log(body)
+
   StudyPost.find(body)
     .exec((err, studyPostInfo) => {
       if (err) return res.status(400).json({ success: false, err })
