@@ -25,7 +25,7 @@ function KeyInfo(props) {
         axios.put('api/users/addskill', body)
             .then(response => {
                 if (response.data.success) {
-
+                    
                 }
                 else {
 

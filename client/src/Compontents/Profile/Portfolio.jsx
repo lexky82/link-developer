@@ -143,7 +143,7 @@ function Portfolio(props) {
                 <p>{props.portfolio.startDate} ~ {props.portfolio.endDate}</p>
                 <p>{props.portfolio.position}</p>
                 <p>{props.portfolio.skill}</p>
-                <p>{props.portfolio.discription}</p>
+                <p>{props.portfolio.description}</p>
             </blockquote>
         )
     }
