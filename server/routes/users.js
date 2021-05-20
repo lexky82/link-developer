@@ -71,9 +71,9 @@ router.get("/logout", auth, (req, res) => {
 router.post('/userlist', (req, res) => {
     let body = {}
 
-    if(Object.keys(req.body).length > 0){
+    if (Object.keys(req.body).length > 0) {
         body = {
-            skill : { $in : req.body}
+            skill: { $in: req.body }
         }
         console.log(body)
     }
@@ -87,7 +87,7 @@ router.post('/userlist', (req, res) => {
 
 router.post('/profile', (req, res) => {
     let body = {
-        _id : mongoose.Types.ObjectId(req.body._id)
+        _id: mongoose.Types.ObjectId(req.body._id)
     }
 
     User.findOne(body)
@@ -98,74 +98,71 @@ router.post('/profile', (req, res) => {
 })
 
 router.put('/portfolio', (req, res) => {
-    
-    let body = {
-        _id : mongoose.Types.ObjectId(req.body._id),
-        portfolio : req.body.portfolioList,
-        upsert : true
-    }
-    
-    User.updateOne(body)
-    .then(() =>{
-        res.status(200).json({ success : true })
-    }, 
-    (err) => {
-        console.log(err)
-        res.json({ success : false, err })
-    })
+
+    User.updateOne(
+        { _id: mongoose.Types.ObjectId(req.body._id) },
+        { portfolio: req.body.portfolioList },
+        { upsert: true }
+    )
+        .then(() => {
+            res.status(200).json({ success: true })
+        },
+            (err) => {
+                console.log(err)
+                res.json({ success: false, err })
+            })
 })
 
 
 router.put('/addskill', (req, res) => {
 
-    let body = {
-        _id : mongoose.Types.ObjectId(req.body._id),
-        $addToSet: {skill : req.body.skill},
-        upsert : true
-    }
-    
-    User.updateOne(body)
-    .then(() =>{
-        res.status(200).json({ success : true })
-    }, 
-    (err) => {
-        res.json({ success : false, err })
-    })
-    
+    User.updateOne(
+        { _id: mongoose.Types.ObjectId(req.body._id) },
+        { $addToSet: { skill: req.body.skill } },
+        { upsert: true })
+        .then(() => {
+            res.status(200).json({ success: true })
+        },
+            (err) => {
+                console.log(err)
+                res.json({ success: false, err })
+            })
+
 })
 
 router.put('/removeskill', (req, res) => {
 
-    let body = {
-        _id : mongoose.Types.ObjectId(req.body._id),
-        $pull : {skill : req.body.skill}
-    }
-    
-    User.updateOne(body)
-    .then(() =>{
-        res.status(200).json({ success : true })
-    }, 
-    (err) => {
-        res.json({ success : false, err })
-    })
-    
+    User.updateOne(
+        { _id: mongoose.Types.ObjectId(req.body._id) },
+        { $pull: { skill: req.body.skill } }
+    )
+        .then(() => {
+            res.status(200).json({ success: true })
+        },
+            (err) => {
+                res.json({ success: false, err })
+            })
+
 })
 router.put('/removeportfolio', (req, res) => {
 
     let body = {
-        _id : req.body._id,
-        $pull : {portfolio : { id : parseInt(req.body.portfolio)}}
+        _id: req.body._id,
+        $pull: { portfolio: { id: parseInt(req.body.portfolio) } }
     }
-    
-    User.updateOne(body)
-    .then(() =>{
-        res.status(200).json({ success : true })
-    }, 
-    (err) => {
-        console.log(err)
-        res.json({ success : false, err })
-    })
-    
+
+    User.updateOne(
+        { _id: mongoose.Types.ObjectId(req.body._id) },
+        {$pull: { portfolio: { id: parseInt(req.body.portfolio) } }}
+    )
+        .then(() => {
+            res.status(200).json({ success: true })
+        },
+            (err) => {
+                console.log(err)
+                res.json({ success: false, err })
+            })
+
 })
 
 
