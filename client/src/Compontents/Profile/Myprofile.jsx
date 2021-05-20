@@ -17,16 +17,14 @@ function MyProfile(props) {
     useEffect(() => {
 
         getProfilePost()
-    }, [props.user])
+    }, [])
 
     const getProfilePost = () => {
 
-        if (!props.user.userData) {
-            return
-        }
-
+        let userId = window.localStorage.getItem("userId")
+        
         let body = {
-            _id : props.user.userData._id
+            _id : userId
         }
 
         axios.post('/api/users/profile', body)

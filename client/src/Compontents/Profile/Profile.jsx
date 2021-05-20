@@ -21,15 +21,11 @@ function MyProfile(props) {
 
         getProfilePost()
         
-    }, [props.user])
+    }, [])
 
     const getProfilePost = () => {
 
-        if (!props.user.userData) {
-            return
-        }
-
-        userId = props.user.userData._id
+        userId = window.localStorage.getItem("userId")
 
         let body = {
             _id : profileId.profileId
