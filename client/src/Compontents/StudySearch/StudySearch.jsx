@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Jumbotron } from 'react-bootstrap';
-import { Select } from "antd";
 import axios from 'axios';
 
 import StudyCard from './StudyCard';
@@ -15,7 +14,6 @@ function StudySearch() {
         onOff: undefined,
         area: []
     })
-    const Option = Select;
 
     useEffect(() => {
 

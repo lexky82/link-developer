@@ -1,10 +1,9 @@
 import { Jumbotron, Button } from 'react-bootstrap';
 import React from "react";
 
-function mainpage(props) {
+function Mainpage() {
     return (
         <div>
-            <header>
                 <Jumbotron className="mainpage">
                     <div className="mainpage__content">
                         <p>개발자 스터디,협업 알선 플랫폼</p>
@@ -14,17 +13,9 @@ function mainpage(props) {
                     </div>
                     <img src="https://lh3.googleusercontent.com/proxy/pmKRj9S-hcO3wFdcWiv-BMrr0qKrKla1B06vUXxNosJs-3fUPofRdBba9TLoHj0mxWyRe3fFykyvOs2gTe_mTVm0KWpxscMlYmX2L0vVIGyz19vcFPAMkSpqMq_UAXG9TG4Jf9euYKKqkGuLbvCJWmE3uDX8nEVWZHMNGTEfCcFGhGgrPpEF" alt="" />
                 </Jumbotron>
-            </header>
 
-            <article>
-                
-            </article>
-
-            <footer>
-
-            </footer>
         </div>
     )
 }
 
-export default mainpage;
+export default Mainpage;

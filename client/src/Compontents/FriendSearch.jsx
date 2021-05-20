@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Jumbotron } from 'react-bootstrap';
-import { Select } from "antd";
 import axios from 'axios';
 import SkillFilter from './Util/Filter/SkillFilter';
 
 function FriendsSearch() {
 
     const [UserList, setUserList] = useState([]);
-    const Option = Select;
 
     useEffect(() => {
 

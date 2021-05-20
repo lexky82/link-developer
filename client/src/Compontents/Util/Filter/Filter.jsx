@@ -4,8 +4,6 @@ import AreaFilter from './AreaFilter';
 import OnOfflineFilter from './OnOfflineFilter';
 
 function Filter(props) {
-
- 
     return (
         <div style={{ display:'flex' , flexWrap:'wrap'}}>
            <SkillFilter handleFilters={filters => props.showFilteredReulst(filters, 'skill')} />

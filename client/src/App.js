@@ -25,13 +25,16 @@ function App() {
         <Route exact path="/" component={Auth(Mainpage, null)} /> 
         <Route exact path="/login" component={Auth(Login, false)} /> 
         <Route exact path="/signup" component={Auth(Regiseter, false)} />
-        <Route exact path="/studySearch" component={Auth(StudySearch, true)} />
-        <Route exact path="/friendSearch" component={Auth(FriendSearch, true)} /> 
-        <Route exact path="/detail/:studyId" component={Auth(StudyDetail, true)} /> 
+        <Route exact path="/studySearch" component={Auth(StudySearch, false)} />
+        <Route exact path="/friendSearch" component={Auth(FriendSearch, false)} /> 
+        <Route exact path="/detail/:studyId" component={Auth(StudyDetail, false)} /> 
         <Route exact path="/myprofile" component={Auth(Myprofile, true)} /> 
         <Route exact path="/profile/:profileId" component={Auth(Profile, true)} /> 
         <Route exact path="/uploadStudy" component={Auth(UploadStudyPost, true)} />
       </div>
+      <footer>
+        
+      </footer>
     </Suspense>
 
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form, Input, Switch, DatePicker, Select } from 'antd/dist/antd';
 import { Jumbotron } from "react-bootstrap";
 import axios from 'axios';
-import { PhoneOutlined, MailOutlined } from "@ant-design/icons";
+import { PhoneOutlined } from "@ant-design/icons";
 import { area, skill } from "../Data";
 
 

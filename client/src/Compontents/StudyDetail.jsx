@@ -13,10 +13,10 @@ function StudyDetail(props) {
         axios.get(`/api/studyPost/studyPosts_by_id?id=${studyId}`)
             .then(response => {
                 setStudy(response.data[0])
+                console.log(response.data[0])
             })
             .catch(err => console.log(err))
     }, [])
-
 
     const onOfflineHandler = () => {
         if (Study.onOff) {
@@ -61,6 +61,10 @@ function StudyDetail(props) {
                             <tr>
                                 <td>작성자</td>
                                 {readWriterHandler()}
+                            </tr>
+                            <tr>
+                                <td>작성일</td>
+                                <td>{Study.createdAt}</td>
                             </tr>
                             <tr>
                                 <td>구하는 개발자</td>
