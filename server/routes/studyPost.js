@@ -56,4 +56,18 @@ router.get('/studyPosts_by_id', (req, res) => {
 
 })
 
+router.post('/removepost', (req, res) =>{
+
+  console.log(req.body)
+
+  StudyPost.deleteOne({ _id : req.body._id})
+  .then(() => {
+    res.status(200).json({ success: true })
+},
+    (err) => {
+        console.log(err)
+        res.json({ success: false, err })
+    })
+})
+
 module.exports = router;
