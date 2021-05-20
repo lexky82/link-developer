@@ -145,12 +145,6 @@ router.put('/removeskill', (req, res) => {
 
 })
 router.put('/removeportfolio', (req, res) => {
-
-    let body = {
-        _id: req.body._id,
-        $pull: { portfolio: { id: parseInt(req.body.portfolio) } }
-    }
-
     User.updateOne(
         { _id: mongoose.Types.ObjectId(req.body._id) },
         {$pull: { portfolio: { id: parseInt(req.body.portfolio) } }}
