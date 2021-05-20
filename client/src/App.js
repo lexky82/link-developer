@@ -12,7 +12,7 @@ import StudySearch from "./Compontents/StudySearch/StudySearch";
 import FriendSearch from "./Compontents/FriendSearch";
 import Myprofile from "./Compontents/Profile/Myprofile";
 import UploadStudyPost from "./Compontents/UploadStudyPost";
-import StudyDetail from "./Compontents/StudyDetail";
+import StudyDetail from "./Compontents/StudyDetail/StudyDetail";
 import Profile from "./Compontents/Profile/Profile"
 import Auth from './hoc/auth'
 
@@ -25,16 +25,13 @@ function App() {
         <Route exact path="/" component={Auth(Mainpage, null)} /> 
         <Route exact path="/login" component={Auth(Login, false)} /> 
         <Route exact path="/signup" component={Auth(Regiseter, false)} />
-        <Route exact path="/studySearch" component={Auth(StudySearch, false)} />
-        <Route exact path="/friendSearch" component={Auth(FriendSearch, false)} /> 
-        <Route exact path="/detail/:studyId" component={Auth(StudyDetail, false)} /> 
+        <Route exact path="/studySearch" component={Auth(StudySearch, null)} />
+        <Route exact path="/friendSearch" component={Auth(FriendSearch, null)} /> 
+        <Route exact path="/detail/:studyId" component={Auth(StudyDetail, null)} /> 
         <Route exact path="/myprofile" component={Auth(Myprofile, true)} /> 
         <Route exact path="/profile/:profileId" component={Auth(Profile, true)} /> 
         <Route exact path="/uploadStudy" component={Auth(UploadStudyPost, true)} />
       </div>
-      <footer>
-        
-      </footer>
     </Suspense>
 
 
