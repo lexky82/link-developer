@@ -44,11 +44,11 @@ function MyProfile(props) {
         <div>
             <Jumbotron className="search__header">
                 <h2 className="search__header-title">입력한 정보를 다른 유저들이 볼 수 있어요!</h2>
+                
             </Jumbotron>
-
+            
             <div className="container">
-                <section className="keyinfo">
-                    <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
+                <section>
                     <KeyInfo
                         Skill={skill}
                         setSkill={setSkill}

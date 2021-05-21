@@ -2,6 +2,7 @@ import React from 'react'
 import axios from "axios";
 import { Select } from "antd";
 import { skill } from "../../Data";
+import FileUpload from '../Util/FileUpload';
 
 const Option = Select;
 
@@ -25,7 +26,7 @@ function KeyInfo(props) {
         axios.put('api/users/addskill', body)
             .then(response => {
                 if (response.data.success) {
-                    
+
                 }
                 else {
 
@@ -67,45 +68,50 @@ function KeyInfo(props) {
 
     return (
         <div>
-            <div className="keyinfo__persionalinfo">
-                <h1>
-                    <p>{profile.name}</p>
-                    <p>{profile.email}</p>
-                </h1>
+            <div className="keyinfo">
+                <FileUpload />
+                <div className="keyinfo__persionalinfo">
+                    <h1>
+                        <p>{profile.name}</p>
+                        <p>{profile.email}</p>
+                    </h1>
 
-                <p>{profile.position}</p>
+                    <p>{profile.position}</p>
 
-                <div>
-                    <span>기술</span>
-                    <hr />
-                    {
-                        user && <Select
-                            showSearch
-                            style={{ width: 200 }}
-                            placeholder="Select a Skill"
-                            onChange={onAddSkillHandler}
-                            filterOption={(input, option) =>
-                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                            }
-                        >
-                            {
-                                skill.map(item => (
-                                    <Option key={item.key} value={item.key}>{item.key}</Option>
-                                ))
-                            }
-                        </Select>
-                    }
+                    <div>
+                        <span>기술</span>
+                        <hr />
+                        {
+                            user && <Select
+                                showSearch
+                                style={{ width: 200 }}
+                                placeholder="Select a Skill"
+                                onChange={onAddSkillHandler}
+                                filterOption={(input, option) =>
+                                    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                }
+                            >
+                                {
+                                    skill.map(item => (
+                                        <Option key={item.key} value={item.key}>{item.key}</Option>
+                                    ))
+                                }
+                            </Select>
+                        }
 
-                </div>
-                <div style={{ width: '50%' }}>
-                    {
-                        Skill && Skill.map((a, i) => {
-                            return <SkillStackLabel key={i} skill={Skill[i]} />
-                        })
-                    }
+                    </div>
+
                 </div>
             </div>
+            <div>
+                {
+                    Skill && Skill.map((a, i) => {
+                        return <SkillStackLabel key={i} skill={Skill[i]} />
+                    })
+                }
+            </div>
         </div>
+
     )
 
     function SkillStackLabel(props) {
@@ -113,7 +119,7 @@ function KeyInfo(props) {
             <li id={props.skill} className="skillStackLabel">
                 <span>{props.skill}</span>
                 {
-                   user && <button onClick={(event) => { onRemoveSkillTag(event) }}>x</button>
+                    user && <button onClick={(event) => { onRemoveSkillTag(event) }}>x</button>
                 }
             </li>
         )

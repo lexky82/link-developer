@@ -2,9 +2,10 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: 4rem;
+    padding: 1.25rem;
     justify-content: center;
-    grid-column: 2 / 2;
-    grid-row: 1 / 1;
+    text-align: left;
+    margin : 0;
   }
   .keyinfo p{
     margin : 0;
@@ -17,10 +18,13 @@
     border-radius: 70%;
     padding: 1.25rem;
   }
-  .keyinfo{
-    text-align: left;
-    margin : 0;
+
+  #root > div:nth-child(2) > div > div.container > section:nth-child(1) > div > div.keyinfo > div:nth-child(1) > span > div{
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
   }
+
   .keyinfo button{
     border : 0;
     outline: 0;
