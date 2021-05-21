@@ -3,6 +3,7 @@ const router = express.Router();
 const { User } = require("../models/User");
 const mongoose = require('mongoose');
 const { auth } = require("../middleware/auth");
+const multer = require("multer");
 
 //=================================
 //             User
@@ -67,6 +68,29 @@ router.get("/logout", auth, (req, res) => {
         });
     });
 });
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, `${Date.now()}_${file.originalname}`)
+    }
+  })
+  
+  var upload = multer({ storage: storage }).single("file")
+  
+  router.post('/image', (req, res) => {
+  
+    //가져온 이미지를 저장을 해주면 된다.
+    upload(req, res, err => {
+        if (err) {
+            return req.json({ success: false, err })
+        }
+        return res.json({ success: true, filePath: res.req.file.path, fileName: res.req.file.filename })
+    })
+  
+  })
 
 router.post('/userlist', (req, res) => {
     let body = {}
