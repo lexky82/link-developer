@@ -71,6 +71,10 @@ function StudyDetail(props) {
         }
     }
 
+    const updateStudyHandler = () => {
+
+    }
+
     return (
         <div>
             <div className="container detail">
@@ -94,7 +98,7 @@ function StudyDetail(props) {
                                 <td>{Study.createdAt}</td>
                             </tr>
                             <tr>
-                                <td>구하는 개발자</td>
+                                <td>구하는 포지션</td>
                                 <td>{Study.position}</td>
                             </tr>
                             <tr>
@@ -145,7 +149,7 @@ function StudyDetail(props) {
                     </div>
                 </section>
                 <div >
-                    <Button style={{ margin: '5px'}}>수정</Button>
+                    <Button onClick={{updateStudyHandler}} style={{ margin: '5px'}}>수정</Button>
                     <Button onClick={removeStudyHandler}>삭제</Button>
                 </div>
             </div>
