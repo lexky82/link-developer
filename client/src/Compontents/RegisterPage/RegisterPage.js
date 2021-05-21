@@ -97,13 +97,13 @@ function RegisterPage(props) {
         return (
           <div className="app">
             
-            <Form style={{ maxWidth : "350px", margin : '10rem auto'}} {...formItemLayout} onSubmit={handleSubmit} >
+            <Form style={{ maxWidth : "350px", margin : '10rem auto' }} {...formItemLayout} onSubmit={handleSubmit} >
               <Title level={2}>회원가입</Title>
 
               <Form.Item required label="이름">
                 <Input
                   id="name"
-                  placeholder="이름을 입력 해주세요"
+                  placeholder="이름"
                   type="text"
                   value={values.name}
                   onChange={handleChange}
@@ -121,7 +121,7 @@ function RegisterPage(props) {
               <Form.Item required label="Email" hasFeedback validateStatus={errors.email && touched.email ? "error" : 'success'}>
                 <Input
                   id="email"
-                  placeholder="이메일 주소를 입력 해주세요."
+                  placeholder="Email Adress"
                   type="email"
                   value={values.email}
                   onChange={handleChange}
@@ -136,10 +136,10 @@ function RegisterPage(props) {
                 )}
               </Form.Item>
 
-              <Form.Item required label="패스워드" hasFeedback validateStatus={errors.password && touched.password ? "error" : 'success'}>
+              <Form.Item required label="비밀번호" hasFeedback validateStatus={errors.password && touched.password ? "error" : 'success'}>
                 <Input
                   id="password"
-                  placeholder="패스워드를 입력 해주세요."
+                  placeholder="비밀번호"
                   type="password"
                   value={values.password}
                   onChange={handleChange}
@@ -154,10 +154,10 @@ function RegisterPage(props) {
                 )}
               </Form.Item>
 
-              <Form.Item required label="패스워드 확인" hasFeedback>
+              <Form.Item required label="비밀번호 확인" hasFeedback>
                 <Input
                   id="confirmPassword"
-                  placeholder="패스워드를 다시 입력해주세요."
+                  placeholder="비밀번호 다시 입력해주세요"
                   type="password"
                   value={values.confirmPassword}
                   onChange={handleChange}

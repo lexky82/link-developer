@@ -47,32 +47,32 @@ function StudyDetail(props) {
 
     const removeStudyHandler = () => {
 
-        if(props.user.userData._id === Study.writer){
+        if (props.user.userData._id === Study.writer) {
 
             let body = {
-                _id : Study._id
+                _id: Study._id
             }
 
             if (window.confirm("스터디를 삭제 하시겠습니까?")) {
-                
+
                 axios.post('/api/studyPost/removepost', body)
-                .then(response => {
-                    if(response.data.success){
-                        props.history.push('/studysearch')
-                    }
-                    else{
-                        alert('스터디 삭제를 실패하였습니다.')
-                    }
-                })
-              }
+                    .then(response => {
+                        if (response.data.success) {
+                            props.history.push('/studysearch')
+                        }
+                        else {
+                            alert('스터디 삭제를 실패하였습니다.')
+                        }
+                    })
+            }
         }
-        else{
+        else {
             alert('해당 스터디의 작성자가 아닙니다.')
         }
     }
 
     const updateStudyHandler = () => {
-
+        
     }
 
     return (
@@ -149,7 +149,7 @@ function StudyDetail(props) {
                     </div>
                 </section>
                 <div >
-                    <Button onClick={{updateStudyHandler}} style={{ margin: '5px'}}>수정</Button>
+                    <Button onClick={{ updateStudyHandler }} style={{ margin: '5px' }}>수정</Button>
                     <Button onClick={removeStudyHandler}>삭제</Button>
                 </div>
             </div>
