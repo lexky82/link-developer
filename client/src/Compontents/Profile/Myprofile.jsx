@@ -22,9 +22,9 @@ function MyProfile(props) {
     const getProfilePost = () => {
 
         let userId = window.localStorage.getItem("userId")
-        
+
         let body = {
-            _id : userId
+            _id: userId
         }
 
         axios.post('/api/users/profile', body)
@@ -44,9 +44,8 @@ function MyProfile(props) {
         <div>
             <Jumbotron className="search__header">
                 <h2 className="search__header-title">입력한 정보를 다른 유저들이 볼 수 있어요!</h2>
-                
             </Jumbotron>
-            
+
             <div className="container">
                 <section>
                     <KeyInfo
@@ -59,7 +58,7 @@ function MyProfile(props) {
                 </section>
 
                 <section className="expreience__portfolio">
-                    <Portfolio                        
+                    <Portfolio
                         portfolioList={portfolioList}
                         setPortfolioList={setPortfolioList}
                         user={props.user}

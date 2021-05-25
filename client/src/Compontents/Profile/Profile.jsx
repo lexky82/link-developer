@@ -53,7 +53,6 @@ function MyProfile(props) {
 
             <div className="container">
                 <section className="keyinfo">
-                    <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
                     <KeyInfo
                         Skill={skill}
                         setSkill={setSkill}
