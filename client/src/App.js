@@ -2,6 +2,8 @@ import './App.css';
 import React, { Suspense } from 'react';
 /* Lib */
 import { Route } from 'react-router';
+import { GithubOutlined, HomeOutlined, MailOutlined } from "@ant-design/icons";
+import { Container } from 'react-bootstrap';
 
 /* Components */
 import NavBar from "./Compontents/NavBar";
@@ -32,9 +34,20 @@ function App() {
         <Route exact path="/profile/:profileId" component={Auth(Profile, true)} /> 
         <Route exact path="/uploadStudy" component={Auth(UploadStudyPost, true)} />
       </div>
+      <footer style={{ textAlign:'center'}}>
+        <div style={{ backgroundColor: 'black', color: 'white' }}>
+          Copyright © Kwon Hyeok Jin 2021
+          <div style={{ fontSize: '22px' }}>
+          
+        </div>
+        <div style={{ backgroundColor: 'white', fontSize : '22px'}}>
+            <a href="mailto:lexky82@gmail.com"><MailOutlined /></a>
+            <a href="https://tried.tistory.com/"><HomeOutlined /></a>
+            <a href="https://github.com/lexky82"><GithubOutlined /></a>
+          </div>
+        </div>
+      </footer>
     </Suspense>
-
-
   );
 }
 
