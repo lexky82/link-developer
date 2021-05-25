@@ -4,6 +4,7 @@ const { User } = require("../models/User");
 const mongoose = require('mongoose');
 const { auth } = require("../middleware/auth");
 const multer = require("multer");
+const path = require('path')
 
 //=================================
 //             User
@@ -69,28 +70,40 @@ router.get("/logout", auth, (req, res) => {
     });
 });
 
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/')
+const storage = multer.diskStorage({
+    destination: (req, res, callback) => {
+        callback(null, "server/uploads/");
     },
-    filename: function (req, file, cb) {
-        cb(null, `${Date.now()}_${file.originalname}`)
+    filename: (req, file, callback) => {
+        callback(null, new Date().valueOf() + path.extname(file.originalname))
     }
-  })
-  
-  var upload = multer({ storage: storage }).single("file")
-  
-  router.post('/image', (req, res) => {
-  
-    //가져온 이미지를 저장을 해주면 된다.
-    upload(req, res, err => {
-        if (err) {
-            return req.json({ success: false, err })
-        }
-        return res.json({ success: true, filePath: res.req.file.path, fileName: res.req.file.filename })
-    })
-  
-  })
+});
+
+const upload = multer({
+    storage: storage
+});
+
+router.post('/image', upload.single('file'));
+router.post('/image', (req, res) => {
+    const file = req.file
+    const _id = req.body._id    
+
+    User.updateOne(
+        { _id : mongoose.Types.ObjectId(_id)},
+        { image : file }
+    )
+    .then(() => {
+        res.status(200).json({ success: true })
+    },
+        (err) => {
+            console.log(err)
+            res.json({ success: false, err })
+        })
+    
+        res.json({ success: true, file : req.file })
+    
+
+});
 
 router.post('/userlist', (req, res) => {
     let body = {}
@@ -171,7 +184,7 @@ router.put('/removeskill', (req, res) => {
 router.put('/removeportfolio', (req, res) => {
     User.updateOne(
         { _id: mongoose.Types.ObjectId(req.body._id) },
-        {$pull: { portfolio: { id: parseInt(req.body.portfolio) } }}
+        { $pull: { portfolio: { id: parseInt(req.body.portfolio) } } }
     )
         .then(() => {
             res.status(200).json({ success: true })
