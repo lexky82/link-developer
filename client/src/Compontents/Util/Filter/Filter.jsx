@@ -1,4 +1,6 @@
 import React from 'react'
+
+/* Components */
 import SkillFilter from './SkillFilter';
 import AreaFilter from './AreaFilter';
 import OnOfflineFilter from './OnOfflineFilter';

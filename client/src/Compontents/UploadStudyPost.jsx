@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Button, Form, Input, Switch, DatePicker, Select } from 'antd/dist/antd';
-import { Jumbotron } from "react-bootstrap";
-import axios from 'axios';
-import { PhoneOutlined } from "@ant-design/icons";
+
+/* Lib */
 import { area, skill } from "../Data";
+import axios from 'axios';
 
-
+/* Components */
+import { Button, Form, Input, Switch, DatePicker, Select } from 'antd/dist/antd';
+import { PhoneOutlined } from "@ant-design/icons";
+import { Jumbotron } from "react-bootstrap";
 const { Option } = Select
 const { TextArea } = Input;
-
-
 
 function UploadStudyPost(props) {
 
@@ -22,7 +22,7 @@ function UploadStudyPost(props) {
     const [Skill, setSkill] = useState([]);
     const [PhoneNumber, setPhoneNumber] = useState('')
     const [Position, setPosition] = useState('')
-    
+
     const titleChangeHandler = (event) => {
         setTitle(event.currentTarget.value);
     }
@@ -50,7 +50,7 @@ function UploadStudyPost(props) {
     const skillChangeHandler = (event) => {
         setSkill(event)
     }
-    
+
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -63,14 +63,14 @@ function UploadStudyPost(props) {
             writer: props.user.userData._id,
             title: Title,
             date: Date,
-            position : Position, 
+            position: Position,
             purpose: Purpose,
             description: Description,
             area: Area,
             skill: Skill,
             onOff: OnOff,
             phoneNumber: PhoneNumber,
-            email : props.user.userData.email
+            email: props.user.userData.email
         }
 
         console.log(body);
@@ -88,7 +88,6 @@ function UploadStudyPost(props) {
     }
 
     return (
-
         <div>
             <Jumbotron className="search__header">
                 <h2 className="search__header-title">스터디를 등록하여 동료를 모집해요!</h2>
@@ -105,7 +104,7 @@ function UploadStudyPost(props) {
                     <br />
                     <br />
                     <label>시작 날짜</label>
-                    <DatePicker onChange={dateChangeHandler}/>
+                    <DatePicker onChange={dateChangeHandler} />
                     <br />
                     <br />
                     <label>스터디 목적/목표</label>
@@ -131,15 +130,15 @@ function UploadStudyPost(props) {
                     <br />
                     <br />
                     <label>요구 기술스택</label>
-                    <Select placeholder="Select Skill" allowClear mode="multiple" style={{ width: '100%' }}  onChange={skillChangeHandler} tokenSeparators={[',']}>
-                    {
-                        skill.map(item => (
-                            <Option key={item.key} value={item.key}>{item.key}</Option>
-                        ))
-                    }
+                    <Select placeholder="Select Skill" allowClear mode="multiple" style={{ width: '100%' }} onChange={skillChangeHandler} tokenSeparators={[',']}>
+                        {
+                            skill.map(item => (
+                                <Option key={item.key} value={item.key}>{item.key}</Option>
+                            ))
+                        }
                     </Select>
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
 
                     <label>연락처</label>
                     <Input type="tel" onChange={phoneNumberChangeHandler} value={PhoneNumber} prefix={<PhoneOutlined />} />

@@ -1,17 +1,21 @@
 import React from 'react'
-import { Select } from "antd";
+
+/* Lib */
 import { skill } from "../../../Data";
+
+/* Components */
+import { Select } from "antd";
 const Option = Select
 
 function SkillFilter(props) {
-    
+
     const skillFilterHandler = (event) => {
         props.handleFilters(event)
     }
 
     return (
         <div>
-             <Select
+            <Select
                 onChange={skillFilterHandler}
                 showSearch
                 mode="multiple"

@@ -1,5 +1,9 @@
+import React, { useState, useEffect } from 'react';
+
+/* Lib */
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+
+/* Components */
 import { Table } from 'react-bootstrap';
 import { PhoneOutlined, MailOutlined } from "@ant-design/icons";
 import { Button } from "antd";

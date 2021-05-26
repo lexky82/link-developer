@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
+
+/* Lib */
 import axios from "axios";
+
+/* Components */
 import { Select } from "antd";
 import { skill } from "../../Data";
 import FileUpload from '../Util/FileUpload';
-
 const Option = Select;
 
 function KeyInfo(props) {
@@ -70,14 +73,14 @@ function KeyInfo(props) {
         <div>
             <div className="keyinfo">
                 {
-                    user  
-                    ? <FileUpload
-                        image={image}
-                        setImage={setImage}
-                    />
-                    : image 
-                    ? <img src={image} alt="avatar" />
-                    : <img src="client\public\person.png" />
+                    user
+                        ? <FileUpload
+                            image={image}
+                            setImage={setImage}
+                        />
+                        : image
+                            ? <img src={image} alt="avatar" />
+                            : <img src="client\public\person.png" />
                 }
                 <div className="keyinfo__persionalinfo">
                     <h1>
@@ -111,7 +114,7 @@ function KeyInfo(props) {
                     </div>
                 </div>
             </div>
-            <div style={{ display:'flex', justifyContent:'center', flexWrap:'wrap'}}>
+            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
                 {
                     Skill && Skill.map((a, i) => {
                         return <SkillStackLabel key={i} skill={Skill[i]} />

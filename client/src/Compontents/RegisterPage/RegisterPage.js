@@ -1,10 +1,13 @@
 import React from "react";
-import { Formik } from 'formik';
+
+/* Lib */
 import * as Yup from 'yup';
 import { registerUser } from "../../_actions/user_actions";
 import { useDispatch } from "react-redux";
-import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 
+/* Components */
+import { Formik } from 'formik';
+import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 
 import {
   Form,
@@ -12,7 +15,6 @@ import {
   Button,
   Typography
 } from 'antd';
-
 
 const { Title } = Typography;
 const formItemLayout = {

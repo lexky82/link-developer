@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+
+/* Lib */
 import { withRouter } from "react-router-dom";
 import { loginUser } from "../../_actions/user_actions";
-import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Form, Input, Button, Checkbox, Typography } from 'antd';
-import Icon, {LockOutlined, UserOutlined} from '@ant-design/icons';
 import { useDispatch } from "react-redux";
+
+/* Components */
+import { Form, Input, Button, Checkbox, Typography } from 'antd';
+import Icon, { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { Formik } from 'formik';
+
 
 const { Title } = Typography;
 
@@ -22,9 +27,9 @@ function LoginPage(props) {
   };
 
   // ID 저장 체크 및 저장
-  const initialEmail = localStorage.getItem("rememberMe") 
-  ? localStorage.getItem("rememberMe") 
-  : '';
+  const initialEmail = localStorage.getItem("rememberMe")
+    ? localStorage.getItem("rememberMe")
+    : '';
 
   return (
     <Formik
@@ -34,7 +39,7 @@ function LoginPage(props) {
         email: initialEmail,
         password: '',
       }}
-      
+
       // 입력 값 유효성 검증
       validationSchema={Yup.object().shape({
         email: Yup.string()
@@ -87,9 +92,9 @@ function LoginPage(props) {
           handleBlur,
           handleSubmit,
         } = props;
-        
+
         return (
-          <div style={{ maxWidth : "350px", margin : '10rem auto'}}>
+          <div style={{ maxWidth: "350px", margin: '10rem auto' }}>
 
             <Title level={2}>로그인</Title>
             <form onSubmit={handleSubmit} >

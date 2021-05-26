@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Jumbotron } from 'react-bootstrap';
+
+/* Lib */
 import axios from 'axios';
+
+/* Components */
+import { Jumbotron } from 'react-bootstrap';
 import StudyCard from './StudyCard';
 import Filter from '../Util/Filter/Filter';
 

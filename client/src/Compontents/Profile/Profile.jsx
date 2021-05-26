@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
+/* Lib */
+import axios from 'axios';
+
 /* Components */
+import { Jumbotron } from "react-bootstrap";
 import Portfolio from "./Portfolio";
 import KeyInfo from "./KeyInfo";
-
-/* Lib */
-import { Jumbotron } from "react-bootstrap";
-import axios from 'axios';
 
 function MyProfile(props) {
 

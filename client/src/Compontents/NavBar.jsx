@@ -1,10 +1,13 @@
 import React from 'react'
+
+/* Lib */
 import { withRouter } from 'react-router-dom';
-import { Navbar, Nav } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { USER_SERVER } from './Config'
 import axios from 'axios';
 
+/* Components */
+import { Navbar, Nav } from 'react-bootstrap';
 
 function NavBar(props) {
     const user = useSelector(state => state.user)

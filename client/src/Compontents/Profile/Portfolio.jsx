@@ -1,9 +1,12 @@
-import axios from 'axios';
-import { Input, DatePicker, Select } from "antd";
 import React, { useState } from 'react'
-import Modal from "../Util/Modal";
+
+/* Lib */
+import axios from 'axios';
 import { skill } from "../../Data"
 
+/* Components */
+import { Input, DatePicker, Select } from "antd";
+import Modal from "../Util/Modal";
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 const Option = Select;
