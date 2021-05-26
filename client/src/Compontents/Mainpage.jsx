@@ -27,10 +27,10 @@ function Mainpage() {
                     </div>
                     <Carousel dotPosition="top" autoplay>
                         <div>
-                            <img src="https://github.com/lexky82/link-developer/blob/main/client/image/%EC%8A%A4%ED%84%B0%EB%94%94%20%EC%B0%BE%EA%B8%B0.png?raw=true" />
+                            <img src="client\image\FriendSearch.png" />
                         </div>
                         <div>
-                            <img src="https://github.com/lexky82/link-developer/blob/main/client/image/%EB%8F%99%EB%A3%8C%20%EC%B0%BE%EA%B8%B0.png?raw=true" />
+                            <img src="client\image\FriendSearch.png" />
                         </div>
                     </Carousel>
                 </div>
