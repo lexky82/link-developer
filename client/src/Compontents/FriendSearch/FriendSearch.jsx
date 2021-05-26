@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Jumbotron } from 'react-bootstrap';
 import axios from 'axios';
-import SkillFilter from './Util/Filter/SkillFilter';
+import SkillFilter from '../Util/Filter/SkillFilter';
+import InfoList from './InfoList';
 
 function FriendsSearch() {
 
@@ -45,34 +46,9 @@ function FriendsSearch() {
 
             <p className="title">전체 결과</p>
 
-            <div className="container-md">
-                <div className="peopleList">
-                    {
-                        UserList.map((a, i) => {
-                            return <Notice personData={UserList[i]} />
-                        })
-                    }
-                </div>
-            </div>
+            <InfoList UserList={UserList}/>
         </div>
     )
-
-    function Notice(props) {
-        return (
-            <div className="peopleList__person">
-                <img src="https://avatars.githubusercontent.com/u/80798626?v=4" />
-                <div className="person__info">
-                    <p className="title"><a href={`/profile/${props.personData._id}`}>{props.personData.name}</a></p>
-                    <div>{props.personData.position}</div>
-                    {  
-                        props.personData.skill.map((a, i) => (
-                            <div className="skillStackLabel">{props.personData.skill[i]}</div>
-                        ))
-                    }
-                </div>
-            </div>
-        )
-    }
 }
 
 export default FriendsSearch;
