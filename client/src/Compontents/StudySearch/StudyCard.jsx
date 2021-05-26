@@ -17,6 +17,7 @@ function StudyCard(props) {
             </div>
         </div>
     )
+    
     function CardNotice(props) {
         return (
             <li className="notice__card">
