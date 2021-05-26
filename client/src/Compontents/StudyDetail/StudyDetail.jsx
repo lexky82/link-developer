@@ -14,7 +14,14 @@ function StudyDetail(props) {
         axios.get(`/api/studyPost/studyPosts_by_id?id=${studyId}`)
             .then(response => {
                 setStudy(response.data[0])
-                console.log(response.data[0])
+                let body = {
+                    _id: response.data[0].writer
+                }
+                axios.post('/api/users/profile', body)
+                .then(response => {
+                    setwriter(response.data.profile)
+                })
+                .catch(err => console.log(err))
             })
             .catch(err => console.log(err))
     }, [])
@@ -29,24 +36,12 @@ function StudyDetail(props) {
     }
 
     const readWriterHandler = () => {
-        let body = {
-            _id: Study.writer
-        }
-
-        axios.post('/api/users/profile', body)
-            .then(response => {
-                setwriter(response.data.profile)
-            })
-            .catch(err => console.log(err))
-
         return (
             <td><a href={`/profile/${Study.writer}`}>{writer && writer.name}</a></td>
         )
-
     }
 
     const removeStudyHandler = () => {
-
         if (props.user.userData._id === Study.writer) {
 
             let body = {
@@ -71,9 +66,6 @@ function StudyDetail(props) {
         }
     }
 
-    const updateStudyHandler = () => {
-        
-    }
 
     return (
         <div>
@@ -149,7 +141,6 @@ function StudyDetail(props) {
                     </div>
                 </section>
                 <div >
-                    <Button onClick={{ updateStudyHandler }} style={{ margin: '5px' }}>수정</Button>
                     <Button onClick={removeStudyHandler}>삭제</Button>
                 </div>
             </div>
