@@ -1,10 +1,12 @@
 import axios from 'axios';
-import { Input, DatePicker } from "antd";
+import { Input, DatePicker, Select } from "antd";
 import React, { useState } from 'react'
 import Modal from "../Util/Modal";
+import { skill } from "../../Data"
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
+const Option = Select;
 
 function Portfolio(props) {
 
@@ -12,7 +14,7 @@ function Portfolio(props) {
 
     const [ProjectName, setProjectName] = useState('')
     const [Position, setPosition] = useState('')
-    const [ProjectSkill, setProjectSkill] = useState('')
+    const [ProjectSkill, setProjectSkill] = useState([])
     const [Description, setDescription] = useState('')
     const [modalOpen, setModalOpen] = useState(false);
     const [StartDate, setStartDate] = useState('')
@@ -33,7 +35,7 @@ function Portfolio(props) {
         setPosition(event.target.value)
     }
     const projectSkillChangeHandler = (event) => {
-        setProjectSkill(event.target.value)
+        setProjectSkill(event)
     }
     const descriptionChangeHandler = (event) => {
         setDescription(event.target.value)
@@ -43,7 +45,7 @@ function Portfolio(props) {
         setEndDate(datestring[1])
     }
 
-    const onRegistration = () => {
+    const onRegistrationHandler = () => {
         const newObject = {
             id: portfolioList.length,
             projectName: ProjectName,
@@ -114,7 +116,7 @@ function Portfolio(props) {
             }
             <hr />
             <React.Fragment>
-                    <Modal open={modalOpen} close={closeModal} registration={onRegistration} header="포트폴리오">
+                    <Modal open={modalOpen} close={closeModal} registration={onRegistrationHandler} header="포트폴리오">
                     <p>프로젝트 명</p>
                     <Input onChange={projectNameChangeHandler} type="text" />
                     <p>기간</p>
@@ -122,7 +124,13 @@ function Portfolio(props) {
                     <p>포지션</p>
                     <Input placeholder="ex) 기획, 프론트엔드" onChange={positionChangeHandler} type="text" />
                     <p>사용 기술</p>
-                    <Input onChange={projectSkillChangeHandler} type="text" />
+                    <Select placeholder="Select Skill" allowClear mode="multiple" style={{ width: '100%' }}  onChange={projectSkillChangeHandler} tokenSeparators={[',']}>
+                    {
+                        skill.map(item => (
+                            <Option key={item.key} value={item.key}>{item.key}</Option>
+                        ))
+                    }
+                    </Select>
                     <p>프로젝트 설명</p>
                     <TextArea onChange={descriptionChangeHandler} type="text" />
                 </Modal>
@@ -142,7 +150,11 @@ function Portfolio(props) {
                 <h5>{props.portfolio.projectName}{ user && <button onClick={removePortfolioHandler} style={{ border: '0', outline: '0' }} >X</button>}</h5>
                 <p>{props.portfolio.startDate} ~ {props.portfolio.endDate}</p>
                 <p>{props.portfolio.position}</p>
-                <p>{props.portfolio.skill}</p>
+                {
+                    props.portfolio.skill.map((skill, i) => (
+                        <p className="skillStackLabel">{skill}</p>
+                    ))
+                }
                 <p>{props.portfolio.description}</p>
             </blockquote>
         )

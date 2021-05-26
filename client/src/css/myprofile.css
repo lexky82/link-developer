@@ -52,6 +52,9 @@
   .Portfolio label{
     font-weight: 700;
   }
+  .Portfolio p{
+    margin : 0;
+  }
   
   .experience__career{
     display: flex;
