@@ -37,7 +37,6 @@ function NavBar(props) {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link href="#">안내</Nav.Link>
                             <Nav.Link href="/studySearch">스터디 찾기</Nav.Link>
                             <Nav.Link href="/friendSearch">동료 찾기</Nav.Link>
                         </Nav>
@@ -67,7 +66,6 @@ function NavBar(props) {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link href="#">안내</Nav.Link>
                             <Nav.Link href="/studySearch">스터디 찾기</Nav.Link>
                             
                             <Nav.Link href="/friendSearch">동료 찾기</Nav.Link>
