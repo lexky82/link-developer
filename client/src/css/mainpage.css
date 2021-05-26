@@ -20,3 +20,45 @@
   .mainpage__content-button{
     padding: 0.3125rem 4.375rem;
   }
+  .ant-carousel{
+    width: 600px;
+    box-shadow: 0 0 21px 6px rgb(31 45 61 / 50%);
+    height: auto;
+  }
+  .ant-carousel img{
+    min-width: 100%;
+    width: 600px;
+    height: 510px;
+  }
+
+  .wraper{
+    display: flex;
+    padding-top: 10rem;
+  }
+  .wraper__text{
+    text-align: left;
+    margin-right: 5rem;
+
+  }
+
+  @media screen and (max-width: 768px) {
+    .wraper{
+      display: flex;
+      flex-direction: column;
+      padding-top: 5rem;
+    }
+    .wraper__text{
+      text-align: center;
+      margin-right: 0;
+    }
+    
+    .ant-carousel{
+      min-width: 100%;
+      width: 100%;
+      height: auto;
+    }
+    .ant-carousel img{
+      width: 100%;
+      margin-top: 5px;
+    }
+}
