@@ -151,8 +151,8 @@ function Portfolio(props) {
                 <p>{props.portfolio.startDate} ~ {props.portfolio.endDate}</p>
                 <p>{props.portfolio.position}</p>
                 {
-                    props.portfolio.skill.map((skill, i) => (
-                        <p className="skillStackLabel">{skill}</p>
+                    props.portfolio.skill && props.portfolio.skill.map((skill, i) => (
+                        <p key={i} className="skillStackLabel">{skill}</p>
                     ))
                 }
                 <p>{props.portfolio.description}</p>
