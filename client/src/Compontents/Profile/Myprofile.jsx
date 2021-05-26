@@ -13,6 +13,7 @@ function MyProfile(props) {
     const [Profile, setProfile] = useState([])
     const [portfolioList, setPortfolioList] = useState([]);
     const [skill, setSkill] = useState([]);
+    const [image, setImage] = useState('');
 
     useEffect(() => {
 
@@ -20,7 +21,6 @@ function MyProfile(props) {
     }, [])
 
     const getProfilePost = () => {
-
         let userId = window.localStorage.getItem("userId")
 
         let body = {
@@ -33,6 +33,7 @@ function MyProfile(props) {
                     setProfile(response.data.profile)
                     setSkill(response.data.profile.skill)
                     setPortfolioList(response.data.profile.portfolio)
+                    response.data.profile.image[0] && setImage(response.data.profile.image[0].path)
                 }
                 else {
                     alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
@@ -50,6 +51,8 @@ function MyProfile(props) {
                 <section>
                     <KeyInfo
                         Skill={skill}
+                        image={image}
+                        setImage={setImage}
                         setSkill={setSkill}
                         profile={Profile}
                         setProfile={setProfile}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from "axios";
 import { Select } from "antd";
 import { skill } from "../../Data";
@@ -8,7 +8,7 @@ const Option = Select;
 
 function KeyInfo(props) {
 
-    const { Skill, setSkill, profile, user } = props
+    const { Skill, setSkill, profile, user, image, setImage } = props
 
     const onAddSkillHandler = (event) => {
         if (Skill.indexOf(event) >= 0) { // 스택 중복검사
@@ -69,7 +69,16 @@ function KeyInfo(props) {
     return (
         <div>
             <div className="keyinfo">
-                <FileUpload />
+                {
+                    user  
+                    ? <FileUpload
+                        image={image}
+                        setImage={setImage}
+                    />
+                    : image 
+                    ? <img src={image} alt="avatar" />
+                    : <img src="client\public\person.png" />
+                }
                 <div className="keyinfo__persionalinfo">
                     <h1>
                         <p>{profile.name}</p>
@@ -100,10 +109,9 @@ function KeyInfo(props) {
                         }
 
                     </div>
-
                 </div>
             </div>
-            <div>
+            <div style={{ display:'flex', justifyContent:'center', flexWrap:'wrap'}}>
                 {
                     Skill && Skill.map((a, i) => {
                         return <SkillStackLabel key={i} skill={Skill[i]} />
@@ -111,7 +119,6 @@ function KeyInfo(props) {
                 }
             </div>
         </div>
-
     )
 
     function SkillStackLabel(props) {

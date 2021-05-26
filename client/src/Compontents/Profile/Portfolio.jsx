@@ -10,7 +10,7 @@ const Option = Select;
 
 function Portfolio(props) {
 
-    const {portfolioList, setPortfolioList, user} = props
+    const { portfolioList, setPortfolioList, user } = props
 
     const [ProjectName, setProjectName] = useState('')
     const [Position, setPosition] = useState('')
@@ -112,11 +112,11 @@ function Portfolio(props) {
         <div>
             <span>포트폴리오</span>
             {
-               user && <button className="experience--button" onClick={openModal}>+</button>
+                user && <button className="experience--button" onClick={openModal}>+</button>
             }
             <hr />
             <React.Fragment>
-                    <Modal open={modalOpen} close={closeModal} registration={onRegistrationHandler} header="포트폴리오">
+                <Modal open={modalOpen} close={closeModal} registration={onRegistrationHandler} header="포트폴리오">
                     <p>프로젝트 명</p>
                     <Input onChange={projectNameChangeHandler} type="text" />
                     <p>기간</p>
@@ -124,12 +124,12 @@ function Portfolio(props) {
                     <p>포지션</p>
                     <Input placeholder="ex) 기획, 프론트엔드" onChange={positionChangeHandler} type="text" />
                     <p>사용 기술</p>
-                    <Select placeholder="Select Skill" allowClear mode="multiple" style={{ width: '100%' }}  onChange={projectSkillChangeHandler} tokenSeparators={[',']}>
-                    {
-                        skill.map(item => (
-                            <Option key={item.key} value={item.key}>{item.key}</Option>
-                        ))
-                    }
+                    <Select placeholder="Select Skill" allowClear mode="multiple" style={{ width: '100%' }} onChange={projectSkillChangeHandler} tokenSeparators={[',']}>
+                        {
+                            skill.map(item => (
+                                <Option key={item.key} value={item.key}>{item.key}</Option>
+                            ))
+                        }
                     </Select>
                     <p>프로젝트 설명</p>
                     <TextArea onChange={descriptionChangeHandler} type="text" />
@@ -137,7 +137,7 @@ function Portfolio(props) {
             </React.Fragment>
             {
                 portfolioList.map((a, i) => {
-    
+
                     return <PortfolioTap key={i} portfolio={portfolioList[i]} />
                 })
             }
@@ -147,7 +147,7 @@ function Portfolio(props) {
     function PortfolioTap(props) {
         return (
             <blockquote id={props.portfolio.id} className="Portfolio">
-                <h5>{props.portfolio.projectName}{ user && <button onClick={removePortfolioHandler} style={{ border: '0', outline: '0' }} >X</button>}</h5>
+                <h5>{props.portfolio.projectName}{user && <button onClick={removePortfolioHandler} style={{ border: '0', outline: '0' }} >X</button>}</h5>
                 <p>{props.portfolio.startDate} ~ {props.portfolio.endDate}</p>
                 <p>{props.portfolio.position}</p>
                 {

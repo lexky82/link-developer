@@ -13,6 +13,7 @@ function MyProfile(props) {
     const [Profile, setProfile] = useState([])
     const [portfolioList, setPortfolioList] = useState([]);
     const [skill, setSkill] = useState([]);
+    const [image, setImage] = useState('');
 
     const profileId = props.match.params
     let userId;
@@ -20,7 +21,7 @@ function MyProfile(props) {
     useEffect(() => {
 
         getProfilePost()
-        
+
     }, [])
 
     const getProfilePost = () => {
@@ -28,16 +29,16 @@ function MyProfile(props) {
         userId = window.localStorage.getItem("userId")
 
         let body = {
-            _id : profileId.profileId
+            _id: profileId.profileId
         }
 
         axios.post('/api/users/profile', body)
             .then(response => {
                 if (response.data.success) {
-                    console.log(response.data.profile)
                     setProfile(response.data.profile)
                     setSkill(response.data.profile.skill)
                     setPortfolioList(response.data.profile.portfolio)
+                    response.data.profile.image[0] && setImage(response.data.profile.image[0].path)
                 }
                 else {
                     alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
