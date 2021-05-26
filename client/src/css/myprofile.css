@@ -12,11 +12,11 @@
   }
 
   .keyinfo img{
-    width: auto; height: auto;
-    max-width: 200px;
-    max-height: 200px;
-    border-radius: 70%;
-    padding: 1.25rem;
+    width: 150px;
+    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 50%;
   }
 
   #root > div:nth-child(2) > div > div.container > section:nth-child(1) > div > div.keyinfo > div:nth-child(1) > span > div{
