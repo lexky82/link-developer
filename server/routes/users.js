@@ -85,25 +85,20 @@ const upload = multer({
 
 router.post('/image', upload.single('file'));
 router.post('/image', (req, res) => {
-    const file = req.file
-    const _id = req.body._id    
 
     User.updateOne(
-        { _id : mongoose.Types.ObjectId(_id)},
-        { image : file }
+        { _id : mongoose.Types.ObjectId(req.body._id) },
+        { image : req.file }
     )
     .then(() => {
-        res.status(200).json({ success: true })
+        res.status(200).json({ success: true, file : req.file })
     },
         (err) => {
             console.log(err)
             res.json({ success: false, err })
         })
-    
-        res.json({ success: true, file : req.file })
-    
-
-});
+  
+  })
 
 router.post('/userlist', (req, res) => {
     let body = {}
