@@ -4,6 +4,10 @@ import React from "react";
 import { Carousel } from "antd";
 import { Jumbotron, Button } from 'react-bootstrap';
 
+/* image */
+import imgStudySearch from '../image/StudySearch.png'
+import imgFriendSearch from '../image/FriendSearch.png'
+
 function Mainpage() {
     return (
         <div>
@@ -20,17 +24,17 @@ function Mainpage() {
                 <div className="container wraper">
                     <div className="wraper__text">
                         <h3 style={{ fontSize: '30px', fontWeight: '500', lineHeight: '1.41', wordBreak: 'keep-all' }}>
-                            스터디를 찾고 있다면 링크디벨롭퍼를 적극 활용해보세요.
+                            개발자 스터디를 찾고 있다면 링크디벨롭퍼를 적극 활용해보세요.
                         </h3>
                         <p style={{ fontSize: '22px', fontWeight: '200', lineHeight: '1.64', marginTop: '24px', wordBreak: 'keep-all' }}>본인이 사용하는 기술을 필요로 하는 스터디를 구하고
-                        지역을 검색하거나 온라인과 오프라인 여부를 선택하여 자신이 원하는 스터디를 찾을 수 있습니다.</p>
+                        지역을 검색하거나 온라인과 오프라인 여부를 선택하여 자신의 최적화된 스터디를 찾을 수 있습니다.</p>
                     </div>
                     <Carousel dotPosition="top" autoplay>
                         <div>
-                            <img src="client\image\FriendSearch.png" />
+                            <img src={imgStudySearch} />
                         </div>
                         <div>
-                            <img src="client\image\FriendSearch.png" />
+                            <img src={imgFriendSearch} />
                         </div>
                     </Carousel>
                 </div>
