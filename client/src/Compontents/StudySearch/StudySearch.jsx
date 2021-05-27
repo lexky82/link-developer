@@ -13,7 +13,7 @@ function StudySearch() {
 
     const [StudyPosts, setStudyPosts] = useState([])
     const [Filters, setFilters] = useState({
-        skill : [],
+        skill: [],
         onOff: undefined,
         area: []
     })
@@ -38,30 +38,36 @@ function StudySearch() {
             })
     }
 
-    const showFilteredReulst = (filters, category) =>{
-        const newFilters = {...Filters}
+    const showFilteredReulst = (filters, category) => {
+        const newFilters = { ...Filters }
         newFilters[category] = filters
-        
+
         setFilters(newFilters)
         getStudyPost(newFilters)
     }
 
     return (
         <div>
-            <Jumbotron className="search__header">
-                <h2 className="search__header-title">검색으로 함께할 스터디를 찾아봐요!</h2>
-            </Jumbotron>
+            <header>
+                <Jumbotron className="search__header">
+                    <h2 className="search__header-title">검색으로 함께할 스터디를 찾아봐요!</h2>
+                </Jumbotron>
+            </header>
 
-            <div className="search__main">
-               <Filter 
-                showFilteredReulst={showFilteredReulst}
-               />
-               <Button href="/uploadStudy">스터디 게시</Button>
-            </div>
+            <section>
+                <div className="search__main">
+                    <Filter
+                        showFilteredReulst={showFilteredReulst}
+                    />
+                    <Button href="/uploadStudy">스터디 게시</Button>
+                </div>
+            </section>
 
-            <p className="title">전체 결과</p>
+            <section>
+                <p className="title">전체 결과</p>
+                <StudyCard StudyPosts={StudyPosts} />
+            </section>
 
-            <StudyCard StudyPosts={StudyPosts} />
         </div>
     )
 

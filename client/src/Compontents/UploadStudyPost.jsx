@@ -89,10 +89,14 @@ function UploadStudyPost(props) {
 
     return (
         <div>
-            <Jumbotron className="search__header">
-                <h2 className="search__header-title">스터디를 등록하여 동료를 모집해요!</h2>
-            </Jumbotron>
-            <div style={{ maxWidth: "500px", margin: '2rem auto' }}>
+            
+            <header>
+                <Jumbotron className="search__header">
+                    <h2 className="search__header-title">스터디를 등록하여 동료를 모집해요!</h2>
+                </Jumbotron>
+            </header>
+            
+            <section style={{ maxWidth: "500px", margin: '2rem auto' }}>
 
                 <Form onSubmitCapture={submitHandler}>
                     <label>스터디 이름</label>
@@ -148,7 +152,7 @@ function UploadStudyPost(props) {
 
                     <Button htmlType="submit">등록</Button>
                 </Form>
-            </div>
+            </section>
         </div>
     )
 }

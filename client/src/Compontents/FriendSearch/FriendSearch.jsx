@@ -37,20 +37,26 @@ function FriendsSearch() {
 
     return (
         <div>
-            <Jumbotron className="search__header">
-                <h2 className="search__header-title">검색으로 함께할 동료를 찾아봐요!</h2>
-            </Jumbotron>
+            <header>
+                <Jumbotron className="search__header">
+                    <h2 className="search__header-title">검색으로 함께할 동료를 찾아봐요!</h2>
+                </Jumbotron>
+            </header>
 
-            <div className="friendSearch__main">
-                <div>
-                    <p>찾을 기술명을 입력 해주세요.</p>
-                    <SkillFilter handleFilters={handleFilters} />
+            <section>
+                <div className="friendSearch__main">
+                    <div>
+                        <p>찾을 기술명을 입력 해주세요.</p>
+                        <SkillFilter handleFilters={handleFilters} />
+                    </div>
                 </div>
-            </div>
+            </section>
 
-            <p className="title">전체 결과</p>
+            <section>
+                <p className="title">전체 결과</p>
+                <InfoList UserList={UserList} />
+            </section>
 
-            <InfoList UserList={UserList}/>
         </div>
     )
 }
