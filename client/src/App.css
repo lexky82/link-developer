@@ -61,6 +61,11 @@
   font-weight: 600;
   font-size: 2.188rem;
 }
+@media screen and (max-width: 768px) {
+  .title{
+    font-size: 1.375rem;
+  }
+}
 
 .App-link {
   color: #61dafb;
