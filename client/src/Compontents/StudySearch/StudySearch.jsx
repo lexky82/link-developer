@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 /* Components */
-import { Jumbotron } from 'react-bootstrap';
+import { Jumbotron, Button } from 'react-bootstrap';
 import StudyCard from './StudyCard';
 import Filter from '../Util/Filter/Filter';
 
@@ -56,6 +56,7 @@ function StudySearch() {
                <Filter 
                 showFilteredReulst={showFilteredReulst}
                />
+               <Button href="/uploadStudy">스터디 게시</Button>
             </div>
 
             <p className="title">전체 결과</p>

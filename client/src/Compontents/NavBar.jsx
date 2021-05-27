@@ -54,7 +54,7 @@ function NavBar(props) {
     else {
         return (
             <div>
-                <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark"> {/* Navigatorbar */}
+                <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark">  {/* Navigatorbar */}
                     <Navbar.Brand href="/">
                         <img
                             src="https://image.flaticon.com/icons/png/512/625/625078.png"
@@ -71,8 +71,7 @@ function NavBar(props) {
                             <Nav.Link href="/friendSearch">유저 조회</Nav.Link>
                         </Nav>
                         <Nav className="ml-auto">
-                        <Nav.Link href="/uploadStudy">스터디 게시</Nav.Link>
-                        <Nav.Link href="/myprofile">프로필</Nav.Link>
+                        <Nav.Link href="/myprofile" style={{marginLeft : '5rem'}}>프로필</Nav.Link>
                             <Nav.Link onClick={logoutHandler}>로그아웃</Nav.Link>
                         </Nav>
                         <Nav>
