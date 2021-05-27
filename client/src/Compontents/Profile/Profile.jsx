@@ -56,6 +56,7 @@ function MyProfile(props) {
                 <section className="keyinfo">
                     <KeyInfo
                         Skill={skill}
+                        image={image}
                         setSkill={setSkill}
                         profile={Profile}
                         setProfile={setProfile}

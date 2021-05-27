@@ -7,7 +7,6 @@ import axios from 'axios';
 import Dropzone from "react-dropzone";
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 
-
 function FileUpload(props) {
   const { image, setImage } = props
   const [loading, setLoading] = useState(false)
@@ -48,12 +47,15 @@ function FileUpload(props) {
           <div style={{
             border: 'lightgray',
             display: 'flex', alignItems: 'center', justifyContent: 'center', width:'150px', height:'150px', maxWidth:'150px', maxHeight:'150px'
-            ,border:'1px solid black', borderRadius:'50%'
+            ,borderRadius:'50%'
           }}
             {...getRootProps()}>
             <input {...getInputProps()} />
-            {image ? <img src={image} alt="avatar" /> : uploadButton}
-          </div>
+            {
+              console.log(image)
+            }
+            {image ? <img src={`http://localhost:5000/${image}`} alt="avatar" /> : uploadButton}
+          </div> 
         )}
       </Dropzone>
     </div>

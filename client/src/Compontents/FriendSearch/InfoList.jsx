@@ -1,5 +1,8 @@
 import React from 'react'
 
+/* image */
+import imgPerson from '../../image/person.png'
+
 function UserInfo(props) {
     const { UserList } = props
 
@@ -22,8 +25,8 @@ function InfoList(props) {
     return(
     <div className="peopleList__person">
         { personData.image[0] 
-        ? <img src={personData.image[0].path} />
-        : <img src="client\public\person.png" />
+        ? <img src={`http://localhost:5000/${personData.image[0].path}`} />
+        : <img src={imgPerson} />
         }
         <div className="person__info">
             <p className="title"><a href={`/profile/${personData._id}`}>{personData.name}</a></p>

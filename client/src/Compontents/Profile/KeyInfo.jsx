@@ -7,6 +7,10 @@ import axios from "axios";
 import { Select } from "antd";
 import { skill } from "../../Data";
 import FileUpload from '../Util/FileUpload';
+
+/* image */
+import imgPerson from '../../image/person.png'
+
 const Option = Select;
 
 function KeyInfo(props) {
@@ -79,8 +83,8 @@ function KeyInfo(props) {
                             setImage={setImage}
                         />
                         : image
-                            ? <img src={image} alt="avatar" />
-                            : <img src="client\public\person.png" />
+                            ? <img src={`http://localhost:5000/${image}`} alt="avatar" />
+                            : <img src={imgPerson} />
                 }
                 <div className="keyinfo__persionalinfo">
                     <h1>
