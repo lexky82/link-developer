@@ -24,13 +24,6 @@ const userSchema = mongoose.Schema({
     portfolio:{
         type: Array
     },
-    position : {
-        type : String,
-    },
-    role: {
-        type: Number,
-        default: 0
-    },
     image: {
         type: Array
     },
