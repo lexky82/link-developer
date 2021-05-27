@@ -46,3 +46,130 @@
   - 포터블 모드: 주요 모델 지원 UI
   - 데스크탑 모드: 데스크탑 환경에서 한눈에 볼 수 있는 UI
 
+## 트러블 이슈
+
+### useEffect 훅내에서 redux 로딩오류
+- 컴포넌트 렌더링전에 useEffect가 동작하면서 state 데이터로 백엔드에 요청을 보내지 못하는 이슈
+- 컴포넌트 렌더링 이전에 DB를 조회하여 유저의 프로필 데이터를 가져오는 로직이라 유저의 프로필 데이터의 종속된 모든 코드들이 영향을 미침.
+
+- 기존코드
+```jsx
+React.useEffect(() => {
+    const userId = props.user.userData._id
+    let body = {
+        _id: userId
+    }
+
+    axios.post('/api/users/profile', body)
+            .then(response => {
+                if (response.data.success) {
+                    setProfile(response.data.profile)
+                    setSkill(response.data.profile.skill)
+                    setPortfolioList(response.data.profile.portfolio)
+                    response.data.profile.image[0] && setImage(response.data.profile.image[0].path)
+                }
+                else {
+                    alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
+                }
+            })
+    }
+  }, [])
+```
+- 1차 변경 코드
+```jsx
+React.useEffect(() => {
+     if (!props.user.userData) {
+          return
+    }
+    
+    const userId = props.user.userData._id
+    let body = {
+        _id: userId
+    }
+
+    axios.post('/api/users/profile', body)
+            .then(response => {
+                if (response.data.success) {
+                    setProfile(response.data.profile)
+                    setSkill(response.data.profile.skill)
+                    setPortfolioList(response.data.profile.portfolio)
+                    response.data.profile.image[0] && setImage(response.data.profile.image[0].path)
+                }
+                else {
+                    alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
+                }
+            })
+    }
+  }, [props.user])
+```
+
+- state가 로딩되기전에 useEffect에 접근하면 return을하고 state가 이후 다시 마운트 되었을때 실행하도록 변경
+- 하지만 state가 로딩될때까지 시간이 존재하고 같은 일을 두번하는 현상하는 일어남 비효율적임
+* * *
+- 2차 변경 코드
+```jsx
+React.useEffect(() => {
+    const userId = window.localStorage.getItem("userId")
+    let body = {
+        _id: userId
+    }
+
+    axios.post('/api/users/profile', body)
+            .then(response => {
+                if (response.data.success) {
+                    setProfile(response.data.profile)
+                    setSkill(response.data.profile.skill)
+                    setPortfolioList(response.data.profile.portfolio)
+                    response.data.profile.image[0] && setImage(response.data.profile.image[0].path)
+                }
+                else {
+                    alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
+                }
+            })
+    }
+  }, [])
+```
+- 로그인할 시에 localStorage에 저장되는 userId를 가져와 state 로딩과 상관없이 컴포넌트 렌더링전에 보다 빠르게 백엔드에 요청 보낼 수 있게 변경
+
+### StudyDetail 컴포넌트에서 백엔드 Axios 요청을 계속해서 보내는 현상
+- 아래 함수를 컴포넌트가 렌더링되는 부분에 정의함으로서 쉬지않고 axios 요청을 보냄
+```jsx
+const readWriterHandler = () => {
+        let body = {
+            _id: Study.writer
+        }
+
+        axios.post('/api/users/profile', body)
+            .then(response => {
+                setwriter(response.data.profile)
+            })
+            .catch(err => console.log(err))
+
+        return (
+            <td><a href={`/profile/${Study.writer}`}>{writer && writer.name}</a></td>
+        )
+
+    }
+```
+- 개선코드
+```jsx
+const readWriterHandler = () => {
+        axios.get(`/api/studyPost/studyPosts_by_id?id=${studyId}`)
+            .then(response => {
+                setStudy(response.data[0])
+                console.log(response.data[0])
+                let body = {
+                    _id: response.data[0].writer
+                }
+                axios.post('/api/users/profile', body)
+                .then(response => {
+                    setwriter(response.data.profile)
+                })
+                .catch(err => console.log(err))
+            })
+            .catch(err => console.log(err))
+    }, [])
+```
+- 컴포넌트가 처음 마운트 되었을때 백엔드에 Study의 대한 응답을 받은뒤 Study에 있는 Writer의 아이디로 유저정보를 가져오게 변경
+
+
