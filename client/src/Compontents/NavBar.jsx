@@ -71,7 +71,7 @@ function NavBar(props) {
                             <Nav.Link href="/friendSearch">유저 조회</Nav.Link>
                         </Nav>
                         <Nav className="ml-auto">
-                        <Nav.Link href="/myprofile" style={{marginLeft : '5rem'}}>프로필</Nav.Link>
+                        <Nav.Link href="/myprofile">프로필</Nav.Link>
                             <Nav.Link onClick={logoutHandler}>로그아웃</Nav.Link>
                         </Nav>
                         <Nav>
