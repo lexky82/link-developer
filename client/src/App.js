@@ -29,9 +29,9 @@ function App() {
         <Route exact path="/signup" component={Auth(Regiseter, false)} />
         <Route exact path="/studySearch" component={Auth(StudySearch, null)} />
         <Route exact path="/friendSearch" component={Auth(FriendSearch, null)} />
-        <Route exact path="/detail/:studyId" component={Auth(StudyDetail, true)} />
+        <Route exact path="/detail/:studyId" component={Auth(StudyDetail, null)} />
         <Route exact path="/myprofile" component={Auth(Myprofile, true)} />
-        <Route exact path="/profile/:profileId" component={Auth(Profile, true)} />
+        <Route exact path="/profile/:profileId" component={Auth(Profile, null)} />
         <Route exact path="/uploadStudy" component={Auth(UploadStudyPost, true)} />
       </div>
       <footer style={{ textAlign: 'center', borderTop:'1px solid black' }}>
