@@ -8,6 +8,7 @@
     background-color: black;
     justify-content: center;
     margin: 0px auto;
+    border-radius: 0;
   }
   .mainpage img{
     position: relative;
@@ -42,6 +43,11 @@
   }
 
   @media screen and (max-width: 768px) {
+    .title{
+      font-size: 22px;
+      font-weight: 300;
+    }
+
     .wraper{
       display: flex;
       flex-direction: column;
