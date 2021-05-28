@@ -92,7 +92,7 @@ function UploadStudyPost(props) {
             
             <header>
                 <Jumbotron className="search__header">
-                    <h2 className="search__header-title">스터디를 등록하여 동료를 모집해요!</h2>
+                    <h1 className="search__header-title">스터디를 등록하여 동료를 모집해요!</h1>
                 </Jumbotron>
             </header>
             
