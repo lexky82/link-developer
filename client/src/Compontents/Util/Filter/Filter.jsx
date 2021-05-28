@@ -7,7 +7,7 @@ import OnOfflineFilter from './OnOfflineFilter';
 
 function Filter(props) {
     return (
-        <div style={{ display:'flex' , flexWrap:'wrap'}}>
+        <div className="filter">
            <SkillFilter handleFilters={filters => props.showFilteredReulst(filters, 'skill')} />
 
             <OnOfflineFilter handleFilters={filters => props.showFilteredReulst(filters, 'onOff')} />

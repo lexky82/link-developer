@@ -19,7 +19,7 @@ function SkillFilter(props) {
                 onChange={skillFilterHandler}
                 showSearch
                 mode="multiple"
-                style={{ width: 200 }}
+                className="skillFilter"
                 placeholder="Select a Skill"
                 filterOption={(input, option) =>
                     option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0

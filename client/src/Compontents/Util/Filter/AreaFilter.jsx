@@ -15,7 +15,7 @@ function AreaFilter(props) {
 
     return (
         <div>
-            <Select mode="multiple" onChange={areaFilterHandler} placeholder="지역" style={{ width :'75px' }}>
+            <Select mode="multiple" onChange={areaFilterHandler} placeholder="지역" className="areaFilter">
                 {
                     area.map(item => (
                         <Option value={item.key} key={item.key}>{item.key}</Option>

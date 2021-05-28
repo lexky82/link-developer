@@ -1,0 +1,19 @@
+.skillFilter {
+    min-width: 200px;
+}
+.areaFilter {
+    min-width: 75px;
+}
+.onofflineFilter {
+
+}
+.filter{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+    .filter{
+        flex-direction: column;
+    }    
+}

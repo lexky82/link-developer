@@ -12,7 +12,7 @@ function OnOfflineFilter(props) {
 
     return (
         <div>
-            <Select onChange={onOffFilterHandler} placeholder="온라인/오프라인" style={{ width: 120 }}>
+            <Select onChange={onOffFilterHandler} placeholder="온라인/오프라인" classname="onofflineFilter">
                 <Option value={true}>온라인</Option>
                 <Option value={false}>오프라인</Option>
             </Select>
