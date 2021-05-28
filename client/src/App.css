@@ -1,10 +1,10 @@
 @import "./css/select_search.css";
 @import "./css/mainpage.css";
 @import "./css/login.css";
-@import "./css//studySearch.css";
+@import "./css/studySearch.css";
 @import "./css/profile.css";
 @import "./css/friendSearch.css";
-@import "./css/studyDtail.css";
+@import "./css/studyDetail.css";
 @import "./css/filter.css";
 
 .App {
