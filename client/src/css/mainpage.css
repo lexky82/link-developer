@@ -39,15 +39,28 @@
   .wraper__text{
     text-align: left;
     margin-right: 5rem;
-
   }
+
+  .wraper__text--title{
+    font-size : 30px;
+    font-weight : 600;
+    line-height : 1.41;
+    word-break : keep-all; 
+  }
+  .wraper__text--content{
+    font-size: 22px;
+    font-weight : 200;
+    line-height : 1.64;
+    word-break : keep-all;
+    margin-top: 24px;
+  }
+  
 
   @media screen and (max-width: 768px) {
     .title{
       font-size: 22px;
       font-weight: 300;
     }
-
     .wraper{
       display: flex;
       flex-direction: column;
@@ -66,5 +79,14 @@
     .ant-carousel img{
       width: 100%;
       margin-top: 5px;
+    }
+
+    .wraper__text--title{
+      font-size : 22px;
+      font-weight : 300;
+    }
+    .wraper__text--content{
+      font-size : 18px;
+      font-weight : 100;
     }
 }
