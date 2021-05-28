@@ -1,0 +1,108 @@
+.keyinfo{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 4rem;
+    padding: 1.25rem;
+    justify-content: center;
+    text-align: left;
+    margin : 0;
+  }
+  .keyinfo p{
+    margin : 0;
+  }
+
+  .keyinfo img{
+    width: 150px;
+    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 50%;
+    padding: 5px;
+  }
+
+  .keyinfo__Dropzone{
+    margin-right: 35px;
+    border : 1px dashed #d9d9d9;
+    width: 150px;
+    height: 150px;
+    padding : 0;
+    border-radius: 50%;
+  }
+  .keyinfo__Dropzone:hover{
+    border : 1px dashed black;
+    cursor:pointer
+  }
+
+  #root > div:nth-child(2) > div > div.container > section:nth-child(1) > div > div.keyinfo > div:nth-child(1) > span > div{
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+  }
+
+  .keyinfo button{
+    border : 0;
+    outline: 0;
+    background-color: white;
+  }
+  .keyinfo__persionalinfo--department{
+    color: rgba(0, 0, 0, 0.2);
+  }
+  
+  .myinfo__skill--tech button{
+    border :0;
+    outline: 0;
+  }
+
+  .Portfolio{
+    display: block;
+    background-color: #eee;
+    opacity: 0.8;
+    text-align: left;
+    padding: 12.5px;
+    margin-bottom: 5px;
+    padding-right: 100px;
+    border-left: 4px solid black;
+  }
+  .Portfolio label{
+    font-weight: 700;
+  }
+  .Portfolio p{
+    margin : 0;
+  }
+  
+  .experience__career{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-top: 30px;
+  }
+  .experience--button{
+    border : 0;
+    outline: 0;
+    font-size: 1.5rem;
+    background-color: white;
+  }
+  .expreience__portfolio{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .keyinfo img{
+      max-width: 6.25rem;
+      max-height: 6.25rem;
+    }
+
+    .keyinfo__Dropzone{
+      margin-right: 10px;
+      max-width: 6.25rem;
+      max-height: 6.25rem;
+    }
+
+    .keyinfo p{
+     font-size: 24px;
+     margin: 5px;
+    }
+  }
