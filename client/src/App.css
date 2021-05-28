@@ -2,9 +2,10 @@
 @import "./css/mainpage.css";
 @import "./css/login.css";
 @import "./css//studySearch.css";
-@import "./css/myprofile.css";
+@import "./css/profile.css";
 @import "./css/friendSearch.css";
 @import "./css/studyDtail.css";
+@import "./css/filter.css";
 
 .App {
   text-align: center;
