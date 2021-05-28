@@ -7,7 +7,7 @@ import axios from 'axios';
 import { Jumbotron, Button } from 'react-bootstrap';
 import StudyCard from './StudyCard';
 import Filter from '../Util/Filter/Filter';
-
+import { Modal } from 'antd'
 
 function StudySearch() {
 
@@ -17,6 +17,18 @@ function StudySearch() {
         onOff: undefined,
         area: []
     })
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
+
 
     useEffect(() => {
 
@@ -46,27 +58,40 @@ function StudySearch() {
         getStudyPost(newFilters)
     }
 
+
     return (
         <div>
             <header>
                 <Jumbotron className="search__header">
-                    <h2 className="search__header-title">검색으로 함께할 스터디를 찾아봐요!</h2>
+                    <h1 className="search__header-title">검색으로 함께할 스터디를 찾아봐요!</h1>
                 </Jumbotron>
             </header>
 
             <section>
                 <div className="search__main">
-                    <Filter
-                        showFilteredReulst={showFilteredReulst}
-                    />
-                    <Button href="/uploadStudy">스터디 게시</Button>
+                    <Filter showFilteredReulst={showFilteredReulst} />
+                    <Modal
+                        title="검색 필터"
+                        visible={isModalVisible}
+                        onOk={handleOk}
+                        onCancel={handleCancel}
+                        footer={[
+                            <Button key="back" onClick={handleCancel}>
+                                확인
+                            </Button>
+                        ]}
+                    >
+                        <Filter showFilteredReulst={showFilteredReulst} />
+                    </Modal>
                 </div>
             </section>
 
-            <section>
+            <section className="container">
                 <p className="title">전체 결과</p>
+                <Button className="mobileFilter" onClick={showModal}>검색 필터</Button>
                 <StudyCard StudyPosts={StudyPosts} />
             </section>
+
 
         </div>
     )
