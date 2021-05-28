@@ -77,8 +77,7 @@ function StudyDetail(props) {
 
                 <header>
                     <div className="detail__header">
-                        <h2 className="title">{Study.title}</h2>
-                        <h4 className="projectName">{Study.purpose}</h4>
+                        <h1 className="title">{Study.title}</h1>
                     </div>
                 </header>
 
