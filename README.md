@@ -21,7 +21,7 @@
   - Frontend : React, Redux, Antd, Axios
   - Backend : Express, Mongoose
   - Database : MongoDB
-- 형상 관리 툴 : git
+- 형상 관리 툴 : Git
 - 간단 소개 : 스터디 모집, 찾기 웹 서비스
 
 ## 프로젝트 특징
@@ -47,6 +47,58 @@
   - 데스크탑 모드: 데스크탑 환경에서 한눈에 볼 수 있는 UI
 
 ## 트러블 이슈
+
+### MyProfile 컴포넌트에서 Portfolio를 등록할때 DOM에 접근해야하는 문제
+- 포트폴리오를 추가할때 Modal에서 입력한 값을 가져올 방법을 구상하다가 DOM에 접근하는 Document.getElementById.value로 가져오게 되었다.
+- 하지만 리액트는 DOM에 직접 접근하는 것을 지양해야한다.
+- 포트폴리오를 추가하는 Modal의 INPUT들 모두 State를 통해서 값을 저장하게 변경하였고 onChange 이벤트를 이용해서 값을 받도록하였다.
+
+- 기존코드
+```jsx
+const projectName = document.getElementById('projectName').value;
+        const date = document.getElementById('date').value;
+        const position = document.getElementById('position').value;
+        const skill = document.getElementById('skill').value;
+        const discription = document.getElementById('discription').value;
+        
+        const newObject = {
+            projectName: projectName,
+            date: date,
+            position: position,
+            skill: skill,
+            discription: discription
+        }
+```
+- 개선 코드
+```jsx
+const projectNameChangeHandler = (event) => {
+        setProjectName(event.target.value)
+    }
+    const positionChangeHandler = (event) => {
+        setPosition(event.target.value)
+    }
+    const projectSkillChangeHandler = (event) => {
+        setProjectSkill(event)
+    }
+    const descriptionChangeHandler = (event) => {
+        setDescription(event.target.value)
+    }
+    const progressDateChangeHandler = (event, datestring) => {
+        setStartDate(datestring[0])
+        setEndDate(datestring[1])
+    }
+
+    const onRegistrationHandler = () => {
+        const newObject = {
+            id: portfolioList.length,
+            projectName: ProjectName,
+            startDate: StartDate,
+            endDate: EndDate,
+            position: Position,
+            skill: ProjectSkill,
+            description: Description
+        };
+```
 
 ### useEffect 훅내에서 redux 로딩오류
 - 컴포넌트 렌더링전에 useEffect가 동작하면서 state 데이터로 백엔드에 요청을 보내지 못하는 이슈
