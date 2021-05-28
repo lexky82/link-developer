@@ -34,7 +34,7 @@ function FileUpload(props) {
   }
 
   const uploadButton = (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ textAlign: 'center', marginTop:'35px' }}>
       {loading ? <LoadingOutlined /> : <PlusOutlined />}
       <div style={{ marginTop: 8 }}>프로필 이미지 업로드</div>
     </div>
@@ -42,13 +42,9 @@ function FileUpload(props) {
 
   return (
     <div>
-      <Dropzone onDrop={uploadChangeHandler} >
+      <Dropzone onDrop={uploadChangeHandler}>
         {({ getRootProps, getInputProps }) => (
-          <div style={{
-            border: 'lightgray',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', width:'150px', height:'150px', maxWidth:'150px', maxHeight:'150px'
-            ,borderRadius:'50%'
-          }}
+          <div className="keyinfo__Dropzone"
             {...getRootProps()}>
             <input {...getInputProps()} />
             {
