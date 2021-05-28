@@ -34,3 +34,11 @@
     margin-left: 2rem;
     margin-bottom: 0.625rem;
   }
+  @media screen and (max-width: 768px) {
+    .friendSearchList{
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+  }
+  
