@@ -7,7 +7,7 @@ function UserInfo(props) {
     const { UserList } = props
 
     return (
-        <div className="container-md">
+        <div >
             <div className="peopleList">
                 {
                     UserList.map((a, i) => {
