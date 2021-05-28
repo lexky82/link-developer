@@ -9,7 +9,7 @@ function StudyCard(props) {
 
     return (
         <div>
-            <div className="container">
+            <div >
                 <ul className="notice">
                     {
                         StudyPosts.map((a, i) => {
@@ -25,7 +25,7 @@ function StudyCard(props) {
         return (
             <li className="notice__card">
                 <img src={imgStudy} />
-                <h6><a href={`/detail/${props.particle._id}`}>{props.particle.title}</a></h6>
+                <p className="notice__card--title"><a href={`/detail/${props.particle._id}`}>{props.particle.title}</a></p>
                 <p>{props.particle.purpose}</p>
                 <p>{props.particle.area}</p>
                 {

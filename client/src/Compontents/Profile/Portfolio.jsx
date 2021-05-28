@@ -150,7 +150,7 @@ function Portfolio(props) {
     function PortfolioTap(props) {
         return (
             <blockquote id={props.portfolio.id} className="Portfolio">
-                <h5>{props.portfolio.projectName}{user && <button onClick={removePortfolioHandler} style={{ border: '0', outline: '0' }} >X</button>}</h5>
+                <p className="title">{props.portfolio.projectName}{user && <button onClick={removePortfolioHandler} style={{ border: '0', outline: '0' }} >X</button>}</p>
                 <p>{props.portfolio.startDate} ~ {props.portfolio.endDate}</p>
                 <p>{props.portfolio.position}</p>
                 {

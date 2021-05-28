@@ -87,12 +87,10 @@ function KeyInfo(props) {
                             : <img src={imgPerson} />
                 }
                 <div className="keyinfo__persionalinfo">
-                    <h1>
+                    <h2>
                         <p>{profile.name}</p>
                         <p>{profile.email}</p>
-                    </h1>
-
-                    <p>{profile.position}</p>
+                    </h2>
 
                     <div>
                         <span>기술</span>

@@ -39,7 +39,7 @@ function FriendsSearch() {
         <div>
             <header>
                 <Jumbotron className="search__header">
-                    <h2 className="search__header-title">검색으로 함께할 동료를 찾아봐요!</h2>
+                    <h1 className="search__header-title">검색으로 함께할 동료를 찾아봐요!</h1>
                 </Jumbotron>
             </header>
 
@@ -52,7 +52,7 @@ function FriendsSearch() {
                 </div>
             </section>
 
-            <section>
+            <section className="container-md friendSearchList">
                 <p className="title">전체 결과</p>
                 <InfoList UserList={UserList} />
             </section>

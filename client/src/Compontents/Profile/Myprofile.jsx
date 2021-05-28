@@ -44,7 +44,7 @@ function MyProfile(props) {
     return (
         <div>
             <Jumbotron className="search__header">
-                <h2 className="search__header-title">입력한 정보를 다른 유저들이 볼 수 있어요!</h2>
+                <h1 className="search__header-title">입력한 정보를 다른 유저들이 볼 수 있어요!</h1>
             </Jumbotron>
 
             <div className="container">
