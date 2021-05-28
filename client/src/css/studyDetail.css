@@ -7,7 +7,7 @@
     margin-bottom: 20px;
 }
 .detail__header{
-    padding: 3rem 0;
+    padding: 2rem 0;
     text-align: left;
 }
 .projectName{
@@ -20,3 +20,9 @@
 .skillStackinfo ul{
     padding: 0;
 }
+
+@media screen and (max-width: 768px) {
+    .projectName{
+        font-size: 15px;
+    }
+  }
