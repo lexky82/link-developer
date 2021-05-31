@@ -83,7 +83,7 @@ function KeyInfo(props) {
                             setImage={setImage}
                         />
                         : image
-                            ? <img src={`http://localhost:5000/${image}`} alt="avatar" />
+                            ? <img src={`http://3.16.138.36:5000/${image}`} alt="avatar" />
                             : <img src={imgPerson} />
                 }
                 <div className="keyinfo__persionalinfo">

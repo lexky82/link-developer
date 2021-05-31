@@ -25,7 +25,7 @@ function InfoList(props) {
     return(
     <div className="peopleList__person">
         { personData.image[0] 
-        ? <img src={`http://localhost:5000/${personData.image[0].path}`} />
+        ? <img src={`http://3.16.138.36:5000/${personData.image[0].path}`} />
         : <img src={imgPerson} />
         }
         <div className="person__info">
