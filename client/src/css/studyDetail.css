@@ -25,4 +25,7 @@
     .projectName{
         font-size: 15px;
     }
+    .detailInfoTable td{
+        width: 52px;
+    }
   }

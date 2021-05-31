@@ -82,7 +82,7 @@ function StudyDetail(props) {
                 </header>
 
                 <section>
-                    <Table className="recruitmentInfo" size="sm">
+                    <Table className="recruitmentInfo detailInfoTable" size="sm">
                         <tbody>
                             <tr>
                                 <td>작성자</td>
