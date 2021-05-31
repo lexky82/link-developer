@@ -94,6 +94,7 @@
     .keyinfo img{
       max-width: 6.25rem;
       max-height: 6.25rem;
+      margin-right: 10px;
     }
 
     .keyinfo__Dropzone{
