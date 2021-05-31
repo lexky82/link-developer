@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 
 /* Lib */
 import axios from 'axios';
@@ -41,7 +42,7 @@ function StudyDetail(props) {
 
     const readWriterHandler = () => {
         return (
-            <td><a href={`/profile/${Study.writer}`}>{writer && writer.name}</a></td>
+            <td><Link to={`/profile/${Study.writer}`}>{writer && writer.name}</Link></td>
         )
     }
 

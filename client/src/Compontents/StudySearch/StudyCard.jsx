@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 /* image */
 import imgStudy from '../../image/Study.png'
@@ -25,7 +26,7 @@ function StudyCard(props) {
         return (
             <li className="notice__card">
                 <img src={imgStudy} />
-                <p className="notice__card--title"><a href={`/detail/${props.particle._id}`}>{props.particle.title}</a></p>
+                <p className="notice__card--title"><Link to={`/detail/${props.particle._id}`}>{props.particle.title}</Link></p>
                 <p>{props.particle.purpose}</p>
                 <p>{props.particle.area}</p>
                 {

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 /* image */
 import imgPerson from '../../image/person.png'
 
@@ -29,7 +29,7 @@ function InfoList(props) {
         : <img src={imgPerson} />
         }
         <div className="person__info">
-            <p className="title"><a href={`/profile/${personData._id}`}>{personData.name}</a></p>
+            <p className="title"><Link to={`/profile/${personData._id}`}>{personData.name}</Link></p>
             <div>{personData.position}</div>
             {
                 personData.skill.map((a, i) => (
