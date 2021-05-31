@@ -155,8 +155,8 @@ React.useEffect(() => {
   }, [props.user])
 ```
 
-- state가 로딩되기전에 useEffect에 접근하면 return을하고 state가 이후 다시 마운트 되었을때 실행하도록 변경
-- 하지만 state가 로딩될때까지 시간이 존재하고 같은 일을 두번하는 현상하는 일어남 비효율적임
+- state가 로딩되기전에 useEffect에 접근하면 return을하고 state가 마운트 되었을때 다시 실행하도록 변경
+- 하지만 state가 로딩될때까지 시간이 존재하고 같은 코드를 두번 실행하는 현상 일어남. 비효율적임
 * * *
 - 2차 변경 코드
 ```jsx
