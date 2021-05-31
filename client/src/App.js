@@ -3,7 +3,6 @@ import React, { Suspense } from 'react';
 
 /* Lib */
 import { Route } from 'react-router';
-import { GithubOutlined, HomeOutlined, MailOutlined } from "@ant-design/icons";
 
 /* Components */
 import NavBar from "./Compontents/NavBar";
@@ -17,6 +16,7 @@ import UploadStudyPost from "./Compontents/UploadStudyPost";
 import StudyDetail from "./Compontents/StudyDetail/StudyDetail";
 import Profile from "./Compontents/Profile/Profile"
 import Auth from './hoc/auth'
+import Footer from './Compontents/Footer'
 
 function App() {
 
@@ -34,23 +34,7 @@ function App() {
         <Route exact path="/profile/:profileId" component={Auth(Profile, null)} />
         <Route exact path="/uploadStudy" component={Auth(UploadStudyPost, true)} />
       </div>
-      <footer style={{ textAlign: 'center', borderTop:'1px solid black' }}>
-
-        <div style={{ backgroundColor: 'white', fontSize: '22px' }}>
-          <a href="mailto:lexky82@gmail.com"><MailOutlined /></a>
-          <a href="https://tried.tistory.com/"><HomeOutlined /></a>
-          <a href="https://github.com/lexky82"><GithubOutlined /></a>
-        </div>
-
-
-        <div style={{ backgroundColor: 'black', color: 'white' }}>
-          Copyright © Kwon Hyeok Jin 2021
-          <div style={{ fontSize: '22px' }}>
-
-          </div>
-
-        </div>
-      </footer>
+      <Footer />
     </Suspense>
   );
 }
