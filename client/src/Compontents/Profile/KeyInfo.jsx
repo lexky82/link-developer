@@ -118,7 +118,7 @@ function KeyInfo(props) {
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
                 {
-                    Skill && Skill.map((a, i) => {
+                    Skill && Skill.map((skill, i) => {
                         return <SkillStackLabel key={i} skill={Skill[i]} />
                     })
                 }

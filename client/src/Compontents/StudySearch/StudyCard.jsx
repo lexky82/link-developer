@@ -24,7 +24,7 @@ function StudyCard(props) {
                         </Link>
                     </li>
                     {
-                        StudyPosts.map((a, i) => {
+                        StudyPosts.map((StudyPost, i) => {
                             return <CardNotice key={i} particle={StudyPosts[i]} />
                         })
                     }

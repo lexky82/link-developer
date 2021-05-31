@@ -10,7 +10,7 @@ function UserInfo(props) {
         <div >
             <div className="peopleList">
                 {
-                    UserList.map((a, i) => {
+                    UserList.map((User, i) => {
                         return <InfoList personData={UserList[i]} />
                     })
                 }
@@ -32,7 +32,7 @@ function InfoList(props) {
             <p className="title"><Link to={`/profile/${personData._id}`}>{personData.name}</Link></p>
             <div>{personData.position}</div>
             {
-                personData.skill.map((a, i) => (
+                personData.skill.map((personInfo, i) => (
                     <div className="skillStackLabel">{personData.skill[i]}</div>
                 ))
             }
