@@ -22,7 +22,7 @@ function FileUpload(props) {
     formData.append('file', file[0])
     formData.append('_id', window.localStorage.getItem('userId'))
 
-    axios.post('http://localhost:5000/api/users/image', formData, config)
+    axios.post('/api/users/image', formData, config)
       .then(response => {
         if (response.data.success) {
           setImage(response.data.file.path)
