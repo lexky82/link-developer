@@ -1,6 +1,6 @@
 import {
     STDUY_LIST,
-} from '../_actions/studyTypes';
+} from '../_actions/Types';
  
 
 export default function(state={}, action){

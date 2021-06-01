@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
     STDUY_LIST
-} from './studyTypes';
+} from './Types';
 
 export async function studyList(body){
     const request = await axios.post(`/api/studyPost/studyPosts`, body)
