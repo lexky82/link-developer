@@ -13,7 +13,7 @@ import StudySearch from "./Compontents/StudySearch/StudySearch";
 import FriendSearch from "./Compontents/FriendSearch/FriendSearch";
 import Myprofile from "./Compontents/Profile/Myprofile";
 import UploadStudyPost from "./Compontents/UploadStudyPost";
-import StudyDetail from "./Compontents/StudyDetail/StudyDetail";
+import StudyDetail from "./Compontents/StudySearch/StudyDetail";
 import Profile from "./Compontents/Profile/Profile"
 import Auth from './hoc/auth'
 import Footer from './Compontents/Footer'
