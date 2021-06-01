@@ -10,8 +10,8 @@ function UserInfo(props) {
         <div >
             <div className="peopleList">
                 {
-                    UserList.map((User, i) => {
-                        return <InfoList personData={UserList[i]} />
+                    UserList && UserList.userList.map((User, i) => {
+                        return <InfoList key={i} personData={User} />
                     })
                 }
             </div>

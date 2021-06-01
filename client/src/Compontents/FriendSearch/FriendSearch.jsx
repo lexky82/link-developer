@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 /* Lib */
-import axios from 'axios';
+import { userInfo } from "../../_actions/userInfo_actions";
+import { useSelector, useDispatch } from "react-redux";
+
 
 /* Components */
 import { Jumbotron } from 'react-bootstrap';
@@ -11,6 +13,8 @@ import InfoList from './InfoList';
 function FriendsSearch() {
 
     const [UserList, setUserList] = useState([]);
+    const dispatch = useDispatch()
+    const userInfoList = useSelector(state => state.userInfo.userListData);
 
     useEffect(() => {
 
@@ -19,11 +23,10 @@ function FriendsSearch() {
     }, [])
 
     const getUserList = (body) => {
-
-        axios.post('/api/users/userlist', body)
+        dispatch(userInfo(body))
             .then(response => {
-                if (response.data.success) {
-                    setUserList(response.data.userList)
+                if (response.payload.success) {
+                    setUserList(response.payload.userList)
                 }
                 else {
                     alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
@@ -54,7 +57,7 @@ function FriendsSearch() {
 
             <section className="container-md friendSearchList">
                 <p className="title">전체 결과</p>
-                <InfoList UserList={UserList} />
+                <InfoList UserList={userInfoList} />
             </section>
 
         </div>

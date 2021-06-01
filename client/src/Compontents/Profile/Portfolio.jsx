@@ -139,7 +139,7 @@ function Portfolio(props) {
                 </Modal>
             </React.Fragment>
             {
-                portfolioList.map((a, i) => {
+               portfolioList && portfolioList.map((portfolio, i) => {
 
                     return <PortfolioTap key={i} portfolio={portfolioList[i]} />
                 })

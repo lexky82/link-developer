@@ -78,13 +78,13 @@ function KeyInfo(props) {
             <div className="keyinfo">
                 {
                     user
-                        ? <FileUpload
-                            image={image}
-                            setImage={setImage}
-                        />
-                        : image
-                            ? <img src={`http://3.16.138.36:5000/${image}`} alt="avatar" />
-                            : <img src={imgPerson} />
+                    ? <FileUpload
+                        image={image}
+                        setImage={setImage}
+                    />
+                    : image
+                        ? <img src={`http://3.16.138.36:5000/${image}`} alt="avatar" />
+                        : <img src={imgPerson} />
                 }
                 <div className="keyinfo__persionalinfo">
                     <h2>

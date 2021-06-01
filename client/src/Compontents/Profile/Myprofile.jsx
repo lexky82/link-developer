@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 
 /* Components */
 import { Jumbotron } from "react-bootstrap";
@@ -6,14 +7,17 @@ import Portfolio from "./Portfolio";
 import KeyInfo from "./KeyInfo";
 
 /* Lib */
-import axios from 'axios';
+import { userInfo } from "../../_actions/userInfo_actions";
 
 function MyProfile(props) {
-
+    const dispatch = useDispatch()
     const [Profile, setProfile] = useState([])
     const [portfolioList, setPortfolioList] = useState([]);
     const [skill, setSkill] = useState([]);
     const [image, setImage] = useState('');
+
+    const userInfoList = useSelector(state => state.userInfo.userListData);
+    const MyId = window.localStorage.getItem('userId')
 
     useEffect(() => {
 
@@ -21,24 +25,30 @@ function MyProfile(props) {
     }, [])
 
     const getProfilePost = () => {
-        let userId = window.localStorage.getItem("userId")
 
-        let body = {
-            _id: userId
+        if (!userInfoList) {
+            dispatch(userInfo())
+                .then(response => {
+                    if (response.payload.success) {
+                        infoFilter(response.payload.userList)
+                    }
+                    else {
+                        alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
+                    }
+                })
+        }
+        else {
+            infoFilter(userInfoList)
         }
 
-        axios.post('/api/users/profile', body)
-            .then(response => {
-                if (response.data.success) {
-                    setProfile(response.data.profile)
-                    setSkill(response.data.profile.skill)
-                    setPortfolioList(response.data.profile.portfolio)
-                    response.data.profile.image[0] && setImage(response.data.profile.image[0].path)
-                }
-                else {
-                    alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
-                }
-            })
+    }
+
+    const infoFilter = (userList) =>{
+        const result = userList.filter(element => {
+            return element._id === MyId
+        })
+        
+        setProfile({...result[0]})
     }
 
     return (
@@ -50,7 +60,7 @@ function MyProfile(props) {
             <div className="container">
                 <section>
                     <KeyInfo
-                        Skill={skill}
+                        Skill={Profile.skill}
                         image={image}
                         setImage={setImage}
                         setSkill={setSkill}

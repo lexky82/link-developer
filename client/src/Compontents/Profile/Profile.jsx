@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 /* Lib */
-import axios from 'axios';
+import { userInfo } from "../../_actions/userInfo_actions";
+import { useSelector, useDispatch } from "react-redux";
 
 /* Components */
 import { Jumbotron } from "react-bootstrap";
@@ -15,8 +16,9 @@ function MyProfile(props) {
     const [skill, setSkill] = useState([]);
     const [image, setImage] = useState('');
 
+    const dispatch = useDispatch()
     const profileId = props.match.params
-    let userId;
+    const userInfoList = useSelector(state => state.userInfo.userListData);
 
     useEffect(() => {
 
@@ -25,25 +27,32 @@ function MyProfile(props) {
     }, [])
 
     const getProfilePost = () => {
-
-        userId = window.localStorage.getItem("userId")
-
-        let body = {
-            _id: profileId.profileId
-        }
-
-        axios.post('/api/users/profile', body)
+        if(!userInfoList){
+            dispatch(userInfo())
             .then(response => {
-                if (response.data.success) {
-                    setProfile(response.data.profile)
-                    setSkill(response.data.profile.skill)
-                    setPortfolioList(response.data.profile.portfolio)
-                    response.data.profile.image[0] && setImage(response.data.profile.image[0].path)
+                if (response.payload.success) {
+                    infoFilter(response.payload.userList)
                 }
                 else {
-                    alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
+                    alert("스터디 리스트들을 가져오는데 실패 했습니다.")
                 }
             })
+            .catch((err) => {
+                console.log(err)
+            })
+        }
+        else{
+            infoFilter(userInfoList.userList)
+        }
+    }
+
+    const infoFilter = (userList) =>{
+        const result = userList.filter(element => {
+            return element._id === profileId.profileId
+        })
+        
+        setProfile({...result[0]})
+        result[0].image[0] && setImage(result[0].image[0].path)
     }
 
     return (
@@ -51,24 +60,26 @@ function MyProfile(props) {
             <Jumbotron className="search__header">
                 <h1 className="search__header-title">이 유저는 어떤가요?</h1>
             </Jumbotron>
-
+            {
+                console.log(Profile.portfolio)
+            }
             <div className="container">
                 <section>
                     <KeyInfo
-                        Skill={skill}
+                        Skill={Profile.skill}
                         image={image}
                         setSkill={setSkill}
                         profile={Profile}
                         setProfile={setProfile}
-                        user={profileId.profileId && userId}
+                        user={profileId.profileId === window.localStorage.getItem('userId')}
                     />
                 </section>
 
                 <section className="expreience__portfolio">
                     <Portfolio
-                        portfolioList={portfolioList}
+                        portfolioList={Profile.portfolio}
                         setPortfolioList={setPortfolioList}
-                        user={profileId.profileId && userId}
+                        user={profileId.profileId === window.localStorage.getItem('userId')}
                     />
                 </section>
             </div>
