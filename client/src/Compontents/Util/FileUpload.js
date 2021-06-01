@@ -47,9 +47,6 @@ function FileUpload(props) {
           <div className="keyinfo__Dropzone"
             {...getRootProps()}>
             <input {...getInputProps()} />
-            {
-              console.log(image)
-            }
             {image ? <img src={`http://3.16.138.36:5000/${image}`} alt="avatar" /> : uploadButton}
           </div> 
         )}

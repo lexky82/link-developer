@@ -23,7 +23,7 @@ function StudySearch() {
         dispatch(studyList(body))
             .then(response => {
                 if (response.payload.success) {
-                    
+                    console.log(response.payload)
                 }
                 else {
                     alert(" 스터디 리스트들을 가져오는데 실패 했습니다.")
