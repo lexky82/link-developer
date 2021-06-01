@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 /* Lib */
 import axios from 'axios';
+import { useDispatch ,useSelector } from 'react-redux'
+import { studyList } from "../../_actions/study_actions";
 
 /* Components */
 import { Table } from 'react-bootstrap';
@@ -13,23 +15,39 @@ function StudyDetail(props) {
 
     const studyId = props.match.params.studyId
     const [Study, setStudy] = useState({})
+    const study = useSelector(state => state.study.studyData);
     const [writer, setwriter] = useState({})
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        axios.get(`/api/studyPost/studyPosts_by_id?id=${studyId}`)
+        if(!study){
+            dispatch(studyList())
             .then(response => {
-                setStudy(response.data[0])
-                let body = {
-                    _id: response.data[0].writer
+                if (response.payload.success) {
+                    console.log(response.payload)
+                    studyFilter(response.payload.studyInfo)
                 }
-                axios.post('/api/users/profile', body)
-                .then(response => {
-                    setwriter(response.data.profile)
-                })
-                .catch(err => console.log(err))
+                else {
+                    alert("스터디 리스트들을 가져오는데 실패 했습니다.")
+                }
             })
-            .catch(err => console.log(err))
+            .catch((err) => {
+                console.log(err)
+            })
+        }
+
+        else{
+            studyFilter(study.studyInfo)
+        }
     }, [])
+
+    const studyFilter = (study) =>{
+        let result = study.filter(element => {
+            return element._id === studyId
+        })
+        
+        setStudy({...result[0]})
+    }
 
     const onOfflineHandler = () => {
         if (Study.onOff) {
@@ -42,7 +60,7 @@ function StudyDetail(props) {
 
     const readWriterHandler = () => {
         return (
-            <td><Link to={`/profile/${Study.writer}`}>{writer && writer.name}</Link></td>
+            <td><Link to={`/profile/${Study.writer}`}>{writer && writer.name}프로필</Link></td>
         )
     }
 
@@ -152,4 +170,4 @@ function StudyDetail(props) {
     )
 }
 
-export default StudyDetail;
+export default withRouter(StudyDetail);

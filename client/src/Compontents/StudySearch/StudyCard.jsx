@@ -9,8 +9,6 @@ import imgStudy from '../../image/Study.png'
 
 function StudyCard(props) {
 
-    const { StudyPosts } = props
-
     return (
         <div>
             <div >
@@ -24,8 +22,8 @@ function StudyCard(props) {
                         </Link>
                     </li>
                     {
-                        StudyPosts.map((StudyPost, i) => {
-                            return <CardNotice key={i} particle={StudyPosts[i]} />
+                        props.studyPosts && props.studyPosts.studyInfo.map((study, i) => {
+                            return <CardNotice key={i} particle={study} />
                         })
                     }
                 </ul>

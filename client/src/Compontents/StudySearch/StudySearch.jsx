@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 /* Lib */
-import axios from 'axios';
+import { studyList } from "../../_actions/study_actions";
+import { useSelector, useDispatch } from "react-redux";
+import { withRouter } from 'react-router';
 
 /* Components */
 import { Jumbotron, Button } from 'react-bootstrap';
@@ -10,8 +12,25 @@ import Filter from '../Util/Filter/Filter';
 import { Modal } from 'antd'
 
 function StudySearch() {
+    const dispatch = useDispatch();
+    useEffect(() => {
 
-    const [StudyPosts, setStudyPosts] = useState([])
+        getStudyPost();
+
+    }, [])
+    let study = useSelector(state => state.study.studyData);
+    const getStudyPost = (body) => {
+        dispatch(studyList(body))
+            .then(response => {
+                if (response.payload.success) {
+                    
+                }
+                else {
+                    alert(" 스터디 리스트들을 가져오는데 실패 했습니다.")
+                }
+            })
+    }
+
     const [Filters, setFilters] = useState({
         skill: [],
         onOff: undefined,
@@ -29,27 +48,6 @@ function StudySearch() {
         setIsModalVisible(false);
     };
 
-
-    useEffect(() => {
-
-        getStudyPost();
-
-    }, [])
-
-    const getStudyPost = (body) => {
-        console.log(body)
-
-        axios.post('/api/studyPost/studyPosts', body)
-            .then(response => {
-                if (response.data.success) {
-                    setStudyPosts(response.data.studyInfo)
-                }
-                else {
-                    alert(" 스터디 리스트들을 가져오는데 실패 했습니다.")
-                }
-            })
-    }
-
     const showFilteredReulst = (filters, category) => {
         const newFilters = { ...Filters }
         newFilters[category] = filters
@@ -57,7 +55,6 @@ function StudySearch() {
         setFilters(newFilters)
         getStudyPost(newFilters)
     }
-
 
     return (
         <div>
@@ -85,11 +82,11 @@ function StudySearch() {
                     </Modal>
                 </div>
             </section>
-
+            
             <section className="container">
                 <p className="title">전체 결과</p>
                 <Button className="mobileFilter" onClick={showModal}>검색 필터</Button>
-                <StudyCard StudyPosts={StudyPosts} />
+                <StudyCard studyPosts={study} />
             </section>
 
 
@@ -98,4 +95,4 @@ function StudySearch() {
 
 }
 
-export default StudySearch;
+export default withRouter(StudySearch);
