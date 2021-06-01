@@ -112,11 +112,11 @@ function UploadStudyPost(props) {
                     <br />
                     <br />
                     <label>스터디 목적/목표</label>
-                    <TextArea onChange={purposeChangeHandler} value={Purpose} />
+                    <TextArea onChange={purposeChangeHandler} value={Purpose} autoSize="false" />
                     <br />
                     <br />
                     <label>스터디 설명</label>
-                    <TextArea onChange={descriptionChangeHandler} value={Description} />
+                    <TextArea onChange={descriptionChangeHandler} value={Description} autoSize="false" />
                     <br />
                     <br />
                     <label>지역</label>
