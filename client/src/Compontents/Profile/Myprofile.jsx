@@ -12,8 +12,6 @@ import { userInfo } from "../../_actions/userInfo_actions";
 function MyProfile(props) {
     const dispatch = useDispatch()
     const [Profile, setProfile] = useState([])
-    const [portfolioList, setPortfolioList] = useState([]);
-    const [skill, setSkill] = useState([]);
     const [image, setImage] = useState('');
 
     const userInfoList = useSelector(state => state.userInfo.userListData);
@@ -38,7 +36,7 @@ function MyProfile(props) {
                 })
         }
         else {
-            infoFilter(userInfoList)
+            infoFilter(userInfoList.userList)
         }
 
     }
@@ -49,6 +47,7 @@ function MyProfile(props) {
         })
         
         setProfile({...result[0]})
+        result[0].image && setImage(result[0].image[0].path)
     }
 
     return (
@@ -60,20 +59,17 @@ function MyProfile(props) {
             <div className="container">
                 <section>
                     <KeyInfo
-                        Skill={Profile.skill}
-                        image={image}
-                        setImage={setImage}
-                        setSkill={setSkill}
                         profile={Profile}
-                        setProfile={setProfile}
+                        image={image}
+                        Skill={Profile.skill}
+                        setImage={setImage}
                         user={props.user}
                     />
                 </section>
 
                 <section className="expreience__portfolio">
                     <Portfolio
-                        portfolioList={portfolioList}
-                        setPortfolioList={setPortfolioList}
+                        portfolio={Profile.portfolio}
                         user={props.user}
                     />
                 </section>

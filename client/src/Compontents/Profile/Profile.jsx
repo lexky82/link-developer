@@ -18,7 +18,7 @@ function MyProfile(props) {
 
     const dispatch = useDispatch()
     const profileId = props.match.params
-    const userInfoList = useSelector(state => state.userInfo.userListData);
+    
 
     useEffect(() => {
 
@@ -26,6 +26,7 @@ function MyProfile(props) {
 
     }, [])
 
+    const userInfoList = useSelector(state => state.userInfo.userListData);
     const getProfilePost = () => {
         if(!userInfoList){
             dispatch(userInfo())
@@ -77,8 +78,7 @@ function MyProfile(props) {
 
                 <section className="expreience__portfolio">
                     <Portfolio
-                        portfolioList={Profile.portfolio}
-                        setPortfolioList={setPortfolioList}
+                        portfolio={Profile.portfolio}
                         user={profileId.profileId === window.localStorage.getItem('userId')}
                     />
                 </section>

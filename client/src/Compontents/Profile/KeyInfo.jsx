@@ -4,6 +4,7 @@ import React from 'react'
 import axios from "axios";
 
 /* Components */
+import { useState, useEffect } from 'react';
 import { Select } from "antd";
 import { skill } from "../../Data";
 import FileUpload from '../Util/FileUpload';
@@ -15,7 +16,13 @@ const Option = Select;
 
 function KeyInfo(props) {
 
-    const { Skill, setSkill, profile, user, image, setImage } = props
+    const { profile, user, image, setImage } = props
+    const [Skill, setSkill] = useState([]);
+
+    useEffect(() => {
+        setSkill(profile.skill)
+
+    }, [profile])
 
     const onAddSkillHandler = (event) => {
         if (Skill.indexOf(event) >= 0) { // 스택 중복검사
@@ -40,7 +47,7 @@ function KeyInfo(props) {
                     alert('스킬 등록에 실패 했습니다.');
                 }
             })
-
+            
         setSkill(newArray);
     }
 
@@ -66,10 +73,11 @@ function KeyInfo(props) {
 
                 }
                 else {
-                    alert('스킬 등록에 실패 했습니다.');
+                    alert('스킬 삭제에 실패 했습니다.');
                 }
             })
 
+        
         setSkill(newArray);
     }
 

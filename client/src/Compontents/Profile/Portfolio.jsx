@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 /* Lib */
 import axios from 'axios';
@@ -13,8 +13,15 @@ const Option = Select;
 
 function Portfolio(props) {
 
-    const { portfolioList, setPortfolioList, user } = props
+    const { portfolio, user } = props
 
+    useEffect(() => {
+
+        setPortfolioList(portfolio)
+
+    }, [portfolio])
+    
+    const [portfolioList, setPortfolioList] = useState([]);
     const [ProjectName, setProjectName] = useState('')
     const [Position, setPosition] = useState('')
     const [ProjectSkill, setProjectSkill] = useState([])
