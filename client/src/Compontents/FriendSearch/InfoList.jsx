@@ -28,12 +28,13 @@ function InfoList(props) {
         ? <img src={`http://3.16.138.36:5000/${personData.image[0].path}`} />
         : <img src={imgPerson} />
         }
+
         <div className="person__info">
             <p className="title"><Link to={`/profile/${personData._id}`}>{personData.name}</Link></p>
             <div>{personData.position}</div>
             {
-                personData.skill.map((personInfo, i) => (
-                    <div className="skillStackLabel">{personData.skill[i]}</div>
+                personData.skill.map((personSkill, i) => (
+                    <div className="skillStackLabel" key={i}>{personSkill}</div>
                 ))
             }
         </div>

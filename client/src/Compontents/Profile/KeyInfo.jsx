@@ -127,7 +127,7 @@ function KeyInfo(props) {
             <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
                 {
                     Skill && Skill.map((skill, i) => {
-                        return <SkillStackLabel key={i} skill={Skill[i]} />
+                        return <SkillStackLabel key={i} skill={skill} />
                     })
                 }
             </div>
