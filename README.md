@@ -18,8 +18,8 @@
   - 자신의 프로필에 다룰 수 있는 기술과 프로젝트를 업로드 할 수 있고 다른 유저가 조회할 수 있음.
 - 개발 언어 : JavaScript
 - 개발 라이브러리
-  - Frontend : React, Redux, Antd, Axios
-  - Backend : Express, Mongoose
+  - Frontend : React, Redux, ReduxThunk, Yup, Formik, Axios
+  - Backend : Express, Mongoose, Multer, Jwt, bcrypt
   - Database : MongoDB
 - 형상 관리 툴 : Git
 - 간단 소개 : 스터디 모집, 찾기 웹 서비스
@@ -31,9 +31,7 @@
   - 사용자가 선호하는 스터디를 필터를 통해 제공하는 서비스
   - 자신의 프로필을 꾸미고 다른 유저가 조회할 수 있는 서비스
 
-- 사용자가 다룰 수 있는 스킬을 프로필에 추가할 수 있음
-
-- 사용자가 경험했던 프로젝트를 프로필에 추가할 수 있음
+- 사용자가 사용할 수 있는 스킬과 경험했던 프로젝트를 프로필에 등록하여 다른 사람이 볼 수 있도록 할 수 있음
 
 - link-developer에 가입한 다른 유저들의 프로필을 조회할 수 있음
 
@@ -101,7 +99,7 @@ const projectNameChangeHandler = (event) => {
 ```
 
 ### useEffect 훅내에서 redux 로딩오류
-- 컴포넌트 렌더링전에 useEffect가 동작하면서 state 데이터로 백엔드에 요청을 보내지 못하는 이슈
+- 컴포넌트 렌더링 전에 useEffect가 동작하면서 props 데이터로 백엔드에 요청을 보내지 못하는 이슈
 - 컴포넌트 렌더링 이전에 DB를 조회하여 유저의 프로필 데이터를 가져오는 로직이라 유저의 프로필 데이터의 종속된 모든 코드들이 영향을 미침.
 
 - 기존코드
@@ -128,6 +126,8 @@ React.useEffect(() => {
   }, [])
 ```
 - 1차 변경 코드
+  - props 로딩되기전에 useEffect에 접근하면 return을하고 props가 업데이트 되었을때 다시 실행하도록 변경
+  - 하지만 props가 로딩될때까지 시간이 존재하고 같은 로직을 두번 실행하는 현상 일어남. 비효율적임
 ```jsx
 React.useEffect(() => {
      if (!props.user.userData) {
@@ -155,10 +155,10 @@ React.useEffect(() => {
   }, [props.user])
 ```
 
-- state가 로딩되기전에 useEffect에 접근하면 return을하고 state가 마운트 되었을때 다시 실행하도록 변경
-- 하지만 state가 로딩될때까지 시간이 존재하고 같은 코드를 두번 실행하는 현상 일어남. 비효율적임
+
 * * *
 - 2차 변경 코드
+  - 로그인할 시에 localStorage에 저장되는 userId를 가져와 props 로딩과 상관없이 백엔드에 요청 보낼 수 있게 변경
 ```jsx
 React.useEffect(() => {
     const userId = window.localStorage.getItem("userId")
@@ -181,10 +181,37 @@ React.useEffect(() => {
     }
   }, [])
 ```
-- 로그인할 시에 localStorage에 저장되는 userId를 가져와 state 로딩과 상관없이 컴포넌트 렌더링전에 보다 빠르게 백엔드에 요청 보낼 수 있게 변경
+- 3차 코드변경
+  - UserInfo, StudyInfo의 데이터는 컴포넌트 전반적으로 사용되는 데이터이기 때문에 리덕스로 전역으로 상태관리를 해야할 필요성을 느껴 useSelector로 조회하도록 변경 이후 filter로 클라이언트에서 값을 가공하도록 변경
+```jsx
+  const userInfoList = useSelector(state => state.userInfo.userListData);
+  
+  useEffect(() => {
+
+        getProfilePost()
+    }, [])
+
+    const getProfilePost = () => {
+        if (!userInfoList) {
+            dispatch(userInfo())
+                .then(response => {
+                    if (response.payload.success) {
+                        infoFilter(response.payload.userList)
+                    }
+                    else {
+                        alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
+                    }
+                })
+        }
+        else {
+            infoFilter(userInfoList.userList)
+        }
+
+    }
+```
 
 ### StudyDetail 컴포넌트에서 백엔드 Axios 요청을 계속해서 보내는 현상
-- 아래 함수를 컴포넌트가 렌더링되는 부분에 정의함으로서 쉬지않고 axios 요청을 보냄
+- 아래 함수를 렌더링되는 로직에 정의함으로서 계속해서 axios 요청을 보내는 현상
 ```jsx
 const readWriterHandler = () => {
         let body = {
@@ -204,6 +231,7 @@ const readWriterHandler = () => {
     }
 ```
 - 개선코드
+  - 컴포넌트가 처음 마운트 되었을때 백엔드에 Study의 대한 응답을 받은뒤 Study에 있는 Writer의 아이디로 유저정보를 가져오게 변경
 ```jsx
 const readWriterHandler = () => {
         axios.get(`/api/studyPost/studyPosts_by_id?id=${studyId}`)
@@ -222,9 +250,14 @@ const readWriterHandler = () => {
             .catch(err => console.log(err))
     }, [])
 ```
-- 컴포넌트가 처음 마운트 되었을때 백엔드에 Study의 대한 응답을 받은뒤 Study에 있는 Writer의 아이디로 유저정보를 가져오게 변경
+
 
 ### StudySearch 컴포넌트에서 Filter컴포넌트가 모바일 화면일때와 데스크탑 화면일때 값이 공유가 안돼는 현상
 - 모바일 환경을 고려해 width가 작아지면 기존의 PC화면 크기에 맞는 Filter 컴포넌트가 숨겨지게 되고 대신 Filter 컴포넌트를 내포하고 있는 Modal을 출력하는 Button을 출력시킴.
 - 그 과정에서 본래 PC화면에서 있던 Filter 컴포넌트와 Modal 안에 있는 Filter 컴포넌트가 렌더링 되는 것은 같지만 서로 값을 공유하지 못함. 다시말해 렌더링 되는 것은 같지만 다른 컴포넌트임.
 - 원인은 반응형 페이지를 고려했을때 Filter 컴포넌트를 모바일 화면과 PC화면 각각 이중화 시킨 것.
+
+### 각 컴포넌트가 렌더링될 때 동일한 API 요청을 중복되게 서버에 보내게 되고 그에 따른 state변경으로 재렌더링이 계속해서 일어나는 현상
+- 각 컴포넌트마다 사용하는 데이터가 같지만 중복되게 API 요청을 보내어 비효율적이고 재렌더링이 일어남.
+해결: props로 관리하기에는 너무 많은 컴포넌트가 사용하는 UserInfo, StudyInfo를 전역으로 상태 관리하게 변경
+
