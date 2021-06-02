@@ -1,22 +1,22 @@
-import './App.css';
+import '../css/App.css';
 import React, { Suspense } from 'react';
 
 /* Lib */
 import { Route } from 'react-router';
 
 /* Components */
-import NavBar from "./Compontents/NavBar";
-import Mainpage from "./Compontents/Mainpage";
-import Login from './Compontents/LoginPage/LoginPage';
-import Regiseter from "./Compontents/RegisterPage/RegisterPage";
-import StudySearch from "./Compontents/StudySearch/StudySearch";
-import FriendSearch from "./Compontents/FriendSearch/FriendSearch";
-import Myprofile from "./Compontents/Profile/Myprofile";
-import UploadStudyPost from "./Compontents/UploadStudyPost";
-import StudyDetail from "./Compontents/StudySearch/StudyDetail";
-import Profile from "./Compontents/Profile/Profile"
-import Auth from './hoc/auth'
-import Footer from './Compontents/Footer'
+import NavBar from "./NavBar";
+import Mainpage from "./Mainpage";
+import Login from './LoginPage/LoginPage';
+import Regiseter from "./RegisterPage/RegisterPage";
+import StudySearch from "./StudySearch/StudySearch";
+import FriendSearch from "./FriendSearch/FriendSearch";
+import Myprofile from "./Profile/Myprofile";
+import UploadStudyPost from "./UploadStudyPost";
+import StudyDetail from "./StudySearch/StudyDetail";
+import Profile from "./Profile/Profile"
+import Auth from './HOC/auth'
+import Footer from './Footer'
 
 function App() {
 

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 /* Lib */
 import { withRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { USER_SERVER } from './Config'
+import { USER_SERVER } from '../Config'
 import axios from 'axios';
 
 /* Components */

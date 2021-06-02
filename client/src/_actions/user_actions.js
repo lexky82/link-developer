@@ -5,7 +5,7 @@ import {
     AUTH_USER,
     LOGOUT_USER,
 } from './Types';
-import { USER_SERVER } from '../Compontents/Config';
+import { USER_SERVER } from '../Config';
 
 export function registerUser(dataToSubmit){
     const request = axios.post(`${USER_SERVER}/register`,dataToSubmit)

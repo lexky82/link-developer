@@ -1,11 +1,11 @@
-@import "./css/select_search.css";
-@import "./css/mainpage.css";
-@import "./css/login.css";
-@import "./css/studySearch.css";
-@import "./css/profile.css";
-@import "./css/friendSearch.css";
-@import "./css/studyDetail.css";
-@import "./css/filter.css";
+@import "select_search.css";
+@import "mainpage.css";
+@import "login.css";
+@import "studySearch.css";
+@import "profile.css";
+@import "friendSearch.css";
+@import "studyDetail.css";
+@import "filter.css";
 
 .App {
   text-align: center;
