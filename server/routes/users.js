@@ -117,17 +117,6 @@ router.post('/userlist', (req, res) => {
         })
 })
 
-router.post('/profile', (req, res) => {
-    let body = {
-        _id: mongoose.Types.ObjectId(req.body._id)
-    }
-
-    User.findOne(body)
-        .exec((err, profile) => {
-            if (err) return res.status(400).json({ success: false, err })
-            return res.status(200).json({ success: true, profile: profile })
-        })
-})
 
 router.put('/portfolio', (req, res) => {
 

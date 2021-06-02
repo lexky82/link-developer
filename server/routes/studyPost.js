@@ -40,22 +40,6 @@ router.post('/studyPosts', (req, res) => {
     })
 })
 
-router.get('/studyPosts_by_id', (req, res) => {
-
-  let productIds = req.query.id
-
-  let body = {
-    _id: mongoose.Types.ObjectId(productIds)
-  }
-
-  StudyPost.find(body)
-    .exec((err, study) => {
-      if (err) return res.status(400).send(err)
-      return res.status(200).send(study)
-    })
-
-})
-
 router.post('/removepost', (req, res) =>{
 
   console.log(req.body)
