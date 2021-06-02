@@ -12,7 +12,6 @@ import InfoList from './InfoList';
 
 function FriendsSearch() {
 
-    const [UserList, setUserList] = useState([]);
     const dispatch = useDispatch()
     const userInfoList = useSelector(state => state.userInfo.userListData);
 
@@ -26,7 +25,6 @@ function FriendsSearch() {
         dispatch(userInfo(body))
             .then(response => {
                 if (response.payload.success) {
-                    setUserList(response.payload.userList)
                 }
                 else {
                     alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
