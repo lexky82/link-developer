@@ -102,8 +102,8 @@ const projectNameChangeHandler = (event) => {
 ```
 
 ### useEffect 훅내에서 redux 로딩오류
-- 컴포넌트 렌더링 전에 useEffect가 동작하면서 props 데이터로 백엔드에 요청을 보내지 못하는 이슈
-- 컴포넌트 렌더링 이전에 DB를 조회하여 유저의 프로필 데이터를 가져오는 로직이라 유저의 프로필 데이터의 종속된 모든 코드들이 영향을 미침.
+- props 로딩 이전에 useEffect가 동작하면서 props에 있는 user._id를 인자로 백엔드에 요청을 보내지 못하는 이슈
+- DB의 데이터를 조회하여 유저의 프로필 데이터를 가져오는 로직이라 User 데이터의 종속된 모든 코드들이 영향을 미침.
 
 - 기존코드
 ```jsx
