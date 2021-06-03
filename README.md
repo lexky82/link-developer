@@ -157,9 +157,6 @@ React.useEffect(() => {
     }
   }, [props.user])
 ```
-
-
-* * *
 - 2차 변경 코드
   - 로그인할 시에 localStorage에 저장되는 userId를 가져와 props 로딩과 상관없이 백엔드에 요청 보낼 수 있게 변경
 ```jsx
