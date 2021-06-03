@@ -6,7 +6,7 @@
 
 **link-developer 프로젝트의 Repository 입니다.**
 
-## 개요
+## 프로젝트 개요
 
 - 프로젝트 명 : link-developer
 - 개발 인원 : 1명
@@ -19,7 +19,7 @@
 - 개발 언어 : JavaScript
 - 개발 라이브러리
   - Frontend : React, Redux, ReduxThunk, Yup, Formik, Axios
-  - Backend : Express, Mongoose, Multer, Jwt, bcrypt
+  - Backend : Express, Mongoose, Multer, Jwt, bcrypt, AWS EC2
   - Database : MongoDB
 - 형상 관리 툴 : Git
 - 간단 소개 : 스터디 모집, 찾기 웹 서비스
@@ -29,7 +29,16 @@
 - link-developer
 
   - 사용자가 선호하는 스터디를 필터를 통해 제공하는 서비스
-  - 자신의 프로필을 꾸미고 다른 유저가 조회할 수 있는 서비스
+  - 자신의 프로필을 작성하여 다른 유저가 조회할 수 있는 서비스
+
+- 프로젝트에서 중추적인 데이터를 리덕스를 사용하여 상태관리 함.
+
+- 반응형 디자인
+
+  - 모바일 모드: 주요 모델 지원 UI
+  - 데스크탑 모드: 데스크탑 환경에서 한눈에 볼 수 있는 UI
+
+## 프로젝트 기능
 
 - 사용자가 사용할 수 있는 스킬과 경험했던 프로젝트를 프로필에 등록하여 다른 사람이 볼 수 있도록 할 수 있음
 
@@ -38,11 +47,6 @@
 - 임의의 스킬(JavaScript, Java 등)들을 검색하여 해당 스킬을 사용하는 유저들을 찾을 수 있음
 
 - 사용자가 설정한 필터를 바탕으로 필터에 만족하는 스터디를 찾을 수 있음
-
-- 반응형 디자인
-
-  - 모바일 모드: 주요 모델 지원 UI
-  - 데스크탑 모드: 데스크탑 환경에서 한눈에 볼 수 있는 UI
 
 ## 트러블 이슈
 
