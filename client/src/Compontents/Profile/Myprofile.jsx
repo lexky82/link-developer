@@ -23,7 +23,6 @@ function MyProfile(props) {
     }, [])
 
     const getProfilePost = () => {
-
         if (!userInfoList) {
             dispatch(userInfo())
                 .then(response => {
@@ -61,7 +60,6 @@ function MyProfile(props) {
                     <KeyInfo
                         profile={Profile}
                         image={image}
-                        Skill={Profile.skill}
                         setImage={setImage}
                         user={props.user}
                     />
