@@ -210,8 +210,8 @@ React.useEffect(() => {
     }
 ```
 
-### StudyDetail 컴포넌트에서 백엔드 Axios 요청을 계속해서 보내는 현상
-- 아래 함수를 렌더링되는 로직에 정의함으로서 계속해서 axios 요청을 보내는 현상
+### StudyDetail 컴포넌트에서 백엔드에 API 요청을 계속해서 보내는 현상
+- 아래 함수를 렌더링되는 로직에 정의함으로서 계속해서 API 요청을 보내는 현상
 ```jsx
 const readWriterHandler = () => {
         let body = {
@@ -230,7 +230,7 @@ const readWriterHandler = () => {
 
     }
 ```
-- 개선코드
+- 1차 개선코드
   - 컴포넌트가 처음 마운트 되었을때 백엔드에 Study의 대한 응답을 받은뒤 Study에 있는 Writer의 아이디로 유저정보를 가져오게 변경
 ```jsx
 const readWriterHandler = () => {
@@ -250,6 +250,8 @@ const readWriterHandler = () => {
             .catch(err => console.log(err))
     }, [])
 ```
+2차 개선코드
+- 리덕스로 전역 상태관리를 하게되어 useSelector로 구독하게 변경하여 API 요청이 불필요해짐에 따라 삭제
 
 ### 각 컴포넌트가 렌더링될 때 동일한 API 요청을 중복되게 서버에 보내게 되고 그에 따른 state변경으로 재렌더링이 계속해서 일어나는 현상
 - 각 컴포넌트마다 사용하는 데이터가 같지만 중복되게 API 요청을 보내어 비효율적이고 재렌더링이 일어남.
