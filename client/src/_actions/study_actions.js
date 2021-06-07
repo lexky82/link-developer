@@ -3,8 +3,8 @@ import {
     STDUY_LIST
 } from './Types';
 
-export async function studyList(body){
-    const request = await axios.post(`/api/studyPost/studyPosts`, body)
+export function studyList(body){
+    const request = axios.post(`/api/studyPost/studyPosts`, body)
         .then(response => response.data);
     
     return {
