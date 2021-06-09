@@ -87,18 +87,21 @@ router.post('/image', upload.single('file'));
 router.post('/image', (req, res) => {
 
     User.updateOne(
-        { _id : mongoose.Types.ObjectId(req.body._id) },
-        { image : req.file }
+        { _id: mongoose.Types.ObjectId(req.body._id) },
+        { image: req.file }
     )
-    .then(() => {
-        res.status(200).json({ success: true, file : req.file })
-    },
-        (err) => {
+        .then(() => {
+            res.status(200).json({ success: true, file: req.file })
+        },
+            (err) => {
+                console.log(err)
+                res.json({ success: false, err })
+            })
+        .catch((err) => {
             console.log(err)
-            res.json({ success: false, err })
         })
-  
-  })
+
+})
 
 router.post('/userlist', (req, res) => {
     let body = {}
@@ -132,6 +135,9 @@ router.put('/portfolio', (req, res) => {
                 console.log(err)
                 res.json({ success: false, err })
             })
+        .catch((err) => {
+            console.log(err)
+        })
 })
 
 
@@ -148,6 +154,9 @@ router.put('/addskill', (req, res) => {
                 console.log(err)
                 res.json({ success: false, err })
             })
+        .catch((err) => {
+            console.log(err)
+        })
 
 })
 
@@ -163,6 +172,9 @@ router.put('/removeskill', (req, res) => {
             (err) => {
                 res.json({ success: false, err })
             })
+        .catch((err) => {
+            console.log(err)
+        })
 
 })
 router.put('/removeportfolio', (req, res) => {
@@ -177,7 +189,9 @@ router.put('/removeportfolio', (req, res) => {
                 console.log(err)
                 res.json({ success: false, err })
             })
-
+        .catch((err) => {
+            console.log(err)
+        })
 })
 
 

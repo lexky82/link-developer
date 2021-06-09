@@ -52,6 +52,9 @@ router.post('/removepost', (req, res) =>{
         console.log(err)
         res.json({ success: false, err })
     })
+  .catch((err) => {
+    console.log(err)
+  })
 })
 
 module.exports = router;

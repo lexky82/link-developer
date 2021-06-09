@@ -21,7 +21,7 @@ function KeyInfo(props) {
 
     useEffect(() => {
         setSkill(profile.skill)
-        
+
         if(profile.image){
             setImage(profile.image[0].path)
         }
@@ -50,6 +50,9 @@ function KeyInfo(props) {
 
                     alert('스킬 등록에 실패 했습니다.');
                 }
+            })
+            .catch((err) => {
+                alert(err)
             })
             
         setSkill(newArray);

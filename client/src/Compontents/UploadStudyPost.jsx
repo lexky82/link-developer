@@ -85,6 +85,9 @@ function UploadStudyPost(props) {
                     alert('스터디 공고 등록에 실패 했습니다.');
                 }
             })
+            .catch((err) => {
+                alert(err)
+            })
     }
 
     return (

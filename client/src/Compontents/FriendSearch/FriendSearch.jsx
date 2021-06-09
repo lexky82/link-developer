@@ -30,6 +30,9 @@ function FriendsSearch() {
                     alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
                 }
             })
+            .catch((err) => {
+                alert(err)
+            })
     }
 
     const handleFilters = (filters) => {
