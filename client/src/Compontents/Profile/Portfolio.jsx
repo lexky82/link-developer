@@ -114,6 +114,9 @@ function Portfolio(props) {
                     alert('포트폴리오 제거에 실패 했습니다.');
                 }
             })
+            .catch((err) => {
+                alert(err)
+            })
 
         setPortfolioList(newArray);
     }
