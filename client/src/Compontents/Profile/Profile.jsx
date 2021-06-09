@@ -11,8 +11,6 @@ import KeyInfo from "./KeyInfo";
 
 function MyProfile(props) {
     const [Profile, setProfile] = useState([])
-    const [image, setImage] = useState('');
-
     const dispatch = useDispatch()
     const profileId = props.match.params
     const userInfoList = useSelector(state => state.userInfo.userListData);
@@ -51,7 +49,6 @@ function MyProfile(props) {
         
         
         setProfile({...result[0]})
-        result[0].image[0] && setImage(result[0].image[0].path)
     }
 
     return (
@@ -63,7 +60,6 @@ function MyProfile(props) {
                 <section>
                     <KeyInfo
                         profile={Profile}
-                        image={image}
                         user={false}
                     />
                 </section>

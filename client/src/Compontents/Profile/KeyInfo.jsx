@@ -15,12 +15,16 @@ import imgPerson from '../../image/person.png'
 const Option = Select;
 
 function KeyInfo(props) {
-
-    const { profile, user, image, setImage } = props
+    const { profile, user } = props
     const [Skill, setSkill] = useState([]);
+    const [image, setImage] = useState('');
 
     useEffect(() => {
         setSkill(profile.skill)
+        
+        if(profile.image){
+            setImage(profile.image[0].path)
+        }
 
     }, [profile])
 

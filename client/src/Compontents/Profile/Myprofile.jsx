@@ -12,8 +12,7 @@ import { userInfo } from "../../_actions/userInfo_actions";
 function MyProfile(props) {
     const dispatch = useDispatch()
     const [Profile, setProfile] = useState([])
-    const [image, setImage] = useState('');
-
+    
     const userInfoList = useSelector(state => state.userInfo.userListData);
     const MyId = window.localStorage.getItem('userId')
 
@@ -46,7 +45,6 @@ function MyProfile(props) {
         })
         
         setProfile({...result[0]})
-        result[0].image && setImage(result[0].image[0].path)
     }
 
     return (
@@ -59,8 +57,6 @@ function MyProfile(props) {
                 <section>
                     <KeyInfo
                         profile={Profile}
-                        image={image}
-                        setImage={setImage}
                         user={props.user}
                     />
                 </section>
