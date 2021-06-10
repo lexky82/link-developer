@@ -2,7 +2,7 @@ import React from "react";
 
 /* Lib */
 import * as Yup from 'yup';
-import { registerUser } from "../../_actions/user_actions";
+import { registerUser } from "../_actions/user_actions";
 import { useDispatch } from "react-redux";
 
 /* Components */
@@ -99,7 +99,7 @@ function RegisterPage(props) {
         return (
           <div className="app">
             
-            <Form style={{ maxWidth : "350px", margin : '10rem auto' }} {...formItemLayout} onSubmit={handleSubmit} >
+            <Form style={{ maxWidth : "400px", margin : '10rem auto' }} {...formItemLayout} onSubmit={handleSubmit} >
               <Title level={2}>회원가입</Title>
 
               <Form.Item required label="이름">

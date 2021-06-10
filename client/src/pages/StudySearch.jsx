@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 /* Lib */
-import { studyList } from "../../_actions/study_actions";
+import { studyList } from "../_actions/study_actions";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from 'react-router';
 
 /* Components */
 import { Jumbotron, Button } from 'react-bootstrap';
-import StudyCard from './StudyCard';
-import Filter from '../Util/Filter/Filter';
+import StudyCard from '../Compontents/StudySearch/StudyCard';
+import Filter from '../Compontents/Util/Filter/Filter';
 import { Modal } from 'antd'
 
 function StudySearch() {
