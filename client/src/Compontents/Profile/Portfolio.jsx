@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react'
 /* Lib */
 import axios from 'axios';
 import { skill } from "../../Data"
+import { GithubOutlined, HomeOutlined } from '@ant-design/icons'
 
 /* Components */
+import PortfolioTap from "./PortfolioTap";
 import { Input, DatePicker, Select } from "antd";
 import Modal from "../Util/Modal";
 const { RangePicker } = DatePicker;
@@ -29,6 +31,8 @@ function Portfolio(props) {
     const [modalOpen, setModalOpen] = useState(false);
     const [StartDate, setStartDate] = useState('')
     const [EndDate, setEndDate] = useState('')
+    const [distribute, setDistribute] = useState('')
+    const [github, setGithub] = useState('')
 
     /* Modal Open/Close handler function */
     const openModal = () => {
@@ -54,6 +58,12 @@ function Portfolio(props) {
         setStartDate(datestring[0])
         setEndDate(datestring[1])
     }
+    const githubChangeHadler = (event) => {
+        setGithub(event.target.value)
+    }
+    const distributeChangeHadler = (event) => {
+        setDistribute(event.target.value)
+    }
 
     const onRegistrationHandler = () => {
         const newObject = {
@@ -63,7 +73,9 @@ function Portfolio(props) {
             endDate: EndDate,
             position: Position,
             skill: ProjectSkill,
-            description: Description
+            description: Description,
+            github : github,
+            distribute : distribute
         };
 
         const copyArray = [...portfolioList];
@@ -88,7 +100,6 @@ function Portfolio(props) {
 
         setModalOpen(false);
     }
-
     const removePortfolioHandler = (event) => {
         let selectedPortfolio = event.target.parentNode.parentNode.id;
         let newArray = [...portfolioList];
@@ -146,32 +157,19 @@ function Portfolio(props) {
                     </Select>
                     <p>프로젝트 설명</p>
                     <TextArea onChange={descriptionChangeHandler} type="text" />
+                    <p>배포</p>
+                    <Input placeholder="Github" onChange={githubChangeHadler} type="text" prefix={<GithubOutlined />} />
+                    <Input placeholder="distribute" onChange={distributeChangeHadler} type="text" prefix={<HomeOutlined />} />
                 </Modal>
             </React.Fragment>
             {
                portfolioList && portfolioList.map((portfolio, i) => {
 
-                    return <PortfolioTap key={i} portfolio={portfolioList[i]} />
+                    return <PortfolioTap key={i} portfolio={portfolioList[i]} user={user} removePortfolioHandler={removePortfolioHandler} />
                 })
             }
         </div>
     )
-
-    function PortfolioTap(props) {
-        return (
-            <blockquote id={props.portfolio.id} className="Portfolio">
-                <p className="title">{props.portfolio.projectName}{user && <button onClick={removePortfolioHandler} style={{ border: '0', outline: '0' }} >X</button>}</p>
-                <p>{props.portfolio.startDate} ~ {props.portfolio.endDate}</p>
-                <p>{props.portfolio.position}</p>
-                {
-                    props.portfolio.skill && props.portfolio.skill.map((skill, i) => (
-                        <p key={i} className="skillStackLabel">{skill}</p>
-                    ))
-                }
-                <p>{props.portfolio.description}</p>
-            </blockquote>
-        )
-    }
 }
 
 export default Portfolio

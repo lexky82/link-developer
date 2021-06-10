@@ -11,6 +11,7 @@ import FileUpload from '../Util/FileUpload';
 
 /* image */
 import imgPerson from '../../image/person.png'
+import SkillStackLabel from './SkillStackLabel';
 
 const Option = Select;
 
@@ -134,24 +135,12 @@ function KeyInfo(props) {
             <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
                 {
                     Skill && Skill.map((skill, i) => {
-                        return <SkillStackLabel key={i} skill={skill} />
+                        return <SkillStackLabel key={i} skill={skill} onRemoveSkillTag={onRemoveSkillTag} user={user}/>
                     })
                 }
             </div>
         </div>
     )
-
-    function SkillStackLabel(props) {
-        return (
-            <li id={props.skill} className="skillStackLabel">
-                <span>{props.skill}</span>
-                {
-                    user && <button onClick={(event) => { onRemoveSkillTag(event) }}>x</button>
-                }
-            </li>
-        )
-    }
-
 }
 
 export default KeyInfo
