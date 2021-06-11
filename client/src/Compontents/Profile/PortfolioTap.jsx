@@ -16,8 +16,7 @@ function PortfolioTap(props) {
                 ))
             }
             <p>{portfolio.description}</p>
-            {portfolio.github && <a href={`${portfolio.github}`} target="_blank">{<GithubOutlined style={{ fontSize :'22px', marginRight:'5px'}} />}</a>}
-            {portfolio.distribute &&<a href={`${portfolio.distribute}`} target="_blank">{<HomeOutlined style={{ fontSize :'22px' }}/>}</a>}
+            {portfolio.github && <a href={`${portfolio.github}`} target="_blank">{<GithubOutlined style={{ fontSize :'22px'}} />}</a>}
         </blockquote>
     )
 }

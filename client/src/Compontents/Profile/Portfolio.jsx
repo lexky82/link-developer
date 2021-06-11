@@ -22,7 +22,7 @@ function Portfolio(props) {
         setPortfolioList(portfolio)
 
     }, [portfolio])
-    
+
     const [portfolioList, setPortfolioList] = useState([]);
     const [ProjectName, setProjectName] = useState('')
     const [Position, setPosition] = useState('')
@@ -31,7 +31,6 @@ function Portfolio(props) {
     const [modalOpen, setModalOpen] = useState(false);
     const [StartDate, setStartDate] = useState('')
     const [EndDate, setEndDate] = useState('')
-    const [distribute, setDistribute] = useState('')
     const [github, setGithub] = useState('')
 
     /* Modal Open/Close handler function */
@@ -61,11 +60,18 @@ function Portfolio(props) {
     const githubChangeHadler = (event) => {
         setGithub(event.target.value)
     }
-    const distributeChangeHadler = (event) => {
-        setDistribute(event.target.value)
+    
+    const checkUrl = (strUrl) => {
+        var expUrl = /^http[s]?\:\/\//i;
+        return expUrl.test(strUrl);
     }
-
+    
     const onRegistrationHandler = () => {
+        if(!checkUrl(github)){
+            alert('Github URl 주소가 아닙니다.')
+            return
+        }
+        
         const newObject = {
             id: portfolioList.length,
             projectName: ProjectName,
@@ -74,8 +80,7 @@ function Portfolio(props) {
             position: Position,
             skill: ProjectSkill,
             description: Description,
-            github : github,
-            distribute : distribute
+            github: github,
         };
 
         const copyArray = [...portfolioList];
@@ -156,14 +161,13 @@ function Portfolio(props) {
                         }
                     </Select>
                     <p>프로젝트 설명</p>
-                    <TextArea onChange={descriptionChangeHandler} type="text" />
+                    <TextArea onChange={descriptionChangeHandler} type="text" autoSize="false" />
                     <p>배포</p>
                     <Input placeholder="Github" onChange={githubChangeHadler} type="text" prefix={<GithubOutlined />} />
-                    <Input placeholder="distribute" onChange={distributeChangeHadler} type="text" prefix={<HomeOutlined />} />
                 </Modal>
             </React.Fragment>
             {
-               portfolioList && portfolioList.map((portfolio, i) => {
+                portfolioList && portfolioList.map((portfolio, i) => {
 
                     return <PortfolioTap key={i} portfolio={portfolioList[i]} user={user} removePortfolioHandler={removePortfolioHandler} />
                 })
