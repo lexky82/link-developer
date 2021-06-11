@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 /* Lib */
 import { area, skill } from "../Data";
@@ -23,36 +23,42 @@ function UploadStudyPost(props) {
     const [PhoneNumber, setPhoneNumber] = useState('')
     const [Position, setPosition] = useState('')
 
-    const titleChangeHandler = (event) => {
-        setTitle(event.currentTarget.value);
-    }
-    const positionChangeHandler = (event) => {
+    const titleChangeHandler = useCallback((event) => {
+        setTitle(event.target.value);
+    }, [Title]);
+
+    const positionChangeHandler = useCallback(event => {
         setPosition(event.currentTarget.value)
-    }
-    const dateChangeHandler = (event, dateString) => {
+    }, [Position])
+
+    const dateChangeHandler = useCallback((event, dateString) => {
         setDate(dateString);
-    }
-    const purposeChangeHandler = (event) => {
+    }, [Date])
+
+    const purposeChangeHandler = useCallback((event) => {
         setPurpose(event.currentTarget.value)
-    }
-    const descriptionChangeHandler = (event) => {
+    }, [Purpose])
+
+    const descriptionChangeHandler = useCallback((event) => {
         setDescription(event.currentTarget.value)
-    }
-    const areaChangeHandler = (event) => {
+    }, [Description])
+
+    const areaChangeHandler = useCallback((event) => {
         setArea(event)
-    }
-    const onOffChangeHandler = (event) => {
+    }, [Area])
+    const onOffChangeHandler = useCallback((event) => {
         setOnOff(event)
-    }
-    const phoneNumberChangeHandler = (event) => {
+    }, [OnOff])
+
+    const phoneNumberChangeHandler = useCallback((event) => {
         setPhoneNumber(event.currentTarget.value)
-    }
-    const skillChangeHandler = (event) => {
+    }, [PhoneNumber])
+
+    const skillChangeHandler = useCallback((event) => {
         setSkill(event)
-    }
+    }, [Skill])
 
-
-    const submitHandler = (event) => {
+    const submitHandler = useCallback((event) => {
         event.preventDefault();
 
         if (!Title || !Date || !Area || !PhoneNumber) {
@@ -88,17 +94,17 @@ function UploadStudyPost(props) {
             .catch((err) => {
                 alert(err)
             })
-    }
+    }, [Title, Date, Position, Purpose, Description, Area, Skill, OnOff, PhoneNumber])
 
     return (
         <div>
-            
+
             <header>
                 <Jumbotron className="search__header">
                     <h1 className="search__header-title">스터디를 등록하여 동료를 모집해요!</h1>
                 </Jumbotron>
             </header>
-            
+
             <section style={{ maxWidth: "500px", margin: '2rem auto' }}>
 
                 <Form onSubmitCapture={submitHandler}>
