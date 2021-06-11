@@ -13,12 +13,12 @@ import { Modal } from 'antd'
 
 function StudySearch() {
     const dispatch = useDispatch();
-    useEffect(() => {
 
-        getStudyPost();
+    useEffect(() => {
+        getStudyPost()
 
     }, [])
-    let study = useSelector(state => state.study.studyData);
+
     const getStudyPost = (body) => {
         dispatch(studyList(body))
             .then(response => {
@@ -28,6 +28,9 @@ function StudySearch() {
                 else {
                     alert(" 스터디 리스트들을 가져오는데 실패 했습니다.")
                 }
+            })
+            .catch((err) => {
+                console.log(err)
             })
     }
 
@@ -82,11 +85,11 @@ function StudySearch() {
                     </Modal>
                 </div>
             </section>
-            
+
             <section className="container">
                 <p className="title">전체 결과</p>
                 <Button className="mobileFilter" onClick={showModal}>검색 필터</Button>
-                <StudyCard studyPosts={study} />
+                <StudyCard />
             </section>
 
 
