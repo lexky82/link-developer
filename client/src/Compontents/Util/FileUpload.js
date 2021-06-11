@@ -4,12 +4,24 @@ import React, { useState } from 'react'
 import axios from 'axios';
 
 /* Components */
+import react, { useEffect } from 'react';
 import Dropzone from "react-dropzone";
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 
 function FileUpload(props) {
-  const { image, setImage } = props
+  const { propsImage } = props
+
   const [loading, setLoading] = useState(false)
+  const [image, setImage] = useState('')
+
+  useEffect(() => {
+    if(!propsImage){
+      return
+    }
+
+    setImage(propsImage)
+  }, [propsImage])
+ 
 
   const uploadChangeHandler = (file) => {
     setLoading(true)

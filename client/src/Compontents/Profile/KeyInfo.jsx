@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 
 /* Lib */
 import axios from "axios";
@@ -23,13 +23,13 @@ function KeyInfo(props) {
     useEffect(() => {
         setSkill(profile.skill)
 
-        if(profile.image){
+        if (profile.image) {
             profile.image[0] && setImage(profile.image[0].path)
         }
 
     }, [profile])
 
-    const onAddSkillHandler = (event) => {
+    const onAddSkillHandler = useCallback(event => {
         if (Skill.indexOf(event) >= 0) { // 스택 중복검사
             return;
         }
@@ -55,11 +55,11 @@ function KeyInfo(props) {
             .catch((err) => {
                 alert(err)
             })
-            
-        setSkill(newArray);
-    }
 
-    const onRemoveSkillTag = (event) => {
+        setSkill(newArray);
+    }, [Skill])
+
+    const onRemoveSkillTag = useCallback(event => {
         let selectedSkill = event.target.parentNode.id;
         let newArray = [...Skill];
 
@@ -85,22 +85,21 @@ function KeyInfo(props) {
                 }
             })
 
-        
+
         setSkill(newArray);
-    }
+    }, [Skill])
 
     return (
         <div>
             <div className="keyinfo">
                 {
                     user
-                    ? <FileUpload
-                        image={image}
-                        setImage={setImage}
-                    />
-                    : image
-                        ? <img src={`http://3.16.138.36:5000/${image}`} alt="avatar" />
-                        : <img src={imgPerson} />
+                        ? <FileUpload
+                            propsImage={image}
+                        />
+                        : image
+                            ? <img src={`http://3.16.138.36:5000/${image}`} alt="avatar" />
+                            : <img src={imgPerson} />
                 }
                 <div className="keyinfo__persionalinfo">
                     <h2>
@@ -135,7 +134,7 @@ function KeyInfo(props) {
             <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
                 {
                     Skill && Skill.map((skill, i) => {
-                        return <SkillStackLabel key={i} skill={skill} onRemoveSkillTag={onRemoveSkillTag} user={user}/>
+                        return <SkillStackLabel key={i} skill={skill} onRemoveSkillTag={onRemoveSkillTag} user={user} />
                     })
                 }
             </div>
