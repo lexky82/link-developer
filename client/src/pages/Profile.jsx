@@ -21,34 +21,33 @@ function MyProfile(props) {
 
     }, [])
 
-   
+
     const getProfilePost = () => {
-        if(!userInfoList){
+        if (!userInfoList) {
             dispatch(userInfo())
-            .then(response => {
-                if (response.payload.success) {
-                    infoFilter(response.payload.userList)
-                }
-                else {
-                    alert("스터디 리스트들을 가져오는데 실패 했습니다.")
-                }
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+                .then(response => {
+                    if (response.payload.success) {
+                        infoFilter(response.payload.userList)
+                    }
+                    else {
+                        alert("스터디 리스트들을 가져오는데 실패 했습니다.")
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         }
-        else{
+        else {
             infoFilter(userInfoList.userList)
         }
     }
 
-    const infoFilter = (userList) =>{
+    const infoFilter = (userList) => {
         const result = userList.filter(element => {
             return element._id === profileId.profileId
         })
-        
-        
-        setProfile({...result[0]})
+
+        setProfile({ ...result[0] })
     }
 
     return (

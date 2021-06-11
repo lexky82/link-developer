@@ -98,8 +98,8 @@ function RegisterPage(props) {
         } = props;
         return (
           <div className="app">
-            
-            <Form style={{ maxWidth : "400px", margin : '10rem auto' }} {...formItemLayout} onSubmit={handleSubmit} >
+
+            <Form style={{ maxWidth: "400px", margin: '10rem auto' }} {...formItemLayout} onSubmit={handleSubmit} >
               <Title level={2}>회원가입</Title>
 
               <Form.Item required label="이름">
@@ -186,6 +186,5 @@ function RegisterPage(props) {
     </Formik>
   );
 };
-
 
 export default RegisterPage

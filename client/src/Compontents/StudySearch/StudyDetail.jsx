@@ -12,13 +12,13 @@ import { PhoneOutlined, MailOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 
 function StudyDetail(props) {
-
-    const studyId = props.match.params.studyId
     const [Study, setStudy] = useState({})
-    const study = useSelector(state => state.study.studyData);
     const [writer, setwriter] = useState({})
-    const dispatch = useDispatch()
 
+    const study = useSelector(state => state.study.studyData);
+    const dispatch = useDispatch()
+    const studyId = props.match.params.studyId
+    
     useEffect(() => {
         if(!study){
             dispatch(studyList())

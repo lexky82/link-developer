@@ -23,7 +23,7 @@ function Mainpage() {
                             <Button className="mainpage__content-button">
                                 <span>찾아보기</span>
                             </Button>
-                        </Link> 
+                        </Link>
                     </div>
                 </Jumbotron>
             </header>

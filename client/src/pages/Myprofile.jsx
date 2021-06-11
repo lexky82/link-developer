@@ -12,7 +12,7 @@ import { userInfo } from "../_actions/userInfo_actions";
 function MyProfile(props) {
     const dispatch = useDispatch()
     const [Profile, setProfile] = useState([])
-    
+
     const userInfoList = useSelector(state => state.userInfo.userListData);
     const MyId = window.localStorage.getItem('userId')
 
@@ -39,12 +39,12 @@ function MyProfile(props) {
 
     }
 
-    const infoFilter = (userList) =>{
+    const infoFilter = (userList) => {
         const result = userList.filter(element => {
             return element._id === MyId
         })
-        
-        setProfile({...result[0]})
+
+        setProfile({ ...result[0] })
     }
 
     return (
