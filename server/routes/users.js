@@ -76,7 +76,7 @@ router.get("/logout", auth, (req, res) => {
 
 const storage = multer.diskStorage({
     destination: (req, res, callback) => {
-        callback(null, "./server/uploads/");
+        callback(null, "/home/ubuntu/link-developer/server/uploads/");
     },
     filename: (req, file, callback) => {
         callback(null, new Date().valueOf() + path.extname(file.originalname))

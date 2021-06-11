@@ -37,7 +37,7 @@ app.use('/api/studyPost', require('./routes/studyPost'));
 
 //use this to show the image you have in node js server to client (react js)
 //https://stackoverflow.com/questions/48914987/send-image-path-from-node-js-express-server-to-react-client
-app.use('/server/uploads', express.static('server/uploads'));
+app.use('//home/ubuntu/link-developer/server/uploads', express.static('./server/uploads'));
 app.use(express.static("client/build"));
 
 // index.html for all page routes    html or routing and naviagtion
