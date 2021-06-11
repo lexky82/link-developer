@@ -24,7 +24,7 @@ function KeyInfo(props) {
         setSkill(profile.skill)
 
         if(profile.image){
-            setImage(profile.image[0].path)
+            profile.image[0] && setImage(profile.image[0].path)
         }
 
     }, [profile])
