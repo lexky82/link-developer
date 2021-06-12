@@ -28,10 +28,7 @@ router.post("/register", (req, res) => {
     const user = new User(req.body);
 
     user.save((err, doc) => {
-        if (err.code === 11000){
-            return res.json({ success: false, message : '동일한 이메일이 존재합니다.' });
-        }
-        else if(err) {{ success : false, err }}
+        if (err) return res.json({ success: false, err });
 
         return res.status(200).json({
             success: true
