@@ -109,7 +109,7 @@ function PortfolioModal(props) {
             { user && <button className="experience--button" onClick={showModal}>+</button>}
             <hr />
 
-            <Modal title="검색 필터"
+            <Modal className="portfolioModal" title="포트폴리오 등록"
                 visible={isModalVisible}
                 onOk={onRegistrationHandler}
                 onCancel={handleCancel}

@@ -69,6 +69,10 @@
   .Portfolio p{
     margin : 0;
   }
+
+  .portfolioModal p{
+    margin-bottom: 0;
+  }
   
   .experience__career{
     display: flex;
