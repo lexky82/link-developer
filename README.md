@@ -14,7 +14,7 @@
 - 개발 기간 : 2021.04.03 ~ 2021.06.02
 - 개발 언어 : JavaScript
 - 개발 라이브러리
-  - Frontend : React, Redux, ReduxThunk, Yup, Formik, Axios
+  - Frontend : React, Redux, ReduxThunk, Axios, Ant Design
   - Backend : Express, Mongoose, Multer, Jwt, bcrypt, AWS EC2
   - Database : MongoDB
 - 형상 관리 툴 : Git
