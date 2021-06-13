@@ -27,7 +27,7 @@
   - 사용자가 선호하는 스터디를 필터를 통해 제공하는 서비스
   - 자신의 프로필을 작성하여 다른 유저가 조회할 수 있는 서비스
 
-- 프로젝트에서 중추적인 데이터를 리덕스를 사용하여 상태관리 함.
+- 프로젝트에서 중추적인 데이터를 리덕스를 사용하여 상태관리 함
 
 - 반응형 디자인
 
@@ -36,14 +36,28 @@
 
 ## 프로젝트 기능
 
-- 회원가입/로그인 기능 및 JWT와 bcrypt 이용한 비밀번호 해시화 복호화
+- 회원가입/로그인 기능 및 쿠키 생성
 
 - 스터디 등록/삭제
 
-- 시용자가 원하는 스터디를 찾기위해 (Skill, 온/오프라인, 지역)을 필터를 통해 세부적으로 검색이 가능.
+- 사용자가 원하는 스터디를 찾기위해 (Skill, 온/오프라인, 지역)을 필터를 통해 세부적으로 검색이 가능
 
 - 프로필에 사용할 수 있는 스킬과 경험했던 프로젝트를 프로필에 등록하여 다른 사람이 볼 수 있도록 할 수 있음
 
-- link-developer에 가입한 다른 유저들의 프로필을 조회할 수 있음.
+- 프로필 이미지를 등록할 수 있음
+
+- link-developer에 가입한 다른 유저들의 프로필을 조회할 수 있음
 
 - 임의의 스킬(JavaScript, Java 등)들을 검색하여 해당 스킬을 사용하는 유저들을 찾을 수 있음
+
+## ScreenShot
+- 메인페이지
+![MainPage](ReadMeImage/mainPage.png)
+- 스터디 찾기
+![StudySearch](ReadMeImage/StudySearch.png)
+- 스터디 상세페이지
+![StudyDetail](ReadMeImage/StudyDetail.png)
+- 유저 찾기
+![FriendSearch](ReadMeImage/FriendSearch.png)
+- 프로필
+![Profile](ReadMeImage/Profile.png)
