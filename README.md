@@ -49,8 +49,13 @@
 - 임의의 스킬(JavaScript, Java 등)들을 검색하여 해당 스킬을 사용하는 유저들을 찾을 수 있음
 
 ## ScreenShot
-![MainPage](ReadMeImage/MainPage.png)
+- 메인페이지
+![MainPage](ReadMeImage/mainPage.png)
+- 스터디 찾기
 ![StudySearch](ReadMeImage/StudySearch.png)
+- 스터디 상세페이지
 ![StudyDetail](ReadMeImage/StudyDetail.png)
+- 유저 찾기
 ![FriendSearch](ReadMeImage/FriendSearch.png)
+- 프로필
 ![Profile](ReadMeImage/Profile.png)
