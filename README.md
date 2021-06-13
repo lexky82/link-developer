@@ -47,3 +47,10 @@
 - link-developer에 가입한 다른 유저들의 프로필을 조회할 수 있음
 
 - 임의의 스킬(JavaScript, Java 등)들을 검색하여 해당 스킬을 사용하는 유저들을 찾을 수 있음
+
+## ScreenShot
+![MainPage](ReadMeImage/MainPage.png)
+![StudySearch](ReadMeImage/StudySearch.png)
+![StudyDetail](ReadMeImage/StudyDetail.png)
+![FriendSearch](ReadMeImage/FriendSearch.png)
+![Profile](ReadMeImage/Profile.png)
