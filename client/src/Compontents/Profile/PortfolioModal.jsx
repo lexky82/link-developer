@@ -12,7 +12,7 @@ const { TextArea } = Input;
 const Option = Select;
 
 function PortfolioModal(props) {
-    const { portfolioList } = props
+    const { portfolioList, user } = props
 
     const [ProjectName, setProjectName] = useState('')
     const [Position, setPosition] = useState('')
@@ -23,7 +23,6 @@ function PortfolioModal(props) {
     const [github, setGithub] = useState('')
     const [isModalVisible, setIsModalVisible] = useState(false);
 
-    const user = useSelector(state => state.user)
 
     const handleCancel = () => {
         setIsModalVisible(false);

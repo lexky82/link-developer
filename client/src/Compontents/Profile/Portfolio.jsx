@@ -54,7 +54,7 @@ function Portfolio(props) {
 
     return (
         <div>
-            <PortfolioModal portfolioList={portfolioList} changeRegistration={changeRegistration} />
+            <PortfolioModal portfolioList={portfolioList} changeRegistration={changeRegistration} user={user} />
             {
                 portfolioList && portfolioList.map((portfolio, i) => {
                     return <PortfolioTap key={i} portfolio={portfolio} user={user} removePortfolioHandler={removePortfolioHandler} />
