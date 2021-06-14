@@ -1,16 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 /* image */
 import imgPerson from '../../image/person.png'
 
-function UserInfo(props) {
-    const { UserList } = props
+
+function UserInfo() {
+    const userList = useSelector(state => state.userInfo.userListData);
 
     return (
         <div >
             <div className="peopleList">
                 {
-                    UserList && UserList.userList.map((User, i) => {
+                    userList && userList.userList.map((User, i) => {
                         return <InfoList key={i} personData={User} />
                     })
                 }

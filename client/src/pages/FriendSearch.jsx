@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 /* Lib */
 import { userInfo } from "../_actions/userInfo_actions";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 
 /* Components */
@@ -13,7 +13,6 @@ import InfoList from '../Compontents/FriendSearch/InfoList';
 function FriendsSearch() {
 
     const dispatch = useDispatch()
-    const userInfoList = useSelector(state => state.userInfo.userListData);
 
     useEffect(() => {
 
@@ -25,6 +24,7 @@ function FriendsSearch() {
         dispatch(userInfo(body))
             .then(response => {
                 if (response.payload.success) {
+                    
                 }
                 else {
                     alert(" 유저 리스트들을 가져오는데 실패 했습니다.")
@@ -58,7 +58,7 @@ function FriendsSearch() {
 
             <section className="container-md friendSearchList">
                 <p className="title">전체 결과</p>
-                <InfoList UserList={userInfoList} />
+                <InfoList />
             </section>
 
         </div>
