@@ -6,9 +6,7 @@ import { useSelector } from 'react-redux'
 import { UploadOutlined, EnvironmentOutlined } from '@ant-design/icons'
 
 /* image */
-import imgStudy from '../../image/Study.png'
-
-
+import imgStudy from '../../Image/Study.png'
 
 function StudyCard() {
     const studyPosts = useSelector(state => state.study.studyData);

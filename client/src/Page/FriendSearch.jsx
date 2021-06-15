@@ -4,11 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { userInfo } from "../_actions/userInfo_actions";
 import { useDispatch } from "react-redux";
 
-
 /* Components */
 import { Jumbotron } from 'react-bootstrap';
-import SkillFilter from '../Compontents/Util/Filter/SkillFilter';
-import InfoList from '../Compontents/FriendSearch/InfoList';
+import SkillFilter from '../Components/Util/Filter/SkillFilter';
+import InfoList from '../Components/FriendSearch/InfoList';
 
 function FriendsSearch() {
 

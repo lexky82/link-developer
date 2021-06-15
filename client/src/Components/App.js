@@ -1,4 +1,4 @@
-import '../css/App.css';
+import '../Css/App.css';
 import React, { Suspense } from 'react';
 
 /* Lib */
@@ -6,15 +6,15 @@ import { Route, Switch } from 'react-router';
 
 /* Components */
 import NavBar from "./NavBar";
-import Mainpage from "../pages/Mainpage";
-import Login from '../pages/LoginPage';
-import Regiseter from "../pages/RegisterPage";
-import StudySearch from "../pages/StudySearch";
-import FriendSearch from "../pages/FriendSearch";
-import Myprofile from "../pages/Myprofile";
-import UploadStudyPost from "../pages/UploadStudyPost";
+import Mainpage from "../Page/Mainpage";
+import Login from '../Page/LoginPage';
+import Regiseter from "../Page/RegisterPage";
+import StudySearch from "../Page/StudySearch";
+import FriendSearch from "../Page/FriendSearch";
+import Myprofile from "../Page/Myprofile";
+import UploadStudyPost from "../Page/UploadStudyPost";
 import StudyDetail from "./StudySearch/StudyDetail";
-import Profile from "../pages/Profile"
+import Profile from "../Page/Profile"
 import Auth from './HOC/auth'
 import Footer from './Footer'
 

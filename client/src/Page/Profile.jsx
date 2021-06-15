@@ -6,8 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 /* Components */
 import { Jumbotron } from "react-bootstrap";
-import Portfolio from "../Compontents/Profile/Portfolio";
-import KeyInfo from "../Compontents/Profile/KeyInfo";
+import Portfolio from "../Components/Profile/Portfolio";
+import KeyInfo from "../Components/Profile/KeyInfo";
 
 function MyProfile(props) {
     const [Profile, setProfile] = useState([])
@@ -20,7 +20,6 @@ function MyProfile(props) {
         getProfilePost()
 
     }, [])
-
 
     const getProfilePost = () => {
         if (!userInfoList) {

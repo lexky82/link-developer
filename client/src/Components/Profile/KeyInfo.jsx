@@ -10,7 +10,7 @@ import { skill } from "../../Data";
 import FileUpload from '../Util/FileUpload';
 
 /* image */
-import imgPerson from '../../image/person.png'
+import imgPerson from '../../Image/person.png'
 import SkillStackLabel from './SkillStackLabel';
 
 const Option = Select;

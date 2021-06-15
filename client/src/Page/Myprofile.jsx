@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 /* Components */
 import { Jumbotron } from "react-bootstrap";
-import Portfolio from "../Compontents/Profile/Portfolio";
-import KeyInfo from "../Compontents/Profile/KeyInfo";
+import Portfolio from "../Components/Profile/Portfolio";
+import KeyInfo from "../Components/Profile/KeyInfo";
 
 /* Lib */
 import { userInfo } from "../_actions/userInfo_actions";

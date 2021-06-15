@@ -7,8 +7,8 @@ import { withRouter } from 'react-router';
 
 /* Components */
 import { Jumbotron, Button } from 'react-bootstrap';
-import StudyCard from '../Compontents/StudySearch/StudyCard';
-import Filter from '../Compontents/Util/Filter/Filter';
+import StudyCard from '../Components/StudySearch/StudyCard';
+import Filter from '../Components/Util/Filter/Filter';
 import { Modal } from 'antd'
 
 function StudySearch() {

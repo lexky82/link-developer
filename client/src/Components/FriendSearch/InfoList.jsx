@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 /* image */
-import imgPerson from '../../image/person.png'
+import imgPerson from '../../Image/person.png'
 
 
 function UserInfo() {

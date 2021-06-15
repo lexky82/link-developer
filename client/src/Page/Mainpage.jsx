@@ -6,8 +6,8 @@ import { Carousel } from "antd";
 import { Jumbotron, Button } from 'react-bootstrap';
 
 /* image */
-import imgStudySearch from '../image/StudySearch.png'
-import imgFriendSearch from '../image/FriendSearch.png'
+import imgStudySearch from '../Image/StudySearch.png'
+import imgFriendSearch from '../Image/FriendSearch.png'
 
 function Mainpage() {
     return (

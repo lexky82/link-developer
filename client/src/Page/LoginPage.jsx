@@ -7,15 +7,7 @@ import { useDispatch } from "react-redux";
 
 /* Components */
 import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
-
-import {
-  Form,
-  Input,
-  Button,
-  Typography,
-  Checkbox,
-  notification 
-} from 'antd';
+import { Form, Input, Button, Typography, Checkbox, notification } from 'antd';
 
 const { Title } = Typography;
 
@@ -25,8 +17,8 @@ function LoginPage(props) {
   const rememberMeChecked = localStorage.getItem("rememberMe") ? true : false;
 
   const initialEmail = localStorage.getItem("rememberMe")
-  ? localStorage.getItem("rememberMe")
-  : '';
+    ? localStorage.getItem("rememberMe")
+    : '';
 
   const [email, setEmail] = useState(initialEmail);
   const [password, setPassword] = useState('');
@@ -38,9 +30,9 @@ function LoginPage(props) {
       message: 'Login Error',
       description:
         err
-        ? err
-        : '이메일 또는 비밀번호를 확인하시길 바랍니다.',
-      
+          ? err
+          : '이메일 또는 비밀번호를 확인하시길 바랍니다.',
+
       icon: <UserOutlined style={{ color: 'red' }} />,
       placement: 'topLeft'
     });
@@ -50,7 +42,7 @@ function LoginPage(props) {
     const regex = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
     return (email != '' && email != 'undefined' && regex.test(email));
   }, [email])
-  
+
   const handleRememberMe = useCallback(e => {
     setRememberMe(!rememberMe)
   }, [rememberMe]);
