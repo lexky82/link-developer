@@ -14,7 +14,7 @@
 - 개발 기간 : 2021.04.03 ~ 2021.06.02
 - 개발 언어 : JavaScript
 - 개발 라이브러리
-  - Frontend : React, Redux, Redux-Promise-Middleware ,Axios, Ant Design
+  - Frontend : React, Redux, Redux-Promise-Middleware, Axios, Ant Design
   - Backend : Express, Mongoose, Multer, Jwt, bcrypt, AWS EC2
   - Database : MongoDB
 - 형상 관리 툴 : Git
@@ -29,7 +29,7 @@
   - 사용자가 선호하는 스터디를 필터를 통해 제공하는 서비스
   - 자신의 프로필을 작성하여 다른 유저가 조회할 수 있는 서비스
 
-- 프로젝트에서 중추적인 데이터(유저정보 리스트 정보, 스터디 정보)를 리덕스를 사용하여 상태관리 함
+- 프로젝트에서 중추적인 데이터(유저 정보, 스터디 정보)를 리덕스를 사용하여 상태관리 함
 
 - 반응형 디자인
 
@@ -42,7 +42,7 @@
 
 - 스터디 게시/삭제
 
-- 스터디 상세페이지
+- 스터디 상세 페이지
 
 - 사용자가 원하는 스터디를 찾기위해 (Skill, 온/오프라인, 지역)을 필터를 통해 세부적으로 검색이 가능
 
@@ -55,6 +55,7 @@
 - 임의의 스킬(JavaScript, Java 등)들을 검색하여 해당 스킬을 사용하는 유저들을 찾을 수 있음
 
 ## ScreenShot
+
 - 메인페이지
 ![MainPage](ReadMeImage/mainPage.png)
 - 스터디 찾기
