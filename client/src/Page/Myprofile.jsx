@@ -21,6 +21,14 @@ function MyProfile(props) {
         getProfilePost()
     }, [])
 
+    const infoFilter = (userList) => {
+        const result = userList.filter(element => {
+            return element._id === MyId
+        })
+
+        setProfile({ ...result[0] })
+    }
+
     const getProfilePost = () => {
         if (!userInfoList) {
             dispatch(userInfo())
@@ -39,19 +47,13 @@ function MyProfile(props) {
 
     }
 
-    const infoFilter = (userList) => {
-        const result = userList.filter(element => {
-            return element._id === MyId
-        })
-
-        setProfile({ ...result[0] })
-    }
-
     return (
         <div>
-            <Jumbotron className="search__header">
-                <h1 className="search__header-title">입력한 정보를 다른 유저들이 볼 수 있어요!</h1>
-            </Jumbotron>
+            <header>
+                <Jumbotron className="search__header">
+                    <h1 className="search__header-title">입력한 정보를 다른 유저들이 볼 수 있어요!</h1>
+                </Jumbotron>
+            </header>
 
             <div className="container">
                 <section>

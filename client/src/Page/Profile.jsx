@@ -51,9 +51,12 @@ function MyProfile(props) {
 
     return (
         <div>
-            <Jumbotron className="search__header">
-                <h1 className="search__header-title">이 유저는 어떤가요?</h1>
-            </Jumbotron>
+            <header>
+                <Jumbotron className="search__header">
+                    <h1 className="search__header-title">이 유저는 어떤가요?</h1>
+                </Jumbotron>
+            </header>
+
             <div className="container">
                 <section>
                     <KeyInfo
