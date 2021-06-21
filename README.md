@@ -15,7 +15,7 @@
 - 개발 언어 : JavaScript
 - 개발 라이브러리
   - Frontend : React, Redux, Redux-Promise-Middleware, Axios, Ant Design
-  - Backend : Express, Mongoose, Multer, Jwt, bcrypt, AWS EC2
+  - Backend : Express, Mongoose, Multer, AWS EC2
   - Database : MongoDB
 - 형상 관리 툴 : Git
 - 간단 소개 : 스터디를 모집 하거나 필요로 하는 스킬을 사용하는 유저를 찾아 제안할 수 있는 개발자 특화 스터디 웹 서비스
