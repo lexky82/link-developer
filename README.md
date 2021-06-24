@@ -54,6 +54,11 @@
 
 - 임의의 스킬(JavaScript, Java 등)들을 검색하여 해당 스킬을 사용하는 유저들을 찾을 수 있음
 
+## 트러블 슈팅
+[🔎HOC로 반환된 컴포넌트의 props undefined 이슈](https://tried.tistory.com/90?category=938688)
+
+[🔎API 요청을 미친듯이 보내는 현상](https://tried.tistory.com/91?category=938688)
+
 ## ScreenShot
 
 - 메인페이지
